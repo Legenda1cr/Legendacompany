@@ -156,7 +156,7 @@ text-decoration: none;
 
 .blok-content
 {
-background:#000000d5;
+background:#000000bf;
 overflow: hidden;
 padding:10px 5px 15px 5px;
 border-radius:10px
@@ -323,7 +323,7 @@ text-decoration: none;
 }
 footer
 {
-background:rgba(0, 0, 0, 0.8);
+background:rgba(0, 0, 0, 0.758);
 height:200px;
 weight:900px;
 border-radius:10px;
