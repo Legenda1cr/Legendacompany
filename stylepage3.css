@@ -169,7 +169,7 @@ border-radius: 10px;
 {
 background:#80808000;
 width:700px; /* ширина блока левого*/
-height: 900px;
+height: 1000px;
 float:left; /* граница сайта */
 padding:5px;
 -webkit-box-shadow: 10px 10px 6px -6px #44434300;
@@ -196,6 +196,10 @@ text-align:justify;
 color:#ffff;
 }
 
+.text{
+  text-align:center;
+}
+
 .text h2
 {
   text-decoration: none;
@@ -203,14 +207,21 @@ color:#ffff;
 	padding: 5px;
   font:30px  "Algerian", Times, serif;
 color:#ffffff;
+text-align:center;
 }
 
+.QR-code{
+  height:200px;
+  weight:200px;
+border-radius:10px;
+}
 
 
 .text a:hover
 {
 color: rgb(255, 255, 255);
 text-decoration: none;
+text-align:center;
 
 }
 
@@ -221,6 +232,7 @@ text-decoration: none;
 	text-decoration: none;
 	color: rgb(255, 255, 255);
 	padding: 5px;
+  text-align:center;
 }
 
 
