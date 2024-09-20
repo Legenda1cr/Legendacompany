@@ -174,7 +174,7 @@ float:left; /* граница сайта */
 padding:5px;
 -webkit-box-shadow: 10px 10px 6px -6px #44434300;
 -moz-box-shadow: 10px 10px 6px 6px #44434300;
-box-shadow: 0 10px 6px -6px #44434
+box-shadow: 0 10px 6px -6px #444344
 }
 
 
@@ -196,7 +196,32 @@ text-align:justify;
 color:#ffff;
 }
 
+.text h2
+{
+  text-decoration: none;
+	color: rgb(255, 255, 255);
+	padding: 5px;
+  font:30px  "Algerian", Times, serif;
+color:#ffffff;
+}
 
+
+
+.text a:hover
+{
+color: rgb(255, 255, 255);
+text-decoration: none;
+
+}
+
+.text p
+{
+  font:20px  "Algerian", Times, serif;
+  color:#0000CD;
+	text-decoration: none;
+	color: rgb(255, 255, 255);
+	padding: 5px;
+}
 
 
 
