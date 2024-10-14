@@ -1,0 +1,467 @@
+
+head {
+    
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+
+
+}
+.parallax{
+    background: url(./kosmos.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+    height:1400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+
+}
+
+.parallax .mask{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0,7);
+    z-index:2;
+}
+.parallax-content{
+    z-index:3;   
+    display:block;
+    position: absolute;
+    top: 850px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 900px;
+    height: 500px;
+    background-color: #505050;
+    box-shadow: 0 30px 50px #dbdbdb;
+    border-radius: 20px;
+}
+
+.parallax-content .item {
+  position: absolute;
+}
+
+.parallax-content .item{
+  width: 900px;
+  height: 500px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 30px 50px #505050;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: inline-block;
+  transition: 0.5s;
+  border-radius: 10px;
+}
+
+
+/*ниже все что к слайдеру*/
+
+.container{
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -90%);
+ width: 470px;
+ height: 680px;
+ background-color: #505050;
+ border-radius: 20px;
+ box-shadow: 0 30px 50px #dbdbdb;
+ margin-top: -10px;
+}
+
+
+
+.container .slide .item{
+    width: 200px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    box-shadow: 0 30px 50px #505050;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+    border-radius: 20px;
+
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2){
+    top: 0;
+    left: 0;
+    transform: translate(0, 0);
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.slide .item:nth-child(3){
+    left: 85%;
+}
+
+.slide .item:nth-child(4){
+    left: calc(85% + 60px);
+}
+
+.slide .item:nth-child(5){
+  left: calc(85% + 120px);
+}
+
+.slide .item:nth-child(6){
+  left: calc(85% + 180px);
+}
+
+.slide .item:nth-child(7){
+  left: calc(85% + 240px);
+}
+
+
+
+.item .content {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    width: 300px;
+    text-align: left;
+    color: #000000;
+    transform: translate(0, -50%);
+    font-family: system-ui;
+    display: none;
+}
+
+.slide .item:nth-child(2) .content{
+    display: block;
+}
+
+.content .name {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    animation: animate 1s ease-in-out 1 forwards;
+}
+
+.content .des {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+}
+
+.content button{
+    padding: 10px 20px;
+    border: none;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+    border-radius: 10px; 
+    margin-top: 585px;
+    margin-left: 17%;
+}
+
+.content button:hover{
+  background: #dddbdb;
+  color: #fff;
+}
+
+@keyframes animate{
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+.button {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+}
+
+.button button {
+    width: 40px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border: 1px solid #000;
+    transition: 0.3s;
+    background-color: #dddbdb;
+}
+
+.button button:hover{
+    background: #dddbdb;
+    color: #fff;
+}
+
+
+
+/*выше все что к слайдеру*/
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    
+}
+
+
+/*снизу всё что к менюшке*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 0rem 2%;
+} 
+
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 50px;
+  line-height: 35px;
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.header .navbar a {
+
+  font-size: 1.3rem;
+  padding: 1rem;
+  color: black;
+  transition: 0.1s;
+}
+
+.header .navbar a:hover {
+  background: rgba(0, 0, 0, 0.671);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+}
+
+html {
+text-align: center;
+}
+
+@media (max-width:1300px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1250px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1200px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1150px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1100px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1050px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1000px) {
+section {
+  padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:950px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:900px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:850px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:800px) {
+section {
+padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 55%;
+}
+
+.header .navbar {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+padding: 0 2rem;
+background-color: white;
+border-top: var(--border);
+box-shadow: var(--box-shadow);
+transition: 0.5s;
+}
+
+.header .navbar a {
+display: block;
+margin: 2rem 0;
+}
+
+#menu {
+font-size: 3.5rem;
+display: block;
+}
+
+.header .navbar.active {
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+transition: 0.5s;
+}
+}
+  /*сверху всё что к менюшке*/
+
+
+
+  /*подвал снизу*/
+  
+  footer{
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: absolute;
+  }
+
+footer a{
+  color:white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+footer nav a:hover{
+  border-bottom: 1px solid white;
+}
+
+.graficlogo{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    width:200px;
+    height:200px;
+	  float:center;
+    
+}
+.social img{
+  margin-bottom: 20px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.social img:hover{
+  border: 2px solid #ffffffe4;
+}

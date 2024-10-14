@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contacts.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>    
+<body>
+  <section class="header">        
+
+    <a href="#"class="logo">
+      <img src="./logo.png" alt="logo">
+    </a>
+      <nav class="navbar">
+        <a href="index3.html">Главная</a>
+        <a href="standarts.html">Стандарты</a>
+        <a href="news.html">Новости</a>
+        <a href="Audit.html">Аудит</a>
+        <a href="study.html">Обучение</a>
+        <a href="consalting.html">Консалтинг</a>
+        <a href="regcon-contacts.html">Контакты</a>
+      </nav>
+
+  <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+  </section>
+  <script>
+
+  let nav = document.querySelector('.header .navbar');
+  let menu = document.querySelector('#menu');
+
+  menu.onlick = () => {
+      navbar.classList.toggle('active');
+  }
+
+  let changeIcon = function(icon) {
+    icon.classList.toggle('fa-times');
+  }
+
+</script>
+    <div class="page-content">
+        
+    <div class="parallax">
+      <div class="container">
+  
+
+      </div>
+      
+        <div class="parallax-content">
+          
+            <section class="contacts">
+                
+                <h2 class="heading"><span>Запрос коммерческого предложения</span></h2>
+                <div class="row">
+                    <div class="img">
+                        <img src="./contacts-img.png">
+                    </div>
+
+                    <form action="https://api.web3forms.com/submit" method="POST">
+
+                        <input type="hidden" name="access_key" value="51f524b6-b739-46c7-8b67-97c5cb8811b6">
+
+                       <span>Ваша Компания</span> 
+                        <input type="text" name="name" id="box" required 
+                        placeholder="Название компании..." autocomplete="off">
+
+                        <span>Email для связи</span>
+                        <input type="text" name="email" id="box" required 
+                        placeholder="example@site.com" autocomplete="off">
+
+                        <span>Фамилия Имя Отчество</span>
+                        <input type="text" name="number" id="box" required 
+                        placeholder="ФИО..." autocomplete="off">
+
+                        <span>ISO</span>
+                            <select name="ISO" id="box" class="box" reauired>
+                                <option value="" disabled selected>Select ISO</option>
+                                <option value="CSS">CSS</option>
+                                <option value="HTML">HTML</option>
+                                <option value="Java">Java</option>
+                                <option value="Python">Python</option>
+                        
+                        </select>
+
+                        <span>Телефон </span> 
+                        <input type="text" name="name" id="box" required 
+                        placeholder="Ваш номер..." autocomplete="off">
+
+                        <span>Стандарты системы менеджмента</span>
+                        <input type="text" name="number" id="box" required 
+                        placeholder="укажите стандарты системы менеджмента" autocomplete="off">
+
+                        <span>Прочая информация</span>
+                        <input type="text" name="number" id="box" required 
+                        placeholder="укажите краткую информацию о компании" autocomplete="off">
+
+                        <input type="submit" value="отправить" class="btn" name="send">
+
+                    </form>
+
+                </div>
+                
+            </section>
+        
+
+        </div>
+    <div class="page-content"></div>
+        
+        
+    </div>
+
+    
+</body>
+<footer>
+  <div class="footer">
+    <nav>
+        <a href ="#"> Политика обработки персональных данных</a> 
+
+    </nav>
+
+      <div class="logopng">
+        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+      </div>
+
+      <div class="social">
+        <a href="#"><img src="./gmail.png"></img></a>
+        <a href="#"><img src="./tg.jpg"></img></a>
+        <a href="#"><img src="./VK.jpg"></img></a>
+        <a href="#"><img src="./whatsapp.jpg"></img></a>
+      </div>
+
+      <nav>
+        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+    </nav>
+    
+
+  </div>
+</footer>
+</html>
+

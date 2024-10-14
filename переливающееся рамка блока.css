@@ -1,0 +1,48 @@
+заготовка для переливаюищихся рамок блока
+
+.container{
+  margin-top: -1700px;
+  position: relative;
+  background: #000;
+  width: 90%;
+  height: auto;
+  border-radius: 50px;
+  box-shadow: 0 10px 40px #ffffff;
+  z-index: 1;
+}
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .container::after, .container::before{
+    --angle: 0deg;
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 70%, blue) ;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    border-radius: 50px;
+    padding: 10px;
+    animation: 3s spin linear infinite;
+  }
+
+  @keyframes spin {
+    from {
+      --angle: 0deg;
+    }
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  .container::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+  }

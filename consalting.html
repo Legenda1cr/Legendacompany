@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="consalting.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>  
+<body>
+    <div class="page">
+        <section class="header">        
+
+                <a href="#"class="logo">
+                <img src="./logo.png" alt="logo">
+                </a>
+                <nav class="navbar">
+                    <a href="index3.html">Главная</a>
+                    <a href="standarts.html">Стандарты</a>
+                    <a href="news.html">Новости</a>
+                    <a href="Audit.html">Аудит</a>
+                    <a href="study.html">Обучение</a>
+                    <a href="consalting.html">Консалтинг</a>
+                    <a href="regcon-contacts.html">Контакты</a>
+                </nav>
+
+            <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+        </section>
+        <script>
+
+            let nav = document.querySelector('.header .navbar');
+            let menu = document.querySelector('#menu');
+
+            menu.onlick = () => {
+                navbar.classList.toggle('active');
+            }
+
+            let changeIcon = function(icon) {
+            icon.classList.toggle('fa-times');
+            }
+
+         </script>
+
+        <div class="page-content">
+        
+            <div class="parallax">
+                <div class="container">   
+
+                    <div class="item item-1">
+                        <div class="text">
+                            <h1> Повышение эффективности</h1>
+                        </div>
+                        <h3>смотреть</h3>
+                    </div>
+    
+    
+                    <div class="item item-2">
+                        <div class="text">
+                            <h1> Подготовка к сертификации</h1>
+                        </div>
+                        <h3>смотреть</h3>
+                    </div>
+
+                    <div class="parallax-text">
+                        <div class="content">
+                            <h2>ООО "Регистр-Консалтинг"</h2>
+                            <p>
+                                Общество с ограниченной ответственностью "Регистр-Консалтинг" (ООО "РЕГКОН") — это консалтинговая компания,
+                                состоящая из экспертов и специалистов с богатым профессиональным опытом разработки, внедрения и улучшения
+                                систем менеджмента на предприятиях и в организациях заказчиков.
+                            </p>
+                            <p>
+                                Компания профессионально оказывает консультационные услуги по разработке, внедрению и совершенствованию
+                                систем менеджмента: от единичных консультаций — до полных проектов внедрения «под ключ».
+                            </p>
+                            <p>
+                                В рамках консалтингового проекта по внедрению может быть реализовано несколько форматов оказания
+                                экспертно-консультационных услуг. Вы можете комбинировать различные форматы по своему усмотрению,
+                                либо запросить индивидуальный порядок взаимодействия.
+                            </p>
+                            <p>
+                                Самым востребованным является формат оказания консультационных услуг, предусматривающий регулярные визиты
+                                консультанта на предприятие. Но в последнее время набирает обороты удаленное консультирование, реализуемое
+                                в формате видеоконференции и предполагающее общение консультанта со специалистами предприятия через Интернет
+                                в режиме реального времени.
+                            </p>
+                    
+                            <div class="button-container">
+                                <a href="regcon-contacts.html" class="custom-button">Запросить коммерческое предложение</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+            </div>
+
+            <script src="certificate.js"></script>
+   
+
+
+        </div>
+   
+
+
+        </body>
+            <footer>
+                <div class="footer">
+                    <nav>
+                        <a href ="#"> Политика обработки персональных данных</a> 
+
+                    </nav>
+
+                    <div class="logopng">
+                        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+                    </div>
+
+                    <div class="social">
+                        <a href="#"><img src="./gmail.png"></img></a>
+                        <a href="#"><img src="./tg.jpg"></img></a>
+                        <a href="#"><img src="./VK.jpg"></img></a>
+                        <a href="#"><img src="./whatsapp.jpg"></img></a>
+                    </div>
+
+                    <nav>
+                        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+                    </nav>
+                    
+
+                </div>
+            </footer>
+    </div>
+</html>
+

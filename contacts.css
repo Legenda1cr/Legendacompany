@@ -1,0 +1,437 @@
+
+head {
+    
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+
+
+}
+.parallax{
+    background: url(./kosmos.jpg);
+    background-attachment: fixed;
+    background-size: 100%;
+    height:1300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+
+}
+
+.parallax .mask{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0,7);
+    z-index:2;
+}
+.parallax-content{
+    z-index:3;
+    display:block
+
+}
+
+.parallax-content{
+  background: #000000b5;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  float:center;
+}
+
+
+.container{
+  margin-top: -1600px;
+  position: absolute;
+}
+
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    
+}
+
+
+/*снизу всё что к менюшке*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 0rem 2%;
+} 
+
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 50px;
+  line-height: 35px;
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.header .navbar a {
+
+
+  padding: 2rem;
+  color: black;
+  transition: 0.1s;
+  font-size: 200%;
+}
+
+.header .navbar a:hover {
+  background: rgba(0, 0, 0, 0.671);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+}
+
+
+@media (max-width:1300px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1250px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1200px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1150px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1100px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1050px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1000px) {
+section {
+  padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:950px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:900px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:850px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:800px) {
+section {
+padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 55%;
+}
+
+.header .navbar {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+padding: 0 2rem;
+background-color: white;
+border-top: var(--border);
+box-shadow: var(--box-shadow);
+transition: 0.5s;
+}
+
+.header .navbar a {
+display: block;
+margin: 2rem 0;
+}
+
+#menu {
+font-size: 3.5rem;
+display: block;
+}
+
+.header .navbar.active {
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+transition: 0.5s;
+}
+}
+
+  
+  /*сверху всё что к менюшке*/
+
+  /*снизу  gmail*/
+
+ 
+
+  .contacts h2{
+    color: rgb(255, 255, 255);
+    align-items: center;
+    margin-top: 100px;
+    margin-left: 15%;
+    font-size: 45px;
+    font-family: 'Nunino', sans-serif;
+    width: 100%;
+  }
+
+
+  .contacts img{
+    margin-left: 5%;
+    height: 550px;
+    width: 550px;
+  }
+
+  .gender {
+    color: white;
+    font-family: 'Nunino', sans-serif;
+  }
+
+
+  .action {
+    margin-left: 15%;
+    color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 5;
+    outline: 0;
+    font-family: 'Nunino', sans-serif;
+    
+  }
+
+  html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+  }
+
+  .contacts {
+    padding: 2rem 9%;
+  }
+
+  .contacts .row {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4rem;
+  }
+  
+  .contacts .row .img {
+    flex: 1 1 40rem;
+  }
+
+  .contacts .row form {
+    flex: 1 1 40rem;
+  }
+
+  .contacts .row form #box {
+    width: 100%;
+    margin: 1rem 0rem 2rem;
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  .contacts .row form span {
+    color: white;
+    font-size: 20px;
+  }
+
+  .contacts .row form .gender {
+    margin: 1rem 0rem 2rem;
+  }
+
+  .contacts .row form .gender label {
+    margin-left: 0.2rem;
+    font-size: 1.6rem;
+    color: white;
+    cursor: pointer;
+  }  
+  
+  .contacts .row form .gender #female{
+    margin-left: 2rem;
+  }
+
+  .contacts .row form .gender input {
+    appearance: none;
+    height: 12px;
+    width: 12px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .contacts .row form .gender input:checked {
+    background-color: orangered;
+    border-radius: 50%;
+  }
+
+  .contacts .row form .gender #female:checked ~ label[for=female] {
+    color: orangered;
+  }
+
+  .contacts .row form .gender #male:checked ~ label[for=male] {
+    color: orangered;
+  }
+
+  .btn {
+    padding: 1rem 3rem;
+    border-radius: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    border: 1px;
+    background-color: orangered;
+    color: white;
+  }
+
+
+  /*сверху  gmail*/
+
+  /*снизу всё что к red blue yellow*/
+
+ 
+  
+  /*сверху всё что к red blue yellow*/
+
+  /*подвал снизу*/
+  
+  footer{
+    width: 100%;
+    height: 500px;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: relative;
+  }
+
+footer a{
+  color:white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+footer nav a:hover{
+  border-bottom: 1px solid white;
+}
+
+.graficlogo{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    width:200px;
+    height:200px;
+	  float:center;
+    
+}
+.social img{
+  margin-bottom: 20px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.social img:hover{
+  border: 2px solid #ffffffe4;
+}

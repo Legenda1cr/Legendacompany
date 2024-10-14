@@ -1,0 +1,666 @@
+html{
+
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+    background-color: #000000;
+
+}
+
+
+.parallax{
+    background: url(./сделка.jpg);  
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    overflow: hidden;
+}
+
+.parallax .mask{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0,7);
+    z-index:2;
+}
+
+
+
+.parallax-content{
+  background: linear-gradient(rgb(157, 157, 183), white);
+  box-shadow: 0 -10px 50px #000000;
+  width: 100%; 
+  border-radius: 0px;
+  height: auto;
+  float:center;
+  color: rgb(0, 0, 0);
+  margin-top: 0;
+  font-size: 40%;
+  margin-top: 250px;
+}
+
+.parallax-content p{
+  margin-left: 10%;
+  margin-right: 10%;
+  line-height: 35px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Центрирование кнопки */
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.custom-button {
+  font-family: 'Arial', sans-serif;
+  background-color: #007bff;
+  color: rgb(255, 255, 255);
+  padding: 15px 30px;
+  font-size: 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgb(0, 0, 0);
+}
+
+.custom-button:hover {
+  background-color: #0056b3;
+  transform: scale(0.95);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.custom-button:active {
+  transform: scale(0.9);
+}
+
+  h1 {
+    font-size: 300%;
+    font-size: 50px;
+    font-weight: 1000;
+    position: relative;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 40px;
+  }
+
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+
+
+
+  
+.slaider {
+  background-color: #00000000;
+  width: 100%;
+  float: center;
+  height: 800px;
+  margin-bottom: -600px;
+  margin-top: 1100px;
+  position: absolute;
+}
+
+
+.container{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #000000b9;
+  width: 70%;
+  height: auto;
+  border-radius: 50px;
+  box-shadow: 0 10px 40px #ffffff;
+  z-index: 1;
+  font-weight: 500;
+  margin-top: 250px;
+}
+
+
+  
+  .container p {
+    font-size: 300%;
+    font-family: sans-serif;
+    z-index: 1;
+  }
+
+
+  
+/*снизу всё что к менюшке*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 0rem 2%;
+} 
+
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 50px;
+  line-height: 35px;
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  position: relative;
+}
+
+.header .navbar a {
+
+  font-size: 1.3rem;
+  padding: 1rem;
+  color: black;
+  transition: 0.1s;
+}
+
+.header .navbar a:hover {
+  background: rgba(0, 0, 0, 0.671);
+  border-radius: 20px;
+  color: rgb(255, 255, 255);
+}
+
+html {
+text-align: center;
+}
+
+@media (max-width:1300px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1250px) {
+section {
+    padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+  font-size: 80%;
+}
+}
+
+@media (max-width:1200px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1150px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1100px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1050px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:1000px) {
+section {
+  padding: 0rem 5%;
+  line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+.parallax-content p {
+  font-size: 16px
+  }
+    .parallax-content h1 {
+      font-size: 30px;
+      }
+      .custom-button {
+        font-size: 20px;
+      }
+      .title {
+        font-size: 30px;
+      }
+      .container p {
+        font-size: 30px;
+      }
+}
+
+@media (max-width:950px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:900px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 80%;
+}
+}
+
+@media (max-width:887px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 70%;
+  }
+  }
+
+@media (max-width:850px) {
+section {
+  padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 70%;
+}
+}
+
+@media (max-width:800px) {
+section {
+padding: 0rem 5%;
+line-height: 35px;
+}
+html {
+font-size: 60%;
+}
+}
+
+@media (max-width:700px) {
+  section {
+  padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 65%;
+  }
+  .container p {
+    font-size: 20px;
+  }
+  
+
+.header .navbar {
+position: absolute;
+top: 100%;
+left: 0;
+width: 100%;
+padding: 0 2rem;
+background-color: white;
+border-top: var(--border);
+box-shadow: var(--box-shadow);
+transition: 0.5s;
+}
+
+.header .navbar a {
+display: block;
+margin: 2rem 0;
+}
+
+#menu {
+font-size: 3.5rem;
+display: block;
+}
+
+.header .navbar.active {
+clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+transition: 0.5s;
+}
+}
+  
+  /*сверху всё что к менюшке*/
+
+  /*снизу всё что к red blue yellow*/
+
+ 
+  #container{
+    width:500px;
+    margin:auto; 
+  }
+  
+  /*neeeeoooon*/
+  p{
+    
+    text-align: center;
+    font-size: 300%;
+    margin: 30px 0 20px 0; 
+  }
+  
+  a{
+    text-decoration:none; 
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.1s;
+  }
+ 
+  
+  .container p a {
+    font-size:1.5em;
+    color:#228DFF;
+    font-family:Iceland;
+  }
+  .container p a:hover{
+    -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon1 1.5s ease-in-out infinite alternate;
+    animation: neon1 1.5s ease-in-out infinite alternate;
+  }
+
+  
+  p a:hover{
+  color:#ffffff;  
+  }
+  
+  p a:hover{
+  color:#ffffff;  
+  }
+  
+  
+  
+  /*glow for webkit*/
+
+  @-webkit-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff,
+                 0 0 20px  #fff,
+                 0 0 30px  #fff,
+                 0 0 40px  #228DFF,
+                 0 0 70px  #228DFF,
+                 0 0 80px  #228DFF,
+                 0 0 100px #228DFF,
+                 0 0 150px #228DFF;
+    }
+    to {
+      text-shadow: 0 0 5px #fff,
+                 0 0 10px #fff,
+                 0 0 15px #fff,
+                 0 0 20px #228DFF,
+                 0 0 35px #228DFF,
+                 0 0 40px #228DFF,
+                 0 0 50px #228DFF,
+                 0 0 75px #228DFF;
+    }
+  }
+
+
+  
+  /*glow for mozilla*/
+
+  
+  @-moz-keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff,
+                 0 0 20px  #fff,
+                 0 0 30px  #fff,
+                 0 0 40px  #228DFF,
+                 0 0 70px  #228DFF,
+                 0 0 80px  #228DFF,
+                 0 0 100px #228DFF,
+                 0 0 150px #228DFF;
+    }
+    to {
+      text-shadow: 0 0 5px #fff,
+                 0 0 10px #fff,
+                 0 0 15px #fff,
+                 0 0 20px #228DFF,
+                 0 0 35px #228DFF,
+                 0 0 40px #228DFF,
+                 0 0 50px #228DFF,
+                 0 0 75px #228DFF;
+    }
+  }
+
+  
+  @keyframes neon1 {
+    from {
+      text-shadow: 0 0 10px #fff,
+                 0 0 20px  #fff,
+                 0 0 30px  #fff,
+                 0 0 40px  #228DFF,
+                 0 0 70px  #228DFF,
+                 0 0 80px  #228DFF,
+                 0 0 100px #228DFF,
+                 0 0 150px #228DFF;
+    }
+    to {
+      text-shadow: 0 0 5px #fff,
+                 0 0 10px #fff,
+                 0 0 15px #fff,
+                 0 0 20px #228DFF,
+                 0 0 35px #228DFF,
+                 0 0 40px #228DFF,
+                 0 0 50px #228DFF,
+                 0 0 75px #228DFF;
+    }
+  }
+  
+  
+  /*REEEEEEEEEEESPONSIVE*/
+  @media (max-width: 650px) {
+    
+    #container{
+      width: 100%;
+    }
+    
+    p{
+      font-size:3.5em;
+    }
+  
+  }
+  
+  /*сверху всё что к red blue yellow*/
+
+
+  /*ниже все что к слайдеру*/
+
+
+  .continent {
+    position: relative;
+    max-width: 500px; /* Максимальная ширина слайдера */
+    margin: 50px auto; /* Центрирование слайдера */
+    overflow: hidden; /* Скрываем лишнее */
+    border-radius: 10px; /* Скругление углов */
+  }
+  .slider {
+      display: flex; /* Flex для горизонтального размещения изображений */
+      transition: transform 0.5s ease; /* Плавный переход при изменении положения */
+  }
+  .slide {
+      min-width: 100%; /* Каждый слайд занимает 100% ширины контейнера */
+      box-sizing: border-box; /* Учет отступов и границ в ширине */
+  }
+  img {
+      width: 100%; /* Адаптивные изображения */
+      border-radius: 20px; /* Скругление углов изображений */
+  }
+  .button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7); /* Полупрозрачный фон */
+      border: none;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 10; /* Над другими элементами */
+  }
+  .button-left {
+      left: 10px; /* Положение кнопки слева */
+  }
+  .button-right {
+      right: 10px; /* Положение кнопки справа */
+  }
+  .details-button {
+      position: absolute;
+      bottom: 20px; /* Положение кнопки "Подробнее" */
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #4A90E2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      z-index: 1; /* Над другими элементами */
+  }
+  /* Стиль для полного экрана */
+  .fullscreen {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.759);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+  }
+  .fullscreen img {
+      max-width: 50%;
+  }
+  .close-fullscreen {
+     font-size: 200%;;
+      position: absolute;
+      text-align: center;
+      margin-top: 65%;
+      background: rgba(255, 0, 0, 0.7);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+  }
+ 
+ 
+ /*выше все что к слайдеру*/
+
+
+ .animate-on-scroll {
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(250px);
+  transition: all 0.5s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+  /*подвал снизу*/
+  
+  footer{
+    width: 100%;
+    height: 500px;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: absolute;
+  }
+
+footer a{
+  color:white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+footer nav a:hover{
+  border-bottom: 1px solid white;
+}
+
+.graficlogo{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    width:200px;
+    height:200px;
+	  float:center;
+    
+}
+.social img{
+  margin-bottom: 20px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.social img:hover{
+  border: 2px solid #ffffffe4;
+}

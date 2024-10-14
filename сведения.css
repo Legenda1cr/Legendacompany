@@ -1,0 +1,553 @@
+
+head {
+    
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+
+}
+.parallax{
+    background: rgb(255, 255, 255);
+    background-attachment: fixed;
+    background-size: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    position:relative;
+    overflow: hidden;
+}
+
+
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    
+}
+
+
+/*снизу всё что к менюшке*/
+
+
+    * {
+        box-sizing: border-box;
+        font-family: sans-serif;
+        outline: none;
+        text-decoration: none;
+    }
+     
+
+    section {
+        padding: 0rem 2%;
+    } 
+
+    .header {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 5px 10px #000;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        z-index: 100;
+        border-radius: 50px;
+        line-height: 35px;
+    }
+ 
+    .header .logo img {
+        width: 70px;
+        height: 70px;
+        position: relative;
+    }
+  
+    .header .navbar a {
+
+        font-size: 1.3rem;
+        padding: 1rem;
+        color: black;
+        transition: 0.1s;
+    }
+
+    .header .navbar a:hover {
+        background: rgba(0, 0, 0, 0.671);
+        border-radius: 20px;
+        color: rgb(255, 255, 255);
+    }
+
+    @media (max-width:1300px) {
+      section {
+          padding: 0rem 5%;
+        line-height: 35px;
+      }
+      html {
+        font-size: 80%;
+      }
+    }
+
+    @media (max-width:1250px) {
+      section {
+          padding: 0rem 5%;
+        line-height: 35px;
+      }
+      html {
+        font-size: 80%;
+      }
+    }
+
+  @media (max-width:1200px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:1150px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:1100px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:1050px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:1000px) {
+    section {
+        padding: 0rem 5%;
+        line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:950px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 80%;
+    }
+  }
+
+  @media (max-width:900px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 75%;
+    }
+  }
+
+  @media (max-width:850px) {
+    section {
+        padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 70%;
+    }
+  }
+
+  @media (max-width:800px) {
+    section {
+      padding: 0rem 5%;
+      line-height: 35px;
+    }
+    html {
+      font-size: 55%;
+      text-align: center;
+    }
+
+    .header .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      padding: 0 2rem;
+      background-color: white;
+      border-top: var(--border);
+      box-shadow: var(--box-shadow);
+      transition: 0.5s;
+    }
+
+    .header .navbar a {
+      display: block;
+      margin: 2rem 0;
+    }
+
+    #menu {
+      font-size: 3.5rem;
+      display: block;
+    }
+
+    .header .navbar.active {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      transition: 0.5s;
+    }
+  }
+
+  /*сверху всё что к менюшке*/
+
+
+
+  /*ниже все что к слайдеру*/
+
+  .container{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 10px solid var(--clr-dark);
+    margin-top: 100px;
+    background-color: #d2b41c00;
+    margin-bottom: 0;
+  }  
+
+
+  h1 {
+    background-color: #2259ff;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #ffffff;
+    padding: 10px 10px 20px 10px;
+  }
+
+  h5 {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 800;
+    color: #2259ff;
+  }
+
+
+
+
+   a h3{
+      color: #000;
+    }
+
+
+    h3{
+        width: 100%;
+        text-align: center;
+        position: absolute;
+        bottom: 20px;
+        left: 225px;
+        font-size: 25px;
+        font-weight: 10;
+        box-shadow: 0 20px 30px #000000;
+    }
+    
+    h3 {
+        width: auto;
+        height: auto;
+
+        border-radius: 50px;
+        cursor: pointer;
+        margin: 0 5px;
+        transition: 0.3s;
+        background-color: #dddbdbd0;
+    }
+
+    h3:hover{
+    background: #6a6a70a1;
+    color: #ffffff;
+    }
+
+    h3 {
+        padding: 15px 35px;
+        opacity: 0;
+        animation: animate 0.7s ease-in-out 0.3s 1 forwards;
+        }
+
+    @keyframes animate{
+        from{
+            opacity: 0;
+            transform: translate(0, 100px);
+            filter: blur(33px);
+        }
+        to{
+            opacity: 1;
+            transform: translate(0);
+            filter: blur(0);
+        }
+    }
+
+
+    /*выше все что к слайдеру*/
+
+    .content-menu {
+      width: 90%;
+      max-width: 900px; /* Максимальная ширина контейнера */
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #307cff00; /* Мягкий синий фон */
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.333);
+  }
+ 
+
+.menu {
+
+    max-width: 1000px; /* Максимальная ширина для выравнивания */
+    margin: 20px auto;
+}
+
+.menu-item {
+    margin-bottom: 10px;
+}
+
+.menu-header {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    margin: 0;
+    text-align: left;
+    border: none;
+    width: 100%;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+
+.menu-header:hover {
+    background-color: #0056b3;
+}
+
+.menu-content {
+    opacity: 1;
+    background-color: white;
+    border: 0px solid #007bff;
+    padding: 0px 15px; /* Уменьшаем padding сверху и снизу */
+    font-size: 16px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease, padding 0.4s ease; /* Плавная анимация */
+}
+
+
+.menu-content p, .menu-content ul {
+    margin: 10px 0;
+}
+
+.menu-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.arrow {
+    transition: transform 0.4s ease;
+}
+
+.menu-header.active .arrow {
+    transform: rotate(90deg);
+}
+
+
+
+.menu-header {
+    display: flex;
+    justify-content: space-between; /* Устанавливаем пространство между заголовком и кружком */
+    align-items: center; /* Центрируем по вертикали */
+}
+
+
+.sub-menu {
+    margin-top: 10px; /* Отступ сверху для подменю */
+    padding-left: 20px; /* Отступ слева для списка */
+}
+
+.sub-menu-item {
+    display: block; /* Делаем элементы подменю блочными */
+    padding: 5px 0; /* Отступы сверху и снизу */
+    color: #007bff; /* Цвет текста */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+.sub-menu-item:hover {
+    text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+
+
+
+    .parallax-text{
+        position: relative;
+        display: block;
+        text-align: left;
+        text-wrap: balance;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #ffffff;
+        box-shadow: 0 10px 30px #ffffff;
+        width: 100%; 
+        border-radius: 0px;
+        height: auto;
+        color: rgb(0, 0, 0);
+        margin-bottom: 0;
+        font-size: 20px;
+        margin-top: -50px;
+      }
+
+
+      .parallax-text p{
+        margin: 2% 19%;
+        line-height: 35px;
+      }
+
+      .parallax-text b {
+        margin-left: 5%;
+      }
+
+      .keywords {
+        color: rgb(0, 0, 0);
+        font: bold;
+        font-style: italic;
+      }
+
+      .container-title {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .title {
+        box-shadow: 0 20px 50px #000000;
+        font-size: 250%;
+        font-size: 25px;
+        font-weight: 100;
+        position: relative;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0%;
+        margin-bottom: 2%;
+      }
+      
+      .title {
+        background-color: rgb(49, 90, 254);
+        color: white;
+        border-radius: 50px;
+        padding: 1.5%;
+        padding-left: 4%;
+        padding-right: 4%;
+        cursor: pointer;  
+      }
+      
+      .title:hover {
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        scale: 0.95;
+      }
+
+      .title-1 {
+        box-shadow: 0 20px 50px #000000;
+        font-size: 250%;
+        font-size: 25px;
+        font-weight: 100;
+        position: relative;
+        width: max-content;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0%;
+        margin-bottom: 4%;
+      }
+      
+      .title-1 {
+        background-color: rgb(49, 90, 254);
+        color: white;
+        border-radius: 50px;
+        padding: 1.5%;
+        padding-left: 4%;
+        padding-right: 4%;
+        cursor: pointer;  
+      }
+      
+      .title-1:hover {
+        background-color: rgb(0, 0, 0);
+        color: #ffffff;
+        scale: 0.95;
+      }
+
+
+
+    /*подвал снизу*/
+  
+    footer{
+        width: 100%;
+        height: 500px;
+        background: rgb(0, 0, 0);
+        box-shadow: 0 -10px 10px #ffffff;
+        text-align: center;
+        padding-top: 30px;
+        position: relative;
+        bottom: 0;
+      }
+
+    footer a{
+      color:white;
+      font-size: 20px;
+      margin-left: 20px;
+    }
+    
+    footer nav a:hover{
+      border-bottom: 1px solid white;
+    }
+    
+    .graficlogo{
+        margin-top: 30px;
+        margin-bottom: 0px;
+        width:200px;
+        height:200px;
+          float:center;
+        
+    }
+    .social img{
+      margin-bottom: 20px;
+      border-radius: 50%;
+      height: 100px;
+      width: 100px;
+    }
+    
+    .social img:hover{
+      border: 2px solid #ffffffe4;
+    }

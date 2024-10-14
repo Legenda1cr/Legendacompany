@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ISO.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>  
+<body>
+    <div class="page">
+        <section class="header">        
+
+                <a href="#"class="logo">
+                <img src="./logo.png" alt="logo">
+                </a>
+                <nav class="navbar">
+                    <a href="index3.html">Главная</a>
+                    <a href="standarts.html">Стандарты</a>
+                    <a href="news.html">Новости</a>
+                    <a href="Audit.html">Аудит</a>
+                    <a href="study.html">Обучение</a>
+                    <a href="consalting.html">Консалтинг</a>
+                    <a href="regcon-contacts.html">Контакты</a>
+                </nav>
+
+            <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+        </section>
+        <script>
+
+            let nav = document.querySelector('.header .navbar');
+            let menu = document.querySelector('#menu');
+
+            menu.onlick = () => {
+                navbar.classList.toggle('active');
+            }
+
+            let changeIcon = function(icon) {
+            icon.classList.toggle('fa-times');
+            }
+
+         </script>
+
+        <div class="page-content">
+        
+            <div class="parallax">
+                <div class="container">   
+            <div class="container-logo">
+                <h1> ISO 9001</h1>
+                <h5>Система менеджмента качества (СМК)</h5>
+             </div>  
+                <div class="item item-1">
+                </div>
+
+                <div class="parallax-text">
+
+                    <p>
+                       Стандарты серии 9000 содержат рекомендации и инструментарий для компаний и организаций, которые хотят, чтобы их продукция и услуги постоянно отвечали требованиям заказчика, а качество постоянно улучшалось. <br>
+                        Р ИСО 9001 (ISO 9001) устанавливает критерии системы менеджмента качества и является единственным стандартом серии, по которому возможно осуществлять сертификацию (хотя это не является обязательным требованием). Он может быть использован любой организацией вне зависимости от сферы деятельности. Согласно данным ISO Survey на 2018 год существовало 878 664 компаний компаний и организаций в более чем 170 странах, сертифицированных по ГОСТ Р ИСО 9001 (ISO 9001). <br>
+                        <p> Данный стандарт основан на ряде принципов по менеджменту качества, таких как: лидерство высшего руководства, ориентация на клиента, мотивация и вовлеченность персонала, процессный подход и постоянное усовершенствование. <br>
+                        Внедрение системы менеджмента качества на базе ГОСТ Р ИСО 9001 (ISO 9001) означает внедрение элементов стратегического менеджмента, установление и управление ключевыми показателями эффективности, управления рисками, управление проектами, документооборотом, управление знаниями и компетентностью персонала. Это позволяет клиентам рассчитывать на получение высококачественных товаров и услуг, которые в свою очередь способствуют получению прибыли компаниями. 
+                    </p>
+
+                        <a href="regcon-contacts.html"><div class="title">Подать заявку</div></a>
+                       <a href="standarts.html"><div class="title">Назад</div></a>
+
+                </div>
+
+            </div>
+
+            <script src="certificate.js"></script>
+   
+
+        </div>
+   
+
+
+        </body>
+            <footer>
+                <div class="footer">
+                    <nav>
+                        <a href ="#"> Политика обработки персональных данных</a> 
+
+                    </nav>
+
+                    <div class="logopng">
+                        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+                    </div>
+
+                    <div class="social">
+                        <a href="#"><img src="./gmail.png"></img></a>
+                        <a href="#"><img src="./tg.jpg"></img></a>
+                        <a href="#"><img src="./VK.jpg"></img></a>
+                        <a href="#"><img src="./whatsapp.jpg"></img></a>
+                    </div>
+
+                    <nav>
+                        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+                    </nav>
+                    
+
+                </div>
+            </footer>
+    </div>
+</html>
+

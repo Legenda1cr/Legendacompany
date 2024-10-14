@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="style3.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+    
+</head>    
+<body>
+  <section class="header">        
+
+    <a href="#"class="logo">
+      <img src="./logo.png" alt="logo">
+        <div class="text-logo">
+          
+        </div>
+    </a>
+      <nav class="navbar">
+        <a href="index3.html">Главная</a>
+        <a href="standarts.html">Стандарты</a>
+        <a href="news.html">Новости</a>
+        <a href="Audit.html">Аудит</a>
+        <a href="study.html">Обучение</a>
+        <a href="consalting.html">Консалтинг</a>
+        <a href="regcon-contacts.html">Контакты</a>
+      </nav>
+
+  <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+  </section>
+  <script>
+
+  let nav = document.querySelector('.header .navbar');
+  let menu = document.querySelector('#menu');
+
+  menu.onlick = () => {
+      navbar.classList.toggle('active');
+  }
+
+  let changeIcon = function(icon) {
+    icon.classList.toggle('fa-times');
+  }
+
+</script>
+    <div class="page-content">
+        
+    <div class="parallax">
+      <div class="container">
+  
+          <p><a href="Audit.html">
+            Аудит и диагностика
+            
+          </a></p>
+          
+          <p><a href="study.html">
+          Обучение и подготовка
+          </a></p>
+          
+          <p><a href="consalting.html">
+            Разработка и внедрение
+          </a></p>
+     </div>
+     <div class="animate-on-scroll">
+        <div class="parallax-content">
+          <p><p style="font-size: 50px;"><h1>Регистр-Консалтинг</h1></p>
+          <p><p style="font-size: 30px;">О  компании </p>
+          <p>Компания «Регистр-Консалтинг» была основана в мае 1999 года для оказания консультационных и образовательных услуг при разработке, внедрении и поддержании систем менеджмента в соответствии с требованиями международных, национальных и отраслевых стандартов.
+            ​</p>
+            ​<p><p style="font-size: 30px;">Компания включает в себя:</p>
+            
+               <p> Общество с ограниченной ответственностью "Регистр-Консалтинг" (ООО "РЕГКОН"), специализирующееся на оказании консалтинговых услуг по разработке, внедрению и улучшению систем менеджмента в соответствии с требованиями международных, национальных и отраслевых стандартов;
+                Частное образовательное учреждение дополнительного профессионального образования "Учебно-методический центр "Регистр-Консалтинг" (ЧОУ ДПО "УМЦ "РЕГКОН"), имеющее лицензию на образовательную деятельность и занимающееся обучением персонала организаций по различным темам в области разработки, внедрения и улучшения систем менеджмента.</p>
+            
+            
+           <p> За 25 лет своей деятельности компания накопила большой опыт по разработке и внедрению систем менеджмента в соответствии с требованиями международных, национальных и отраслевых стандартов: ISO 9001, СТО Газпром 9001, ISO 14001, ГОСТ РВ 15002, IATF 16949, ISO 22000, ISO/IEC 27001, ISO/TS 29001, ISO 45001, ISO 50001, API Q1, ИНТИ S.QS.1 и др.
+            
+            Эксперты, преподаватели и специалисты компании имеют глубокие теоретические знания и богатый практический опыт, что позволяет оказывать услуги в полном соответствии с требованиями международных, отечественных и отраслевых стандартов, а также с учетом специфики деятельности предприятий и традиций, сложившихся на них.</p>
+
+            <div class="button-container">
+              <a href="сведения.html" class="custom-button">Сведения об образовательной организации </a>
+          </div>
+
+            <div class="title">
+              <h1>Лицензии и сертификаты</h1>
+            </div>
+
+          </div>
+
+            <!-- для слайдера -->
+            <div class="continent">
+              <div class="slider" id="slider">
+                  <div class="slide"><img src="./сертификат1.jpg" alt="Сертификат 1"></div>
+                  <div class="slide"><img src="./сертификат2.jpg" alt="Сертификат 2"></div>
+                  <div class="slide"><img src="./сертификат3.jpg" alt="Сертификат 3"></div>
+                  <div class="slide"><img src="./сертификат4.jpg" alt="Сертификат 4"></div>
+                  <div class="slide"><img src="./сертификат5.jpg" alt="Сертификат 5"></div>
+                  <div class="slide"><img src="./сертификат6.jpg" alt="Сертификат 6"></div>
+                  <div class="slide"><img src="./сертификат7.jpg" alt="Сертификат 7"></div>
+              </div>
+              <button class="button button-left" id="prev">❮</button>
+              <button class="button button-right" id="next">❯</button>
+              <button class="details-button" id="details">Подробнее</button>
+          </div>
+    
+          <div class="fullscreen" id="fullscreen">
+            <button class="close-fullscreen" id="closeFullscreen">Закрыть</button>
+            <img id="fullscreenImage" src="" alt="Полное изображение">
+    
+            <!-- js для слайдера ниже -->
+    
+            <script>
+              let currentIndex = 0;
+              const slides = document.querySelectorAll('.slide');
+              const slider = document.getElementById('slider');
+              const totalSlides = slides.length;
+          
+    
+              // Функция для обновления слайдера
+              function updateSlider() {
+                  const offset = -currentIndex * 100; // Вычисляем смещение
+                  slider.style.transform = `translateX(${offset}%)`; // Применяем смещение
+              }
+          
+              // Обработчик кнопки "Предыдущий"
+              document.getElementById('prev').addEventListener('click', () => {
+                  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1; // Циклический сдвиг
+                  updateSlider();
+              });
+          
+              // Обработчик кнопки "Следующий"
+              document.getElementById('next').addEventListener('click', () => {
+                  currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0; // Циклический сдвиг
+                  updateSlider();
+              });
+          
+              // Обработчик кнопки "Подробнее"
+              document.getElementById('details').addEventListener('click', () => {
+                  const currentSlideImage = slides[currentIndex].querySelector('img').src; // Получаем текущее изображение
+                  document.getElementById('fullscreenImage').src = currentSlideImage; // Устанавливаем источник для полноэкранного изображения
+                  document.getElementById('fullscreen').style.display = 'flex'; // Показываем полноэкранное изображение
+              });
+          
+              // Обработчик закрытия полноэкранного изображения
+              document.getElementById('closeFullscreen').addEventListener('click', () => {
+                  document.getElementById('fullscreen').style.display = 'none'; // Скрываем полноэкранное изображение
+              });
+          
+              // Закрытие по клику вне изображения
+              document.getElementById('fullscreen').addEventListener('click', (event) => {
+                  if (event.target === event.currentTarget) {
+                      document.getElementById('fullscreen').style.display = 'none'; // Скрываем полноэкранное изображение
+                  }
+              });
+          </script>
+        </div>
+    
+
+
+      </div>
+          
+    <script src="certificate.js"></script>
+    <script src="scroll.js"></script>
+
+      </div>
+
+    
+</body>
+<footer>
+  <div class="footer">
+    <nav>
+        <a href ="#"> Политика обработки персональных данных</a> 
+
+    </nav>
+
+      <div class="logopng">
+        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+      </div>
+
+      <div class="social">
+        <a href="#"><img src="./gmail.png"></img></a>
+        <a href="#"><img src="./tg.jpg"></img></a>
+        <a href="#"><img src="./VK.jpg"></img></a>
+        <a href="#"><img src="./whatsapp.jpg"></img></a>
+      </div>
+
+      <nav>
+        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+    </nav>
+    
+
+  </div>
+</footer>
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ISO.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>  
+<body>
+    <div class="page">
+        <section class="header">        
+
+                <a href="#"class="logo">
+                <img src="./logo.png" alt="logo">
+                </a>
+                <nav class="navbar">
+                    <a href="index3.html">Главная</a>
+                    <a href="standarts.html">Стандарты</a>
+                    <a href="news.html">Новости</a>
+                    <a href="Audit.html">Аудит</a>
+                    <a href="study.html">Обучение</a>
+                    <a href="consalting.html">Консалтинг</a>
+                    <a href="regcon-contacts.html">Контакты</a>
+                </nav>
+
+            <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+        </section>
+        <script>
+
+            let nav = document.querySelector('.header .navbar');
+            let menu = document.querySelector('#menu');
+
+            menu.onlick = () => {
+                navbar.classList.toggle('active');
+            }
+
+            let changeIcon = function(icon) {
+            icon.classList.toggle('fa-times');
+            }
+
+         </script>
+
+        <div class="page-content">
+        
+            <div class="parallax">
+                <div class="container">   
+            <div class="container-logo">
+                <h1>ISO/IEC 27001</h1>
+                <h5>Система менеджмента информационной безопасности (СМИБ)</h5>
+             </div>  
+                <div class="item item-8">
+                </div>
+
+                <div class="parallax-text">
+
+                    <p>Настоящий стандарт подготовлен в качестве модели для разработки, внедрения, функционирования, мониторинга, анализа, поддержки и улучшения системы менеджмента информационной безопасности (СМИБ). Внедрение СМИБ является стратегическим решением организации. На проектирование и внедрение СМИБ организации влияют потребности и цели организации, требования безопасности, используемые процессы, а также масштабы деятельности и структура организации. Предполагается, что вышеуказанные факторы и поддерживающие их системы будут изменяться во времени. Предполагается также, что СМИБ будет изменяться пропорционально потребностям организации, т.е. для простой ситуации потребуется простое решение по реализации СМИБ. 
+                        <p>
+                        Положения настоящего стандарта могут быть использованы как внутри организации, так и внешними организациями для оценки соответствия. <br>
+                     Настоящий стандарт предполагает использовать процессный подход для разработки, внедрения, обеспечения функционирования, мониторинга, анализа, поддержки и улучшения СМИБ организации. <br>
+                       Для успешного функционирования организация должна определить и осуществить менеджмент многочисленных видов деятельности. Деятельность, использующая ресурсы и управляемая в целях преобразования входов в выходы, может быть рассмотрена как процесс. Часто выход одного процесса непосредственно формирует вход для следующего процесса. <br>
+                     Использование внутри организации системы процессов наряду с идентификацией и взаимодействием этих процессов, а также менеджмент процессов могут быть определены как "процессный подход".
+                     <p>   Согласно предлагаемому настоящим стандартом процессному подходу применительно к менеджменту информационной безопасности (ИБ) особую значимость для пользователей имеют следующие факторы: <br>
+                     
+                        - понимание требований информационной безопасности организации и необходимости установления политики и целей информационной безопасности; <br>
+                        - внедрение и использование мер управления для менеджмента рисков ИБ среди общих бизнес-рисков организации; <br>
+                        - мониторинг и проверка производительности и эффективности СМИБ; <br>
+                        - непрерывное улучшение СМИБ, основанное на результатах объективных измерений. 
+                        </p>
+
+                        <a href="regcon-contacts.html"><div class="title">Подать заявку</div></a>
+                       <a href="standarts.html"><div class="title">Назад</div></a>
+
+                </div>
+
+            </div>
+
+            <script src="certificate.js"></script>
+   
+
+        </div>
+   
+
+
+        </body>
+            <footer>
+                <div class="footer">
+                    <nav>
+                        <a href ="#"> Политика обработки персональных данных</a> 
+
+                    </nav>
+
+                    <div class="logopng">
+                        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+                    </div>
+
+                    <div class="social">
+                        <a href="#"><img src="./gmail.png"></img></a>
+                        <a href="#"><img src="./tg.jpg"></img></a>
+                        <a href="#"><img src="./VK.jpg"></img></a>
+                        <a href="#"><img src="./whatsapp.jpg"></img></a>
+                    </div>
+
+                    <nav>
+                        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+                    </nav>
+                    
+
+                </div>
+            </footer>
+    </div>
+</html>
+

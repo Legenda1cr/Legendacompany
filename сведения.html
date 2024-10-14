@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="сведения.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>  
+<body>
+    <div class="page">
+        <section class="header">        
+
+                <a href="#"class="logo">
+                <img src="./logo.png" alt="logo">
+                </a>
+                <nav class="navbar">
+                    <a href="index3.html">Главная</a>
+                    <a href="standarts.html">Стандарты</a>
+                    <a href="news.html">Новости</a>
+                    <a href="Audit.html">Аудит</a>
+                    <a href="study.html">Обучение</a>
+                    <a href="consalting.html">Консалтинг</a>
+                    <a href="regcon-contacts.html">Контакты</a>
+                </nav>
+
+            <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
+
+        </section>
+        <script>
+
+            let nav = document.querySelector('.header .navbar');
+            let menu = document.querySelector('#menu');
+
+            menu.onlick = () => {
+                navbar.classList.toggle('active');
+            }
+
+            let changeIcon = function(icon) {
+            icon.classList.toggle('fa-times');
+            }
+
+         </script>
+
+        <div class="page-content">
+        
+            <div class="parallax">
+                <div class="container">   
+                    <div class="container-logo">
+                        <h1> Сведения об образовательной организации</h1>
+                        <h5></h5>
+                     </div>  
+
+                     <div class="content-menu">
+
+                        <!-- 1 менюшка -->
+                
+                        <div class="menu-item">
+                            <button class="menu-header">
+                                Основные сведения
+                                <span class="arrow">&#9654;</span>
+                            </button>
+                            <div class="menu-content">
+                                <p><strong>Полное наименование:</strong> Частное образовательное учреждение дополнительного профессионального образования "Учебно-Методический Центр "Регистр-Консалтинг"</p>
+                                <p><strong>Сокращенное наименование:</strong> ЧОУ ДПО "УМЦ "РЕГКОН"</p>
+                                <p><strong>Полное наименование на английском языке:</strong> Private education institution for supplementary professional education "Educational methodical centre "Register-consulting"</p>
+                                <p><strong>Сокращенное наименование на английском языке:</strong> PEI "EMC "REGCON"</p>
+                                <p><strong>НОУ "УМЦ "РЕГКОН" преобразовано:</strong> для приведения в соответствие с Федеральным законом от 29.12.2012 №273-ФЗ "Об образовании в Российской Федерации".</p>
+                                <p><strong>Дата регистрации НОУ:</strong> 12.03.2001</p>
+                                <p><strong>Дата регистрации ЧОУ:</strong> 29.11.2017</p>
+                                <p><strong>Юридический/Почтовый адрес:</strong> 192102, г. Санкт-Петербург, наб. р. Волковки, д. 7, лит. А</p>
+                                <p><strong>График работы:</strong> Пн-Пт с 09:30 до 18:00, Обед с 13:30 до 14:00, Сб, Вс - выходные дни</p>
+                                <p><strong>Телефон:</strong> +7 (812) 275-05-12</p>
+                                <p><strong>Факс:</strong> +7 (812) 275-05-12</p>
+                                <p><strong>Руководитель:</strong> Директор - Васин Владимир Иванович, <strong>Телефон:</strong> +7 (812) 275-05-12, <strong>Email:</strong> vasin@regcon.ru</p>
+                                <p><strong>Учредители:</strong></p>
+                                <ul>
+                                    <li>Владимирцева Мария Аркадьевна, Телефон: +7 (812) 275-05-12, Email: 9226135@gmail.com</li>
+                                    <li>Марцынковская Лариса Викторовна, Телефон: +7 (812) 275-05-12, Email: larisa@regcon.ru</li>
+                                </ul>
+                                <p><strong>Собственник:</strong> ООО "Регистр-Консалтинг", ОГРН 1157847142694</p>
+                                <p><strong>Филиалы:</strong> Филиалов нет</p>
+                            </div>
+                        </div>
+                
+                        <!-- 2 -->
+
+            </div>
+
+        </div>
+    
+            
+    
+        </div>
+        <script>
+
+                document.querySelectorAll('.menu-header').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const content = button.nextElementSibling;
+                        const arrow = button.querySelector('.arrow');
+                        const activeButton = document.querySelector('.menu-header.active');
+
+                        // Закрыть предыдущую открытую секцию
+                        if (activeButton && activeButton !== button) {
+                            activeButton.classList.remove('active');
+                            activeButton.nextElementSibling.style.maxHeight = null;
+                            activeButton.querySelector('.arrow').style.transform = 'rotate(0deg)';
+                        }
+
+                        // Открыть/Закрыть текущую секцию
+                        button.classList.toggle('active');
+
+                        if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                            content.style.padding = '0 15px';  // Скрыть padding при закрытии
+                            arrow.style.transform = 'rotate(0deg)';
+                        } else {
+                            content.style.maxHeight = content.scrollHeight + "px"; // Установка реальной высоты контента
+                            content.style.padding = '15px';  // Восстанавливаем padding при открытии
+                            arrow.style.transform = 'rotate(90deg)';
+                        }
+                    });
+                });
+
+
+        </script>
+
+
+        </body>
+            <footer>
+                <div class="footer">
+                    <nav>
+                        <a href ="#"> Политика обработки персональных данных</a> 
+
+                    </nav>
+
+                    <div class="logopng">
+                        <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
+                    </div>
+
+                    <div class="social">
+                        <a href="#"><img src="./gmail.png"></img></a>
+                        <a href="#"><img src="./tg.jpg"></img></a>
+                        <a href="#"><img src="./VK.jpg"></img></a>
+                        <a href="#"><img src="./whatsapp.jpg"></img></a>
+                    </div>
+
+                    <nav>
+                        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+                    </nav>
+                    
+
+                </div>
+            </footer>
+    </div>
+</html>
+
