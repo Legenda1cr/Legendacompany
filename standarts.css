@@ -21,7 +21,6 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position:relative;
   overflow: hidden;
 }
 
@@ -402,6 +401,9 @@ body {
       margin: 10px 0;
       font-size: 20px;
   }
+  html {
+    font-size: 15px;
+  }
 }
 
   /*сверху всё что к менюшке*/
@@ -416,9 +418,9 @@ body {
     height: auto;
     margin: 0 auto;
     border: 10px solid var(--clr-dark);
-    margin-top: 10%;
+    margin-top: 5%;
     background-color: #d2b41c00;
-    margin-bottom: 10%;
+    margin-bottom: 200px;
     display: flex;
   }  
 
@@ -426,11 +428,11 @@ body {
     width: 250px;
     height: 300px;
     background-color: rgb(255, 255, 255);
-    padding: 5em;
     font-weight: 700;
     border-radius: 10px;
     cursor: pointer;
-    
+    margin-top: 50%;
+    margin-left: 40px;
   }
 
   .container {
@@ -439,8 +441,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 5em;
-    column-gap: 3rem;
-    row-gap: 12rem;
+    row-gap: 2rem;
   }
 
   .item h1 {
@@ -451,10 +452,10 @@ body {
   .item .text {
     color: rgb(0, 0, 0);
     position: absolute;
-    margin-top: 100%;
+    margin-top: 130%;
     text-align: start;
-    width: 100%;
-    margin-left: -30%;
+    max-width: 250px;
+    text-align: center;
   }
 
   .item-1 {
