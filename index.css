@@ -12,6 +12,7 @@ body{
 }
 
 
+
 .parallax{
     background: url(./сделка.jpg);  
     background-attachment: fixed;
@@ -22,7 +23,6 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position:relative;
     overflow: hidden;
 }
 
@@ -150,6 +150,7 @@ body{
 
   
 /*снизу всё что к менюшке*/
+
 * {
   margin: 0;
   padding: 0;
@@ -186,130 +187,230 @@ section {
   position: relative;
 }
 
-.header .navbar a {
 
-  font-size: 1.3rem;
-  padding: 1rem;
+
+.navbar a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: blue;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease; /* Плавное появление черты */
+}
+
+.navbar a:hover::after {
+    width: 100%; /* Черта появляется полностью при наведении */
+}
+
+.navbar a:hover {
+    color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+html {
+  text-align: center;
+}
+
+#menu {
+  cursor: pointer;
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.navbar a {
+  margin: 0 15px;
+  text-decoration: none;
   color: black;
-  transition: 0.1s;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+  padding: 10px 0;
+  transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
-.header .navbar a:hover {
-  background: rgba(0, 0, 0, 0.671);
-  border-radius: 20px;
-  color: rgb(255, 255, 255);
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: blue;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease; /* Плавное появление черты */
 }
 
-html {
-text-align: center;
+.navbar a:hover::after {
+  width: 100%; /* Черта появляется полностью при наведении */
 }
 
+.navbar a:hover {
+  color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+}
+
+.burger .line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+}
+
+/* Адаптивность для мобильных устройств */
 @media (max-width:1300px) {
-section {
-    padding: 0rem 5%;
-  line-height: 35px;
-}
-html {
-  font-size: 80%;
-}
-}
-
-@media (max-width:1250px) {
-section {
-    padding: 0rem 5%;
-  line-height: 35px;
-}
-html {
-  font-size: 80%;
-}
-}
-
-@media (max-width:1200px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:1150px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:1100px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:1050px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:1000px) {
-section {
-  padding: 0rem 5%;
-  line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-.parallax-content p {
-  font-size: 16px
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
   }
-    .parallax-content h1 {
-      font-size: 30px;
-      }
-      .custom-button {
-        font-size: 20px;
-      }
-      .title {
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1250px) {
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1200px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1150px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1100px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1050px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1000px) {
+  section {
+    padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  .parallax-content p {
+    font-size: 16px
+    }
+      .parallax-content h1 {
         font-size: 30px;
-      }
-      .container p {
-        font-size: 30px;
-      }
-}
-
-@media (max-width:950px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:900px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 80%;
-}
-}
-
-@media (max-width:887px) {
+        }
+        .custom-button {
+          font-size: 20px;
+        }
+        .title {
+          font-size: 30px;
+        }
+        .container p {
+          font-size: 30px;
+        }
+  }
+  
+  @media (max-width:950px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:900px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:887px) {
+    section {
+      padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 70%;
+    }
+    }
+  
+  @media (max-width:850px) {
   section {
     padding: 0rem 5%;
   line-height: 35px;
@@ -318,66 +419,54 @@ font-size: 80%;
   font-size: 70%;
   }
   }
-
-@media (max-width:850px) {
-section {
-  padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 70%;
-}
-}
-
-@media (max-width:800px) {
-section {
-padding: 0rem 5%;
-line-height: 35px;
-}
-html {
-font-size: 60%;
-}
-}
-
-@media (max-width:700px) {
+  
+  @media (max-width:800px) {
   section {
   padding: 0rem 5%;
   line-height: 35px;
   }
   html {
-  font-size: 65%;
+  font-size: 60%;
   }
-  .container p {
-    font-size: 20px;
   }
   
+  @media (max-width:700px) {
+    section {
+    padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 65%;
+    }
+    .container p {
+      font-size: 20px;
+    }
+  }
+@media (max-width: 500px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+  }
 
-.header .navbar {
-position: absolute;
-top: 100%;
-left: 0;
-width: 100%;
-padding: 0 2rem;
-background-color: white;
-border-top: var(--border);
-box-shadow: var(--box-shadow);
-transition: 0.5s;
-}
+  .navbar.active {
+      display: flex;
+  }
 
-.header .navbar a {
-display: block;
-margin: 2rem 0;
-}
+  .burger {
+      display: flex;
+  }
 
-#menu {
-font-size: 3.5rem;
-display: block;
-}
-
-.header .navbar.active {
-clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-transition: 0.5s;
-}
+  .navbar a {
+      margin: 10px 0;
+      font-size: 20px;
+  }
 }
   
   /*сверху всё что к менюшке*/
