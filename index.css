@@ -12,7 +12,6 @@ body{
 }
 
 
-
 .parallax{
     background: url(./сделка.jpg);  
     background-attachment: fixed;
@@ -26,90 +25,327 @@ body{
     overflow: hidden;
 }
 
-.parallax .mask{
-    position: absolute;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
-    background: rgba(0, 0, 0, 0,7);
-    z-index:2;
-}
 
 
 
-.parallax-content{
-  background: linear-gradient(rgb(157, 157, 183), white);
-  box-shadow: 0 -10px 50px #000000;
-  width: 100%; 
-  border-radius: 0px;
-  height: auto;
-  float:center;
-  color: rgb(0, 0, 0);
-  margin-top: 0;
-  font-size: 40%;
-  margin-top: 250px;
-}
-
-.parallax-content p{
-  margin-left: 10%;
-  margin-right: 10%;
-  line-height: 35px;
-}
-
-.button-container {
-  display: flex;
-  justify-content: center; /* Центрирование кнопки */
-  margin-top: 30px;
-  margin-bottom: 40px;
-}
-
-.custom-button {
-  font-family: 'Arial', sans-serif;
-  background-color: #007bff;
-  color: rgb(255, 255, 255);
-  padding: 15px 30px;
-  font-size: 35px;
-  border-radius: 50px;
-  text-decoration: none;
+/* Основные стили заголовков */
+h1, h2, h3 {
   font-weight: 700;
+  color: #333;
+}
+
+h1, h2 {
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 10px 30px rgb(0, 0, 0);
 }
 
-.custom-button:hover {
+h2 {
+  margin-top: 15px;
+}
+
+.unique-sub-title {
+  margin-top: 30px; /* Увеличиваем отступ сверху */
+  margin-bottom: 10px; /* Увеличиваем отступ снизу */
+}
+
+/* Существующие стили остаются без изменений */
+
+p {
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 10px;
+}
+
+/* Уникальные стили для блока текста */
+.unique-text-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+  background-color: rgb(228, 227, 227);
+  border: 2px solid #1d3df5;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.unique-text-container p {
+  text-align: left;
+}
+
+/* Уникальный текстовый контейнер на мобильных устройствах */
+@media (max-width: 450px) {
+  .unique-text-container {
+    padding: 20px; /* Увеличиваем отступы внутри контейнера */
+    margin: 0 15px; /* Добавляем отступы от краев экрана */
+  }
+}
+
+/* Центрирование заголовков внутри блока */
+.unique-text-container h1, .unique-text-container h2 {
+  text-align: center;
+}
+
+/* Стили кнопки */
+.unique-custom-button {
+  display: inline-block;
+  padding: 15px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 22px;
+  text-align: center;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.unique-custom-button:hover {
   background-color: #0056b3;
-  transform: scale(0.95);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.custom-button:active {
-  transform: scale(0.9);
+/* Центрирование кнопки */
+.unique-text-container {
+  text-align: center; /* Центрируем содержимое внутри контейнера, включая кнопку */
 }
 
-  h1 {
-    font-size: 300%;
-    font-size: 50px;
-    font-weight: 1000;
-    position: relative;
-    width: max-content;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 30px;
-    padding-bottom: 40px;
+/* Параллакс-контент */
+.parallax-content.unique-content {
+  background: rgb(214, 213, 224);
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  width: 100vw; /* Растягиваем блок на всю ширину окна */
+  height: auto;
+  padding-top: 50px;
+  padding-bottom: 0;
+  text-align: center;
+}
+
+
+
+.parallax-content.unique-content p {
+  font-size: 16px; /* Размер шрифта для текста */
+}
+
+/* Стили для ряда с фотографиями */
+.photo-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 30px 0;
+}
+
+.photo-box {
+  flex-basis: 23%;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.photo-box img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.photo-caption {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  text-align: center;
+}
+
+/* Стили для заголовка "Новости" */
+.news-header {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Мобильные стили для новостей и фотографий с горизонтальной прокруткой */
+@media (max-width: 768px) {
+  .photo-row {
+      display: flex;
+      justify-content: flex-start;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
   }
 
+  .photo-box {
+      min-width: 80%;
+      flex: 0 0 auto;
+      margin-right: 20px;
+      scroll-snap-align: start;
+  }
 
-.text1{
-    color:#ffff;
-    font-size: 75px;
-    font-weight: 800;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    position: relative;
+  .photo-box img {
+      width: 100%;
+      height: auto;
+  }
+
+  .photo-caption {
+      text-align: center;
+      max-width: 100%;
+  }
 }
+
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 480px) {
+  .unique-text-container {
+      padding: 15px;
+      font-size: 14px;
+  }
+
+  .unique-custom-button {
+      font-size: 16px;
+  }
+
+  .news-header {
+      font-size: 28px;
+  }
+
+  .photo-caption {
+      font-size: 12px;
+  }
+}
+
+/* Основной контейнер карусели */
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Внутренний контейнер, который будет прокручиваться */
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Блок для каждой новости */
+.carousel-item {
+  min-width: 33.33%;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Стили для текста внутри каждой новости */
+.carousel-item p {
+  font-size: 16px;
+  line-height: 1.4;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+  color: #333;
+}
+
+/* Стили для даты */
+.carousel-item span {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-top: 5px;
+}
+
+/* Мобильные стили для карусели: показываем только одну новость */
+@media (max-width: 768px) {
+  .carousel-item {
+      min-width: 100%; /* Показываем только одну новость */
+  }
+}
+
+/* Заголовок "Новости" */
+.news-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+/* Мобильная адаптация основного блока */
+@media (max-width: 768px) {
+  .parallax-content.unique-content {
+      padding: 30px 10px;
+  }
+
+  .unique-text-container {
+      max-width: 100%;
+      padding: 15px;
+  }
+
+  h1, h2 {
+      font-size: 24px;
+  }
+
+  p {
+      font-size: 14px;
+  }
+}
+
+@media (max-width: 450px) {
+  .parallax-content.unique-content {
+      padding: 20px 5px;
+  }
+
+  .parallax-content.unique-content{
+    padding-top: 50px;
+    padding-bottom: 0;
+  }
+
+  .unique-text-container {
+      padding: 20px;
+      margin: 0 10px; /* Добавлен отступ от краев */
+  }
+
+  h1, h2 {
+      font-size: 20px;
+  }
+
+  p {
+      font-size: 12px;
+  }
+
+  .unique-custom-button {
+      font-size: 16px;
+      padding: 14px 18px;
+  }
+
+  .carousel-item p {
+      font-size: 14px;
+  }
+
+  .carousel-item span {
+      font-size: 12px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -124,28 +360,6 @@ body{
   position: absolute;
 }
 
-
-.container{
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  background: #000000b9;
-  width: 70%;
-  height: auto;
-  border-radius: 50px;
-  box-shadow: 0 10px 40px #ffffff;
-  z-index: 1;
-  font-weight: 500;
-  margin-top: 250px;
-}
-
-
-  
-  .container p {
-    font-size: 300%;
-    font-family: sans-serif;
-    z-index: 1;
-  }
 
 
   
@@ -242,7 +456,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -251,13 +464,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -286,6 +497,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -473,12 +685,28 @@ body {
 
   /*снизу всё что к red blue yellow*/
 
- 
-  #container{
-    width:500px;
-    margin:auto; 
-  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: #000000b9;
+    width: 60%;
+    height: auto;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px #ffffff;
+    z-index: 1;
+    font-weight: 500;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    }
   
+    
+    .container p {
+      font-size: 250%;
+      font-family: sans-serif;
+      z-index: 1;
+    }
+
   /*neeeeoooon*/
   p{
     
@@ -694,6 +922,8 @@ body {
       border-radius: 5px;
   }
  
+
+  
  
  /*выше все что к слайдеру*/
 
@@ -716,13 +946,14 @@ body {
   
   footer{
     width: 100%;
-    height: 500px;
+    height: auto;
     background: rgb(0, 0, 0);
     box-shadow: 0 -10px 10px #ffffff;
     margin: 0 auto;
     text-align: center;
     padding-top: 30px;
     position: absolute;
+    padding-bottom: 50px;
   }
 
 footer a{

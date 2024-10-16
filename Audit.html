@@ -10,39 +10,38 @@
     <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
 </head>  
 <body>
-    <div class="page">
-        <section class="header">        
-
-                <a href="#"class="logo">
-                <img src="./logo.png" alt="logo">
-                </a>
-                <nav class="navbar">
-                    <a href="index.html">Главная</a>
-                    <a href="standarts.html">Стандарты</a>
-                    <a href="news.html">Новости</a>
-                    <a href="Audit.html">Аудит</a>
-                    <a href="study.html">Обучение</a>
-                    <a href="consalting.html">Консалтинг</a>
-                    <a href="regcon-contacts.html">Контакты</a>
-                </nav>
-
-            <div id="menu"><i class="fa-solid fa-bars" onclick="changeIcon(this)"></i></div>
-
-        </section>
-        <script>
-
-            let nav = document.querySelector('.header .navbar');
-            let menu = document.querySelector('#menu');
-
-            menu.onlick = () => {
+    <header class="header">
+        <a href="#" class="logo">
+            <img src="./logo.png" alt="logo">
+        </a>
+    
+        <nav class="navbar" id="navbar">
+            <a href="index.html">Главная</a>
+            <a href="standarts.html">Стандарты</a>
+            <a href="news.html">Новости</a>
+            <a href="Audit.html">Аудит</a>
+            <a href="study.html">Обучение</a>
+            <a href="consalting.html">Консалтинг</a>
+            <a href="regcon-contacts.html">Контакты</a>
+        </nav>
+    
+        <div class="burger" id="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+    </header>
+    
+    <script>
+            // Открытие и закрытие меню при нажатии на иконку бургер
+            const burger = document.getElementById('burger');
+            const navbar = document.getElementById('navbar');
+    
+            burger.addEventListener('click', () => {
                 navbar.classList.toggle('active');
-            }
-
-            let changeIcon = function(icon) {
-            icon.classList.toggle('fa-times');
-            }
-
-         </script>
+            });
+    
+    </script>
 
         <div class="page-content">
         
