@@ -321,7 +321,7 @@ p {
   }
 
   .unique-custom-button {
-      font-size: 16px;
+      font-size: 14px;
       padding: 14px 18px;
   }
 
@@ -684,157 +684,183 @@ body {
   /*сверху всё что к менюшке*/
 
   /*снизу всё что к red blue yellow*/
-
-  .container{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    background: #000000b9;
-    width: 60%;
-    height: auto;
-    border-radius: 50px;
-    box-shadow: 0 10px 40px #ffffff;
-    z-index: 1;
-    font-weight: 500;
-    margin-top: 250px;
-    margin-bottom: 250px;
-    }
   
-    
-    .container p {
-      font-size: 250%;
-      font-family: sans-serif;
-      z-index: 1;
-    }
-
-  /*neeeeoooon*/
-  p{
-    
-    text-align: center;
-    font-size: 300%;
-    margin: 30px 0 20px 0; 
+  .container {
+    display: flex;
+    justify-content: center;
+    background: rgb(214, 213, 224); /* Фон контейнера */
+    padding: 50px 0 100px 0; /* Отступ снизу 100px */
   }
   
-  a{
-    text-decoration:none; 
+  .unique-slider-wrapper {
+    position: relative;
+    width: 80%; /* Слайдер занимает 80% экрана */
+    height: auto;
+    overflow: hidden;
+    background-color: #fff; /* Фон белого цвета */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    border-radius: 10px; /* Закругленные углы */
+  }
+  
+  .unique-slider {
+    margin-top: 30px;
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .unique-slide {
+    min-width: 100%;
+    position: relative;
+  }
+  
+  .unique-slide img {
+    width: 100%; /* Установить ширину изображения 80% */
+    height: 100vh; /* Установить высоту 75% от видимой области */
+    object-fit: cover; /* Масштабирование изображений */
+    margin: 0 auto; /* Центрирование изображения */
+    display: block;
+    filter: grayscale(100%) brightness(70%); /* Черно-белый эффект и затемнение */
+}
+
+  
+  .button-container {
+    position: absolute;
+    bottom: 10px; /* Отступ снизу от изображения */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон под кнопкой */
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: auto; /* Кнопки адаптируются по содержимому */
+    text-align: center;
+    z-index: 2; /* Убедиться, что кнопки находятся выше изображения */
+  }
+
+  
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 50px;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  button.unique-prev {
+    left: 10px;
+  }
+  
+  button.unique-next {
+    right: 10px;
+  }
+  
+  button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+
+  #audit-button {
+    position: absolute;
+    left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+    transform: translateX(-50%) translateY(-200%); 
+    font-size: 250%;
+    margin-bottom: 0; /* Убираем лишний отступ после текста */
+  }
+
+  #training-button {
+    position: absolute;
+    left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+    transform: translateX(-50%) translateY(-200%); 
+    font-size: 250%;
+    margin-bottom: 0; /* Убираем лишний отступ после текста */
+  }
+
+  #implementation-button {
+    position: absolute;
+    left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+    transform: translateX(-50%) translateY(-200%);  
+    font-size: 250%;
+    margin-bottom: 0; /* Убираем лишний отступ после текста */
+  }
+
+  #implementation-button {
+    position: absolute;
+    left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+    transform: translateX(-50%) translateY(-200%); 
+    font-size: 250%;
+    margin-bottom: 0; /* Убираем лишний отступ после текста */
+  }
+  
+  a {
+    text-decoration: none;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.1s;
   }
- 
   
   .container p a {
-    font-size:1.5em;
-    color:#228DFF;
-    font-family:Iceland;
+    font-size: 1.5em;
+    color: #ffffff;
+    font-family: Iceland;
   }
-  .container p a:hover{
+  
+  .container p a:hover {
     -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
     -moz-animation: neon1 1.5s ease-in-out infinite alternate;
     animation: neon1 1.5s ease-in-out infinite alternate;
   }
-
   
-  p a:hover{
-  color:#ffffff;  
+  p a:hover {
+    color: #ffffff;
   }
-  
-  p a:hover{
-  color:#ffffff;  
-  }
-  
-  
-  
-  /*glow for webkit*/
-
-  @-webkit-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff,
-                 0 0 20px  #fff,
-                 0 0 30px  #fff,
-                 0 0 40px  #228DFF,
-                 0 0 70px  #228DFF,
-                 0 0 80px  #228DFF,
-                 0 0 100px #228DFF,
-                 0 0 150px #228DFF;
-    }
-    to {
-      text-shadow: 0 0 5px #fff,
-                 0 0 10px #fff,
-                 0 0 15px #fff,
-                 0 0 20px #228DFF,
-                 0 0 35px #228DFF,
-                 0 0 40px #228DFF,
-                 0 0 50px #228DFF,
-                 0 0 75px #228DFF;
-    }
-  }
-
-
-  
-  /*glow for mozilla*/
-
-  
-  @-moz-keyframes neon1 {
-    from {
-      text-shadow: 0 0 10px #fff,
-                 0 0 20px  #fff,
-                 0 0 30px  #fff,
-                 0 0 40px  #228DFF,
-                 0 0 70px  #228DFF,
-                 0 0 80px  #228DFF,
-                 0 0 100px #228DFF,
-                 0 0 150px #228DFF;
-    }
-    to {
-      text-shadow: 0 0 5px #fff,
-                 0 0 10px #fff,
-                 0 0 15px #fff,
-                 0 0 20px #228DFF,
-                 0 0 35px #228DFF,
-                 0 0 40px #228DFF,
-                 0 0 50px #228DFF,
-                 0 0 75px #228DFF;
-    }
-  }
-
   
   @keyframes neon1 {
     from {
       text-shadow: 0 0 10px #fff,
-                 0 0 20px  #fff,
-                 0 0 30px  #fff,
-                 0 0 40px  #228DFF,
-                 0 0 70px  #228DFF,
-                 0 0 80px  #228DFF,
-                 0 0 100px #228DFF,
-                 0 0 150px #228DFF;
+                   0 0 20px  #fff,
+                   0 0 30px  #fff,
+                   0 0 40px  #228DFF,
+                   0 0 70px  #228DFF,
+                   0 0 80px  #228DFF,
+                   0 0 100px #228DFF,
+                   0 0 150px #228DFF;
     }
     to {
       text-shadow: 0 0 5px #fff,
-                 0 0 10px #fff,
-                 0 0 15px #fff,
-                 0 0 20px #228DFF,
-                 0 0 35px #228DFF,
-                 0 0 40px #228DFF,
-                 0 0 50px #228DFF,
-                 0 0 75px #228DFF;
+                   0 0 10px #fff,
+                   0 0 15px #fff,
+                   0 0 20px #228DFF,
+                   0 0 35px #228DFF,
+                   0 0 40px #228DFF,
+                   0 0 50px #228DFF,
+                   0 0 75px #228DFF;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    button {
+      top: 23%;
+      font-size: 25px;
+    }
+    
+    .unique-slider {
+      margin-top: 50px;
+    }
+    .unique-slide img {
+      height: 28vh;
     }
   }
   
   
-  /*REEEEEEEEEEESPONSIVE*/
-  @media (max-width: 650px) {
-    
-    #container{
-      width: 100%;
-    }
-    
-    p{
-      font-size:3.5em;
-    }
   
-  }
+
+
+  
   
   /*сверху всё что к red blue yellow*/
 
@@ -879,7 +905,7 @@ body {
   .button-right {
       right: 10px; /* Положение кнопки справа */
   }
-  .details-button {
+  .certificate-button {
       position: absolute;
       bottom: 20px; /* Положение кнопки "Подробнее" */
       left: 50%;
