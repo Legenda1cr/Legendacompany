@@ -151,6 +151,9 @@ section {
     color: black; /* Оставляем цвет текста неизменным при наведении */
 }
 
+html {
+  text-align: center;
+}
 
 #menu {
   cursor: pointer;
@@ -171,7 +174,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -180,13 +182,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -215,6 +215,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -414,6 +415,12 @@ body {
     margin-bottom: 0;
   }  
 
+  @media (max-width:500px) {
+    .container {
+      margin-top: 20%;
+    }
+  }
+
   .item {
     width: 250px;
     height: 300px;
@@ -529,7 +536,7 @@ body {
       background-image: url('your-parallax-background-image.jpg'); /* Фон с параллакс эффектом */
       background-attachment: fixed;
       background-size: cover;
-      padding: 50px;
+      padding: 0;
       color: #fff;
       font-family: 'Arial', sans-serif;
       text-align: left;
@@ -607,6 +614,12 @@ body {
       text-align: center;
       transition: all 0.3s ease;
       box-shadow: 0 8px 20px rgb(0, 0, 0);
+  }
+
+  @media (max-width:500px) {
+    .custom-button {
+      font-size: 15px;
+    }
   }
   
   .custom-button:hover {

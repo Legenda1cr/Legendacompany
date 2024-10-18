@@ -174,7 +174,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -183,13 +182,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -218,6 +215,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -417,6 +415,12 @@ body {
     margin-bottom: 0;
   }  
 
+  @media (max-width:500px) {
+    .container {
+      margin-top: 20%;
+    }
+  }
+
   .item {
     width: 250px;
     height: 300px;
@@ -531,14 +535,14 @@ body {
       background-image: url('your-parallax-background-image.jpg'); /* Фон с параллакс эффектом */
       background-attachment: fixed;
       background-size: cover;
-      padding: 50px;
+      padding: 0;
       color: #fff;
       font-family: 'Arial', sans-serif;
       text-align: left;
   }
   
   .content {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       background-color: rgba(0, 0, 0, 0.7);
       padding: 30px;

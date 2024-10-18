@@ -45,7 +45,7 @@ body{
 /*снизу всё что к менюшке*/
 
 
-    * * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -113,9 +113,6 @@ section {
     color: black; /* Оставляем цвет текста неизменным при наведении */
 }
 
-html {
-  text-align: center;
-}
 
 #menu {
   cursor: pointer;
@@ -136,7 +133,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -145,13 +141,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -180,6 +174,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -487,6 +482,10 @@ body {
       max-height: 0; /* Скрываем меню по умолчанию */
       overflow: hidden; /* Скрываем переполнение */
       transition: max-height 1s ease-out; /* Плавный переход по max-height */
+  }
+
+  .container-logo {
+    margin-top: 100px;
   }
   
   table {

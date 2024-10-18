@@ -433,9 +433,6 @@ section {
     color: black; /* Оставляем цвет текста неизменным при наведении */
 }
 
-html {
-  text-align: center;
-}
 
 #menu {
   cursor: pointer;
@@ -689,7 +686,7 @@ body {
     display: flex;
     justify-content: center;
     background: rgb(214, 213, 224); /* Фон контейнера */
-    padding: 50px 0 100px 0; /* Отступ снизу 100px */
+    padding: 50px 0 0px 0; /* Отступ снизу 100px */
   }
   
   .unique-slider-wrapper {
@@ -707,6 +704,7 @@ body {
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
+
   
   .unique-slide {
     min-width: 100%;
@@ -772,12 +770,32 @@ body {
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
 
+  @media (max-width:500px) {
+    #audit {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
   #training {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%); 
     font-size: 250%;
     margin-bottom: 0; /* Убираем лишний отступ после текста */
+  }
+
+  @media (max-width:500px) {
+    #training {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
   }
 
   #implementation {
@@ -788,13 +806,34 @@ body {
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
 
-  #implementation {
+  @media (max-width:500px) {
+    #implementation {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 125%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
+  #deadpool {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%); 
     font-size: 250%;
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
+
+  @media (max-width:500px) {
+    #deadpool {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-100%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
   
   a {
     text-decoration: none;
