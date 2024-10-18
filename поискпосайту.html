@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификаты компаний</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .search-inputs {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-item p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Сертификаты компаний</h1>
+
+        <!-- Поля для поиска -->
+        <div class="search-container">
+            <div class="search-inputs">
+                <input type="text" id="cert-number" placeholder="Введите номер сертификата...">
+                <input type="text" id="inn" placeholder="Введите ИНН...">
+                <input type="text" id="company-name" placeholder="Введите название компании...">
+            </div>
+            <button id="search-button" onclick="search()">Поиск</button>
+        </div>
+
+        <!-- Результаты поиска -->
+        <div id="search-results"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        let data = [];
+
+        // Загрузка Excel-файла по ссылке
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D1%8B.xlsx"; 
+
+        fetch(excelFileUrl)
+            .then(response => response.arrayBuffer())
+            .then(dataBuffer => {
+                const workbook = XLSX.read(dataBuffer, {type: 'array'});
+                const sheetName = workbook.SheetNames[0];  // Используем первый лист
+                const worksheet = workbook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                
+                data = jsonData.map(item => ({
+                    companyName: item["Название компании"],
+                    isActive: item["Статус сертификата"] === 'Действует',
+                    certNumber: item["Номер сертификата"],
+                    inn: String(item["ИНН"]), // Преобразуем ИНН в строку
+                    location: item["Местоположение"],
+                    lastAuditDate: formatExcelDate(item["Дата последнего аудита"]) // Преобразуем дату
+                }));
+            })
+            .catch(error => console.error('Ошибка при загрузке Excel:', error));
+
+        // Функция для преобразования даты из Excel
+        function formatExcelDate(excelDate) {
+            if (!excelDate) return 'Дата не указана';
+            const date = new Date(Math.round((excelDate - 25569) * 86400 * 1000)); // Преобразование даты из формата Excel
+            return date.toLocaleDateString('ru-RU');
+        }
+
+        // Функция для поиска
+        function search() {
+            const certInput = document.getElementById('cert-number').value.trim().toLowerCase();
+            const innInput = document.getElementById('inn').value.trim().toLowerCase();
+            const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+
+            // Очищаем предыдущие результаты
+            resultsContainer.innerHTML = '';
+
+            // Проверяем, введены ли хоть какие-то данные
+            if (!certInput && !innInput && !nameInput) {
+                return; // Если все поля пустые, ничего не выводим
+            }
+
+            // Фильтруем данные по условиям
+            const filteredData = data.filter(item => {
+                const certMatches = certInput ? item.certNumber.toLowerCase() === certInput : true; // Полное совпадение по сертификату
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; // Полное совпадение по ИНН
+                const nameMatches = nameInput ? item.companyName.toLowerCase() === nameInput : true; // Полное совпадение по названию компании
+
+                return certMatches && innMatches && nameMatches;
+            });
+
+            // Выводим результаты поиска
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+                    div.innerHTML = `
+                        <p><strong>Название компании:</strong> ${item.companyName}</p>
+                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действует' : 'Не действует'}</p>
+                        <p><strong>Номер сертификата:</strong> ${item.certNumber}</p>
+                        <p><strong>Местоположение:</strong> ${item.location}</p>
+                        <p><strong>Дата последнего аудита:</strong> ${item.lastAuditDate}</p>
+                    `;
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                const noResults = document.createElement('div');
+                noResults.className = 'result-item';
+                noResults.textContent = 'Ничего не найдено.';
+                resultsContainer.appendChild(noResults);
+            }
+        }
+
+        // Функция для обработки нажатия клавиши Enter
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    search();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
