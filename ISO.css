@@ -172,7 +172,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -181,13 +180,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -216,6 +213,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -410,9 +408,9 @@ body {
     height: auto;
     margin: 0 auto;
     border: 10px solid var(--clr-dark);
-    margin-top: 150px;
+    margin-top: 100px;
     background-color: #d2b41c00;
-    margin-bottom: 0;
+    margin-bottom: 100px;
   }  
 
   .item {
@@ -709,13 +707,30 @@ body {
         color: rgb(0, 0, 0);
         margin-bottom: 0;
         font-size: 20px;
-        margin-top: -80px;
+        margin-top: -60px;
       }
 
 
       .parallax-text p{
         margin: 2% 10% 2% 19%;
         line-height: 35px;
+      }
+
+      @media (max-width:500px) {
+        .parallax-text p {
+          margin: 2% 5% 2% 5%;
+          line-height: 35px;
+        }
+        h1 {
+          font-size: 40px;
+        }
+        h5 {
+          font-size: 25px;
+        }
+        .parallax-text .title {
+          margin-top: 30px;
+          padding: 15px;
+        }
       }
 
       .parallax-text b {
