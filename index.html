@@ -29,25 +29,27 @@
         <a href="study.html">Обучение</a>
         <a href="consalting.html">Консалтинг</a>
         <a href="regcon-contacts.html">Контакты</a>
+        <a href="сведения.html">Сведения об образовательной организации</a>
+
     </nav>
 
-    <div class="burger" id="burger">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
-</header>
+      <div class="burger" id="burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+      </div>
+  </header>
 
-<script>
-        // Открытие и закрытие меню при нажатии на иконку бургер
-        const burger = document.getElementById('burger');
-        const navbar = document.getElementById('navbar');
+    <script>
+            // Открытие и закрытие меню при нажатии на иконку бургер
+            const burger = document.getElementById('burger');
+            const navbar = document.getElementById('navbar');
 
-        burger.addEventListener('click', () => {
-            navbar.classList.toggle('active');
-        });
+            burger.addEventListener('click', () => {
+                navbar.classList.toggle('active');
+            });
 
-</script>
+    </script>
     <div class="page-content">
         
     <div class="parallax">
@@ -58,19 +60,19 @@
           <!-- Слайды -->
           <div class="unique-slide">
             <img src="home2.jpg" alt="Image 1">
-            <p id="audit-button"><a href="Audit.html">Аудит и диагностика</a></p>
+            <p id="audit"><a href="Audit.html">Аудит и диагностика</a></p>
           </div>
           <div class="unique-slide">
             <img src="home1.jpg" alt="Image 2">
-            <p id="training-button"><a href="study.html">Обучение и подготовка</a></p>
+            <p id="training"><a href="study.html">Обучение и подготовка</a></p>
           </div>
           <div class="unique-slide">
             <img src="экспофорум2.jpg" alt="Image 3">
-            <p id="implementation-button"><a href="consalting.html">Разработка и внедрение</a></p>
+            <p id="implementation"><a href="consalting.html">Разработка и внедрение</a></p>
           </div>
           <div class="unique-slide">
             <img src="экспофорум3.jpg" alt="Image 4">
-            <p id="implementation-button"><a href="#">Подробнее узнайте на нашем сайте</a></p>
+            <p id="deadpool"><a href="#">Подробнее узнайте на нашем сайте</a></p>
           </div>
 
         </div>
@@ -170,61 +172,18 @@
                   <div class="slide"><img src="./сертификат6.jpg" alt="Сертификат 6"></div>
                   <div class="slide"><img src="./сертификат7.jpg" alt="Сертификат 7"></div>
               </div>
-              <button class="button button-left" id="prev">❮</button>
-              <button class="button button-right" id="next">❯</button>
-              <button class="certificate-button" id="details">Подробнее</button>
+              <snap class="snap snap-left" id="prev">❮</snap>
+              <snap class="snap snap-right" id="next">❯</snap>
+              <snap class="bottom" id="details">Подробнее</snap>
           </div>
     
           <div class="fullscreen" id="fullscreen">
-            <button class="close-fullscreen" id="closeFullscreen">Закрыть</button>
+            <snap class="close-fullscreen" id="closeFullscreen">Закрыть</snap>
             <img id="fullscreenImage" src="" alt="Полное изображение">
     
             <!-- js для слайдера ниже -->
-    
-            <script>
-              let currentIndex = 0;
-              const slides = document.querySelectorAll('.slide');
-              const slider = document.getElementById('slider');
-              const totalSlides = slides.length;
-          
-    
-              // Функция для обновления слайдера
-              function updateSlider() {
-                  const offset = -currentIndex * 100; // Вычисляем смещение
-                  slider.style.transform = `translateX(${offset}%)`; // Применяем смещение
-              }
-          
-              // Обработчик кнопки "Предыдущий"
-              document.getElementById('prev').addEventListener('click', () => {
-                  currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1; // Циклический сдвиг
-                  updateSlider();
-              });
-          
-              // Обработчик кнопки "Следующий"
-              document.getElementById('next').addEventListener('click', () => {
-                  currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0; // Циклический сдвиг
-                  updateSlider();
-              });
-          
-              // Обработчик кнопки "Подробнее"
-              document.getElementById('details').addEventListener('click', () => {
-                  const currentSlideImage = slides[currentIndex].querySelector('img').src; // Получаем текущее изображение
-                  document.getElementById('fullscreenImage').src = currentSlideImage; // Устанавливаем источник для полноэкранного изображения
-                  document.getElementById('fullscreen').style.display = 'flex'; // Показываем полноэкранное изображение
-              });
-          
-              // Обработчик закрытия полноэкранного изображения
-              document.getElementById('closeFullscreen').addEventListener('click', () => {
-                  document.getElementById('fullscreen').style.display = 'none'; // Скрываем полноэкранное изображение
-              });
-          
-              // Закрытие по клику вне изображения
-              document.getElementById('fullscreen').addEventListener('click', (event) => {
-                  if (event.target === event.currentTarget) {
-                      document.getElementById('fullscreen').style.display = 'none'; // Скрываем полноэкранное изображение
-                  }
-              });
-          </script>
+            <script src="лицензии.js"></script>
+            
         </div>
     
 

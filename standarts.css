@@ -156,6 +156,9 @@ section {
     color: black; /* Оставляем цвет текста неизменным при наведении */
 }
 
+html {
+  text-align: center;
+}
 
 #menu {
   cursor: pointer;
@@ -176,7 +179,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -185,13 +187,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -220,6 +220,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -401,9 +402,6 @@ body {
       margin: 10px 0;
       font-size: 20px;
   }
-  html {
-    font-size: 15px;
-  }
 }
 
   /*сверху всё что к менюшке*/
@@ -449,6 +447,7 @@ body {
     font-weight: 700;
   }
 
+
   .item .text {
     color: rgb(0, 0, 0);
     position: absolute;
@@ -456,6 +455,7 @@ body {
     text-align: start;
     max-width: 250px;
     text-align: center;
+    font-size: 15px;
   }
 
   .item-1 {

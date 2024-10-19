@@ -26,16 +26,16 @@ body{
 
 .content-section {
   display: flex;
-  width: 90%;
+  width: 95%;
   justify-content: space-between;
   height: auto;
   margin-bottom: 100px;
-  margin-top: 7%;
+  margin-top: 0px;
 }
 
 /* Левая часть: стиль для изображений */
 .left-images {
-  margin-top: 100px;
+  margin-top: 120px;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,8 @@ body{
 
 .left-images img {
   width: 65%;
-  box-shadow: 0 20px 30px rgb(0, 0, 0);
+  min-width: 70px;
+  box-shadow: 0 0px 20px rgb(0, 0, 0);
   transition: transform 0.3s ease;
   border-radius: 23%;
 }
@@ -58,7 +59,7 @@ body{
 .right-text {
   margin-top: 120px;
   width: 80%;
-  padding-left: 20px;
+  padding-left: 30px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -149,7 +150,6 @@ section {
 }
 
 
-
 .navbar a {
     margin: 0 15px;
     text-decoration: none;
@@ -200,7 +200,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
   background-color: white;
 }
 
@@ -209,13 +208,11 @@ body {
 }
 
 .navbar a {
-  margin: 0 15px;
   text-decoration: none;
   color: black;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  padding: 10px 0;
   transition: color 0.3s ease; /* Плавный переход цвета текста */
 }
 
@@ -244,6 +241,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 24px;
+  margin-right: 20px;
 }
 
 .burger .line {
@@ -425,11 +423,7 @@ body {
       margin: 10px 0;
       font-size: 20px;
   }
-  html {
-    font-size: 15px;
-  }
 }
-
 
 
   /*сверху всё что к менюшке*/

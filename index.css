@@ -433,9 +433,6 @@ section {
     color: black; /* Оставляем цвет текста неизменным при наведении */
 }
 
-html {
-  text-align: center;
-}
 
 #menu {
   cursor: pointer;
@@ -689,7 +686,7 @@ body {
     display: flex;
     justify-content: center;
     background: rgb(214, 213, 224); /* Фон контейнера */
-    padding: 50px 0 100px 0; /* Отступ снизу 100px */
+    padding: 50px 0 0px 0; /* Отступ снизу 100px */
   }
   
   .unique-slider-wrapper {
@@ -707,6 +704,7 @@ body {
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
+
   
   .unique-slide {
     min-width: 100%;
@@ -723,7 +721,7 @@ body {
 }
 
   
-  .button-container {
+  .button {
     position: absolute;
     bottom: 10px; /* Отступ снизу от изображения */
     left: 50%;
@@ -764,7 +762,7 @@ body {
   }
   
 
-  #audit-button {
+  #audit {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%); 
@@ -772,7 +770,17 @@ body {
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
 
-  #training-button {
+  @media (max-width:500px) {
+    #audit {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
+  #training {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%); 
@@ -780,7 +788,17 @@ body {
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
 
-  #implementation-button {
+  @media (max-width:500px) {
+    #training {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
+  #implementation {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%);  
@@ -788,13 +806,34 @@ body {
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
 
-  #implementation-button {
+  @media (max-width:500px) {
+    #implementation {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-150%); 
+        font-size: 125%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
+  #deadpool {
     position: absolute;
     left: 50%; /* Устанавливаем левую границу в 50% от родителя */
     transform: translateX(-50%) translateY(-200%); 
     font-size: 250%;
     margin-bottom: 0; /* Убираем лишний отступ после текста */
   }
+
+  @media (max-width:500px) {
+    #deadpool {
+        position: absolute;
+        left: 50%; /* Устанавливаем левую границу в 50% от родителя */
+        transform: translateX(-50%) translateY(-100%); 
+        font-size: 135%;
+        margin-bottom: 0; /* Убираем лишний отступ после текста */
+    }
+  }
+
   
   a {
     text-decoration: none;
@@ -887,7 +926,8 @@ body {
       width: 100%; /* Адаптивные изображения */
       border-radius: 20px; /* Скругление углов изображений */
   }
-  .button {
+  
+  .snap {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -899,13 +939,13 @@ body {
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       z-index: 10; /* Над другими элементами */
   }
-  .button-left {
+  .snap-left {
       left: 10px; /* Положение кнопки слева */
   }
-  .button-right {
+  .snap-right {
       right: 10px; /* Положение кнопки справа */
   }
-  .certificate-button {
+  .bottom {
       position: absolute;
       bottom: 20px; /* Положение кнопки "Подробнее" */
       left: 50%;
@@ -933,10 +973,17 @@ body {
       z-index: 100;
   }
   .fullscreen img {
-      max-width: 50%;
+      max-width: 40%;
   }
+
+  @media (max-width:500) {
+    .fullscreen img {
+      max-width: 70%;
+  }
+  }
+
   .close-fullscreen {
-     font-size: 200%;;
+      font-size: 200%;;
       position: absolute;
       text-align: center;
       margin-top: 65%;
