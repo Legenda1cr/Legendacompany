@@ -110,11 +110,15 @@
                 
                 data = jsonData.map(item => ({
                     companyName: item["Название компании"],
-                    isActive: item["Статус сертификата"] === 'Действует',
                     certNumber: item["Номер сертификата"],
                     inn: String(item["ИНН"]), // Преобразуем ИНН в строку
-                    location: item["Местоположение"],
-                    lastAuditDate: formatExcelDate(item["Дата последнего аудита"]) // Преобразуем дату
+                    location: item["Адрес"],
+                    certCriteria: item["Стандарт"],
+                    accreditation: item["Аккредитация"],
+                    expirationDate: formatExcelDate(item["Срок действия сертификата"]),
+                    lastAuditDate: formatExcelDate(item["Дата последнего аудита"]),
+                    isActive: item["Статус сертификата"].trim().toLowerCase() === 'действующий'
+
                 }));
             })
             .catch(error => console.error('Ошибка при загрузке Excel:', error));
@@ -145,7 +149,15 @@
             const filteredData = data.filter(item => {
                 const certMatches = certInput ? item.certNumber.toLowerCase() === certInput : true; // Полное совпадение по сертификату
                 const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; // Полное совпадение по ИНН
-                const nameMatches = nameInput ? item.companyName.toLowerCase() === nameInput : true; // Полное совпадение по названию компании
+        
+                const nameInQuotes = item.companyName.match(/"([^"]+)"/);
+                const companyNameInQuotes = nameInQuotes ? nameInQuotes[1].toLowerCase() : ''; // Выделяем содержимое в кавычках
+                const fullCompanyName = item.companyName.toLowerCase(); // Полное название компании с кавычками
+
+                // Проверка на полное совпадение содержимого в кавычках, полного названия или на наличие кавычек вокруг введённого текста
+                const nameMatches = nameInput
+                    ? (companyNameInQuotes === nameInput || fullCompanyName === nameInput || `"${companyNameInQuotes}"` === nameInput)
+                    : true;
 
                 return certMatches && innMatches && nameMatches;
             });
@@ -157,10 +169,14 @@
                     div.className = 'result-item';
                     div.innerHTML = `
                         <p><strong>Название компании:</strong> ${item.companyName}</p>
-                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действует' : 'Не действует'}</p>
                         <p><strong>Номер сертификата:</strong> ${item.certNumber}</p>
-                        <p><strong>Местоположение:</strong> ${item.location}</p>
+                        <p><strong>ИНН:</strong> ${item.inn}</p>
+                        <p><strong>Адрес:</strong> ${item.location}</p>
+                        <p><strong>Стандарт:</strong> ${item.certCriteria}</p>
+                        <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                        <p><strong>Срок действия сертификата:</strong> ${item.expirationDate}</p>
                         <p><strong>Дата последнего аудита:</strong> ${item.lastAuditDate}</p>
+                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действующий' : 'Не действующий'}</p>
                     `;
                     resultsContainer.appendChild(div);
                 });
