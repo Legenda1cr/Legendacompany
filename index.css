@@ -343,12 +343,6 @@ p {
 
 
 
-
-
-
-
-
-
   
 .slaider {
   background-color: #00000000;
@@ -686,7 +680,7 @@ body {
     display: flex;
     justify-content: center;
     background: rgb(214, 213, 224); /* Фон контейнера */
-    padding: 50px 0 0px 0; /* Отступ снизу 100px */
+    padding: 50px 0 25px 0; 
   }
   
   .unique-slider-wrapper {
@@ -717,7 +711,6 @@ body {
     object-fit: cover; /* Масштабирование изображений */
     margin: 0 auto; /* Центрирование изображения */
     display: block;
-    filter: grayscale(100%) brightness(70%); /* Черно-белый эффект и затемнение */
 }
 
   

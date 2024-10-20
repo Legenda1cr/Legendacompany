@@ -9,20 +9,35 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
+        /* Основной контейнер */
         .container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
         }
 
+        /* Красивый заголовок */
         h1 {
             text-align: center;
             font-size: 2.5em;
-            margin-bottom: 20px;
+            color: #00695c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        @media (max-width:500px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        /* Стили для поисковой формы */
         .search-container {
             display: flex;
             flex-direction: column;
@@ -37,6 +52,7 @@
             border-radius: 30px;
             width: 100%;
             margin-bottom: 10px;
+            box-sizing: border-box;
         }
 
         .search-inputs {
@@ -47,7 +63,7 @@
         button {
             padding: 10px 30px;
             font-size: 1.1em;
-            background-color: #4CAF50;
+            background-color: #00695c;
             color: white;
             border: none;
             cursor: pointer;
@@ -56,36 +72,39 @@
         }
 
         button:hover {
-            background-color: #45a049;
+            background-color: #004d40;
         }
 
+        /* Результаты поиска */
         .result-item {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 20px;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.458);
         }
 
         .result-item p {
             margin: 5px 0;
         }
+
     </style>
 </head>
 <body>
 
     <div class="container">
+        <!-- Красивый заголовок -->
         <h1>Сертификаты компаний</h1>
 
         <!-- Поля для поиска -->
         <div class="search-container">
             <div class="search-inputs">
-                <input type="text" id="cert-number" placeholder="Введите номер сертификата...">
-                <input type="text" id="inn" placeholder="Введите ИНН...">
-                <input type="text" id="company-name" placeholder="Введите название компании...">
+                <input type="text" id="company-name" placeholder="Введите название компании..." onkeydown="handleKeyPress(event)">
+                <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
+                <input type="text" id="cert-number" placeholder="Введите номер сертификата..." onkeydown="handleKeyPress(event)">
             </div>
-            <button id="search-button" onclick="search()">Поиск</button>
+            <button id="search-button" onclick="search()">Проверить сертификат</button>
         </div>
 
         <!-- Результаты поиска -->
@@ -181,22 +200,16 @@
                     resultsContainer.appendChild(div);
                 });
             } else {
-                const noResults = document.createElement('div');
-                noResults.className = 'result-item';
-                noResults.textContent = 'Ничего не найдено.';
-                resultsContainer.appendChild(noResults);
+                resultsContainer.innerHTML = '<p>Сертификаты не найдены.</p>';
             }
         }
 
-        // Функция для обработки нажатия клавиши Enter
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    search();
-                }
-            });
-        });
+        // Обработка нажатия Enter
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
     </script>
-
 </body>
 </html>
