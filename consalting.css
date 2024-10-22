@@ -465,7 +465,7 @@ body {
     background-image: url(./аудит2.jpg);
     width: 100%;
     max-width: 650px;
-    height: auto;
+    height: 500px;
     position: relative;
     box-shadow: 0 30px 40px #000000;
     background-size: cover;
@@ -480,7 +480,7 @@ body {
     background-image: url(./аудит1.jpg);
     width: 100%;
     max-width: 650px;
-    height: auto;
+    height: 500px;
     position: relative;
     box-shadow: 0 30px 40px #000000;
     background-size: cover;
