@@ -12,14 +12,12 @@
             padding: 0;
         }
 
-        /* Основной контейнер */
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
 
-        /* Красивый заголовок */
         h1 {
             text-align: center;
             font-size: 2.5em;
@@ -37,7 +35,6 @@
             }
         }
 
-        /* Стили для поисковой формы */
         .search-container {
             display: flex;
             flex-direction: column;
@@ -75,7 +72,6 @@
             background-color: #004d40;
         }
 
-        /* Результаты поиска */
         .result-item {
             background-color: #fff;
             padding: 20px;
@@ -90,14 +86,13 @@
         }
 
     </style>
+    <!-- Подключаем библиотеку SheetJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </head>
 <body>
-
     <div class="container">
-        <!-- Красивый заголовок -->
         <h1>Сертификаты компаний</h1>
 
-        <!-- Поля для поиска -->
         <div class="search-container">
             <div class="search-inputs">
                 <input type="text" id="company-name" placeholder="Введите название компании..." onkeydown="handleKeyPress(event)">
@@ -107,47 +102,47 @@
             <button id="search-button" onclick="search()">Проверить сертификат</button>
         </div>
 
-        <!-- Результаты поиска -->
         <div id="search-results"></div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
     <script>
         let data = [];
 
-        // Загрузка Excel-файла по ссылке
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D1%8B.xlsx"; 
+        // URL на файл Excel на GitHub
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/сертификаты.xlsx";
 
+        // Загрузка данных из Excel
         fetch(excelFileUrl)
-            .then(response => response.arrayBuffer())
-            .then(dataBuffer => {
-                const workbook = XLSX.read(dataBuffer, {type: 'array'});
-                const sheetName = workbook.SheetNames[0];  // Используем первый лист
-                const worksheet = workbook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet);
-                
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.arrayBuffer(); // Получаем файл в виде массива байтов
+            })
+            .then(arrayBuffer => {
+                const workbook = XLSX.read(arrayBuffer, { type: "array" }); // Читаем данные из файла
+                const firstSheetName = workbook.SheetNames[0]; // Получаем имя первого листа
+                const worksheet = workbook.Sheets[firstSheetName]; // Получаем первый лист
+                const jsonData = XLSX.utils.sheet_to_json(worksheet); // Преобразуем данные в JSON
+
                 data = jsonData.map(item => ({
                     companyName: item["Название компании"],
                     certNumber: item["Номер сертификата"],
-                    inn: String(item["ИНН"]), // Преобразуем ИНН в строку
+                    inn: String(item["ИНН"]),
                     location: item["Адрес"],
                     certCriteria: item["Стандарт"],
                     accreditation: item["Аккредитация"],
-                    expirationDate: formatExcelDate(item["Срок действия сертификата"]),
-                    lastAuditDate: formatExcelDate(item["Дата последнего аудита"]),
+                    expirationDate: item["Срок действия сертификата"],
+                    lastAuditDate: item["Дата последнего аудита"],
                     isActive: item["Статус сертификата"].trim().toLowerCase() === 'действующий'
-
                 }));
-            })
-            .catch(error => console.error('Ошибка при загрузке Excel:', error));
 
-        // Функция для преобразования даты из Excel
-        function formatExcelDate(excelDate) {
-            if (!excelDate) return 'Дата не указана';
-            const date = new Date(Math.round((excelDate - 25569) * 86400 * 1000)); // Преобразование даты из формата Excel
-            return date.toLocaleDateString('ru-RU');
-        }
+                console.log("Parsed Data:", data);
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке данных:', error);
+                document.getElementById('search-results').innerHTML = '<p>Ошибка загрузки данных. Проверьте ссылку или таблицу.</p>';
+            });
 
         // Функция для поиска
         function search() {
@@ -156,32 +151,20 @@
             const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
 
-            // Очищаем предыдущие результаты
             resultsContainer.innerHTML = '';
 
-            // Проверяем, введены ли хоть какие-то данные
             if (!certInput && !innInput && !nameInput) {
-                return; // Если все поля пустые, ничего не выводим
+                resultsContainer.innerHTML = '<p>Введите хотя бы один параметр для поиска.</p>';
+                return;
             }
 
-            // Фильтруем данные по условиям
             const filteredData = data.filter(item => {
-                const certMatches = certInput ? item.certNumber.toLowerCase() === certInput : true; // Полное совпадение по сертификату
-                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; // Полное совпадение по ИНН
-        
-                const nameInQuotes = item.companyName.match(/"([^"]+)"/);
-                const companyNameInQuotes = nameInQuotes ? nameInQuotes[1].toLowerCase() : ''; // Выделяем содержимое в кавычках
-                const fullCompanyName = item.companyName.toLowerCase(); // Полное название компании с кавычками
-
-                // Проверка на полное совпадение содержимого в кавычках, полного названия или на наличие кавычек вокруг введённого текста
-                const nameMatches = nameInput
-                    ? (companyNameInQuotes === nameInput || fullCompanyName === nameInput || `"${companyNameInQuotes}"` === nameInput)
-                    : true;
-
+                const certMatches = certInput ? item.certNumber.toLowerCase() === certInput : true;
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
                 return certMatches && innMatches && nameMatches;
             });
 
-            // Выводим результаты поиска
             if (filteredData.length > 0) {
                 filteredData.forEach(item => {
                     const div = document.createElement('div');
@@ -212,4 +195,7 @@
         }
     </script>
 </body>
+
+
+
 </html>
