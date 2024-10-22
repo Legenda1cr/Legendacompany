@@ -765,9 +765,7 @@ body {
         background-color: rgb(49, 90, 254);
         color: white;
         border-radius: 50px;
-        padding: 1.5%;
-        padding-left: 4%;
-        padding-right: 4%;
+        padding: 10px 20px;
         cursor: pointer;  
       }
       
@@ -780,19 +778,17 @@ body {
 
     /*подвал снизу*/
   
-  footer{
-    width: 100%;
-    height: 500px;
-    background: rgb(0, 0, 0);
-    box-shadow: 0 -10px 10px #ffffff;
-    margin: 0 auto;
-    text-align: center;
-    padding-top: 30px;
-    position: relative;
-    bottom: 0;
-    overflow: hidden;
-    margin-top: auto;
-  }
+    footer{
+      width: 100%;
+      height: auto;
+      background: rgb(0, 0, 0);
+      box-shadow: 0 -10px 10px #ffffff;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 30px;
+      position: absolute;
+      padding-bottom: 50px;
+    }
 
 footer a{
   color:white;

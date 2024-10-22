@@ -397,6 +397,10 @@ section {
 
 
 
+
+
+
+
 .navbar a {
     margin: 0 15px;
     text-decoration: none;
@@ -678,6 +682,7 @@ body {
   
   .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background: rgb(214, 213, 224); /* Фон контейнера */
     padding: 50px 0 25px 0; 
@@ -881,7 +886,7 @@ body {
     }
     
     .unique-slider {
-      margin-top: 50px;
+      margin-top: 90px;
     }
     .unique-slide img {
       height: 28vh;
@@ -889,6 +894,173 @@ body {
   }
   
   
+  /* Стили для блока "Ближайшее обучение" */
+
+
+/* Общий контейнер */
+
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px;
+}
+
+/* Уникальный слайдер */
+.unique-slider {
+  width: 100%;
+  margin-bottom: 0;
+
+}
+
+.unique-slide {
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Schedule section */
+.schedule {
+  margin-top: 50px;
+  padding: 0px;
+  background: transparent;
+}
+
+.schedule p {
+  color: white;
+  text-align: left;
+}
+
+.schedule h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 35px;
+}
+
+.schedule .knopki {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.blue-knopka a {
+  color: white;
+}
+
+.blue-knopka a:hover {
+  color: black;
+}
+
+.blue-knopka {
+  background-color: #007bff; /* Цвет фона кнопки */
+  padding: 15px 30px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.cachel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.cachel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.cachel-slide-group {
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.cachel-slide {
+  width: 30%;
+  margin: 0 25px; /* Внешние отступы для обычного разрешения */
+  padding: 20px;
+  background-color: #007bff; /* Цвет фона слайдов */
+  color: white;              /* Цвет текста слайдов */
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cachel-slide p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.knopki {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.cachel-prev,
+.cachel-next {
+  background-color: #007bff; /* Цвет фона для кнопок навигации */
+  color: white;              /* Цвет текста для кнопок навигации */
+  border: none;
+  padding: 15px 30px;
+  cursor: pointer;
+  margin: 0 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.cachel-prev:hover,
+.cachel-next:hover {
+  background-color: #000000; /* Цвет фона при наведении для кнопок навигации */
+}
+
+strong {
+  color: rgb(255, 255, 255);
+}
+
+  hr {
+    border: none; /* Убираем стандартные границы */
+    height: 2px; /* Высота линии */
+    background-color: rgb(255, 255, 255); /* Цвет линии */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    width: 100%; /* Ширина на всю ширину родительского элемента */
+  }
+
+
+/* Медиазапрос для экранов шириной менее 500px */
+@media (max-width: 500px) {
+  .schedule h2 {
+    font-size: 24px; /* Уменьшение размера заголовка */
+  }
+
+  .schedule p {
+    font-size: 14px; /* Уменьшение размера текста */
+  }
+
+  .blue-knopka {
+    padding: 10px 20px; /* Уменьшение отступов для кнопок */
+    font-size: 16px; /* Уменьшение размера шрифта кнопок */
+  }
+
+  .cachel-slide {
+    width: 100%; /* Ширина слайда, чтобы он занимал всю ширину экрана */
+    margin: 5px; /* Убираем внешние отступы */
+    padding: 10px; /* Можно оставить отступ внутри слайда для содержимого */
+  }
+
+  .cachel-prev,
+  .cachel-next {
+    padding: 10px 20px; /* Уменьшение отступов для кнопок навигации */
+    font-size: 14px; /* Уменьшение размера шрифта для кнопок навигации */
+  }
+}
+
+
+
+
+
   
 
 
@@ -997,7 +1169,7 @@ body {
  .animate-on-scroll {
   overflow: hidden;
   opacity: 0;
-  transform: translateY(250px);
+  transform: translateY(150px);
   transition: all 0.5s ease-out;
 }
 

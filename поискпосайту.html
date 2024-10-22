@@ -188,14 +188,14 @@
                     div.className = 'result-item';
                     div.innerHTML = `
                         <p><strong>Название компании:</strong> ${item.companyName}</p>
-                        <p><strong>Номер сертификата:</strong> ${item.certNumber}</p>
                         <p><strong>ИНН:</strong> ${item.inn}</p>
                         <p><strong>Адрес:</strong> ${item.location}</p>
                         <p><strong>Стандарт:</strong> ${item.certCriteria}</p>
+                        <p><strong>Номер сертификата:</strong> ${item.certNumber}</p>
                         <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действующий' : 'Не действующий'}</p>
                         <p><strong>Срок действия сертификата:</strong> ${item.expirationDate}</p>
                         <p><strong>Дата последнего аудита:</strong> ${item.lastAuditDate}</p>
-                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действующий' : 'Не действующий'}</p>
                     `;
                     resultsContainer.appendChild(div);
                 });

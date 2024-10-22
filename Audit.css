@@ -462,7 +462,7 @@ body {
 }
 
 .item-1 {
-    background-image: url(./аудит2.jpg);
+    background-image: url(./аудит1.jpg);
     width: 100%;
     max-width: 650px;
     height: 500px;
@@ -477,7 +477,7 @@ body {
 }
 
   .item-2 {
-    background-image: url(./аудит1.jpg);
+    background-image: url(./аудит2.jpg);
     width: 100%;
     max-width: 650px;
     height: auto;
@@ -651,14 +651,12 @@ h3 {
   
   footer{
     width: 100%;
-    height: 500px;
+    height: auto;
     background: rgb(0, 0, 0);
     box-shadow: 0 -10px 10px #ffffff;
-    margin: 0 auto;
     text-align: center;
     padding-top: 30px;
     position: relative;
-    bottom: 0;
     overflow: hidden;
     margin-top: auto;
   }
