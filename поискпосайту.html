@@ -101,8 +101,8 @@
         }
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -113,7 +113,6 @@
                 <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
                 <div id="suggestions" class="suggestions" style="display: none;"></div>
                 <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
-                <input type="text" id="cert-number" placeholder="Введите номер сертификата..." onkeydown="handleKeyPress(event)">
             </div>
             <button id="search-button" onclick="search()">Проверить сертификат</button>
         </div>
@@ -156,6 +155,20 @@
                     certCriteria: item["Критерий сертификации"] || 'Не указано',
                     expirationDate: excelDateToJSDate(item["Дата окончания сертификата"])
                 }));
+
+                // Проверяем наличие параметров в URL и заполняем поля
+                const params = new URLSearchParams(window.location.search);
+                const companyNameParam = params.get('company');
+                const innParam = params.get('inn');
+
+                if (companyNameParam && innParam) {
+                    // Автоматическое заполнение полей
+                    document.getElementById('company-name').value = decodeURIComponent(companyNameParam);
+                    document.getElementById('inn').value = decodeURIComponent(innParam);
+                    
+                    // Автоматический запуск поиска
+                    search();
+                }
             })
             .catch(error => {
                 console.error('Ошибка при загрузке данных:', error);
@@ -164,28 +177,22 @@
 
         // Функция для поиска
         function search() {
-            const certInput = document.getElementById('cert-number').value.trim().toLowerCase();
             const innInput = document.getElementById('inn').value.trim().toLowerCase();
             const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
 
             resultsContainer.innerHTML = '';
 
-            if (!certInput && !innInput && !nameInput) {
-                resultsContainer.innerHTML = '<p>Заполните хотя бы одно поле для поиска.</p>';
+            if (!innInput && nameInput.length < 5) {
+                resultsContainer.innerHTML = '<p>Введите хотя бы 5 символов для названия компании или заполните ИНН.</p>';
                 return;
             }
 
             const filteredData = data.filter(item => {
-                const certMatches = certInput ? item.certCriteria.toLowerCase().includes(certInput) : true;
                 const innMatches = innInput ? item.inn.toLowerCase().includes(innInput) : true;
-                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true; // Упрощение
-
-                return certMatches && innMatches && nameMatches;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+                return innMatches && nameMatches;
             });
-
-            console.log(`Поиск по сертификату: ${certInput}, ИНН: ${innInput}, Название: ${nameInput}`);
-            console.log(`Найдено ${filteredData.length} совпадений.`);
 
             if (filteredData.length > 0) {
                 filteredData.forEach(item => {
@@ -209,7 +216,7 @@
 
                     qrCodeContainer.innerHTML = '';
 
-                    let qrCodeLink = `https://example.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
+                    let qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
                     new QRCode(qrCodeContainer, {
                         text: qrCodeLink,
                         width: 128,
@@ -220,6 +227,7 @@
                 resultsContainer.innerHTML = '<p>Сертификаты не найдены.</p>';
             }
         }
+
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 search();
@@ -233,7 +241,7 @@
 
             if (input.length >= 5) {
                 const suggestions = data
-                    .filter(item => item.companyName.toLowerCase().startsWith(input.slice(0, 5)))
+                    .filter(item => item.companyName.toLowerCase().startsWith(input))
                     .slice(0, 5);
 
                 if (suggestions.length > 0) {
@@ -257,4 +265,5 @@
     </script>
 
 </body>
+
 </html>
