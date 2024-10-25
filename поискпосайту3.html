@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сертификаты компаний с QR-кодом</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #00695c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+        .search-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1.1em;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .search-inputs {
+            width: 100%;
+            max-width: 400px;
+            position: relative; /* для абсолютного позиционирования подсказок */
+        }
+        button {
+            padding: 10px 30px;
+            font-size: 1.1em;
+            background-color: #00695c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        .result-item {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.458);
+        }
+        .result-item p {
+            margin: 5px 0;
+        }
+        .qrcode-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .suggestions {
+            margin-top: -10px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            width: 100%; /* Ширина равна ширине поля ввода */
+            box-sizing: border-box;
+            z-index: 1;
+        }
+        .suggestions p {
+            padding: 10px;
+            margin: 0;
+            cursor: pointer;
+        }
+        .suggestions p:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Сертификаты компаний</h1>
+
+        <div class="search-container">
+            <div class="search-inputs">
+                <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
+                <div id="suggestions" class="suggestions" style="display: none;"></div>
+                <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
+                <input type="text" id="cert-number" placeholder="Введите номер сертификата..." onkeydown="handleKeyPress(event)">
+            </div>
+            <button id="search-button" onclick="search()">Проверить сертификат</button>
+        </div>
+
+        <div id="search-results"></div>
+    </div>
+
+    <script>
+        let data = [];
+
+        // Функция для преобразования даты из формата Excel
+        function excelDateToJSDate(excelDate) {
+            if (isNaN(excelDate)) return '';
+            const date = new Date((excelDate - 25569) * 86400 * 1000);
+            return date.toLocaleDateString();
+        }
+
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/ТрайлП.xlsx";
+
+        // Загрузка данных из Excel
+        fetch(excelFileUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.arrayBuffer();
+            })
+            .then(arrayBuffer => {
+                const workbook = XLSX.read(arrayBuffer, { type: "array" });
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                // Форматирование данных
+                data = jsonData.map(item => ({
+                    companyName: item["Название компании"] || 'Не указано',
+                    orgForm: item["Организационно-правовая форма"] || 'Не указано',
+                    inn: String(item["ИНН"]) || 'Не указано',
+                    accreditation: item["Аккредитация"] || 'Не указано',
+                    certCriteria: item["Критерий сертификации"] || 'Не указано',
+                    expirationDate: excelDateToJSDate(item["Дата окончания сертификата"])
+                }));
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке данных:', error);
+                document.getElementById('search-results').innerHTML = '<p>Ошибка загрузки данных. Проверьте ссылку или таблицу.</p>';
+            });
+
+        // Функция для поиска
+        function search() {
+            const certInput = document.getElementById('cert-number').value.trim().toLowerCase();
+            const innInput = document.getElementById('inn').value.trim().toLowerCase();
+            const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+
+            resultsContainer.innerHTML = '';
+
+            if (!certInput && !innInput && !nameInput) {
+                resultsContainer.innerHTML = '<p>Заполните хотя бы одно поле для поиска.</p>';
+                return;
+            }
+
+            const filteredData = data.filter(item => {
+                const certMatches = certInput ? item.certCriteria.toLowerCase().includes(certInput) : true;
+                const innMatches = innInput ? item.inn.toLowerCase().includes(innInput) : true;
+
+                // Строгая проверка первых 5 символов названия компании
+                const nameMatches = nameInput.length >= 5 && item.companyName.toLowerCase().startsWith(nameInput.slice(0, 5));
+
+                return certMatches && innMatches && nameMatches;
+            });
+
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+
+                    const qrCodeContainer = document.createElement('div');
+                    qrCodeContainer.className = 'qrcode-container';
+                    qrCodeContainer.id = 'qrcode';
+
+                    div.innerHTML =
+                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
+                        <p><strong>Организационно-правовая форма:</strong> ${item.orgForm}</p>
+                        <p><strong>ИНН:</strong> ${item.inn}</p>
+                        <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                        <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
+                        <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
+
+                    div.appendChild(qrCodeContainer);
+                    resultsContainer.appendChild(div);
+
+                    qrCodeContainer.innerHTML = '';
+
+                    let qrCodeLink = `https://example.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
+                    new QRCode(qrCodeContainer, {
+                        text: qrCodeLink,
+                        width: 128,
+                        height: 128
+                    });
+                });
+            } else {
+                resultsContainer.innerHTML = '<p>Сертификаты не найдены.</p>';
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        }
+
+        function showSuggestions() {
+            const input = document.getElementById('company-name').value.trim().toLowerCase();
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+
+            if (input.length >= 5) {
+                const suggestions = data
+                    .filter(item => item.companyName.toLowerCase().startsWith(input.slice(0, 5)))
+                    .slice(0, 5);
+
+                if (suggestions.length > 0) {
+                    suggestions.forEach(item => {
+                        const p = document.createElement('p');
+                        p.textContent = item.companyName;
+                        p.onclick = () => {
+                            document.getElementById('company-name').value = item.companyName;
+                            suggestionsContainer.style.display = 'none';
+                        };
+                        suggestionsContainer.appendChild(p);
+                    });
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
