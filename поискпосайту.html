@@ -216,10 +216,7 @@ function search() {
                 qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
             }
 
-            // Проверка на длину URL для компаний с длинными названиями
-            if (qrCodeLink.length > 295) {
-                qrCodeLink = `https://urs-rus.com/proverka?company=GIL`; // Укороченная ссылка для длинных названий
-            }
+            
 
             console.log("Генерация QR-кода для:", item.companyName);
             console.log("QR-ссылка:", qrCodeLink);
