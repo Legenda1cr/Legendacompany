@@ -49,7 +49,7 @@
         .search-inputs {
             width: 100%;
             max-width: 400px;
-            position: relative; /* для абсолютного позиционирования подсказок */
+            position: relative;
         }
         button {
             padding: 10px 30px;
@@ -87,7 +87,7 @@
             max-height: 150px;
             overflow-y: auto;
             position: absolute;
-            width: 100%; /* Ширина равна ширине поля ввода */
+            width: 100%;
             box-sizing: border-box;
             z-index: 1;
         }
@@ -100,6 +100,7 @@
             background-color: #f0f0f0;
         }
     </style>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -112,7 +113,6 @@
                 <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
                 <div id="suggestions" class="suggestions" style="display: none;"></div>
                 <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
-                <input type="text" id="cert-number" placeholder="Введите номер сертификата..." onkeydown="handleKeyPress(event)">
             </div>
             <button id="search-button" onclick="search()">Проверить сертификат</button>
         </div>
@@ -122,17 +122,15 @@
 
     <script>
         let data = [];
-
-        // Функция для преобразования даты из формата Excel
+    
         function excelDateToJSDate(excelDate) {
             if (isNaN(excelDate)) return '';
             const date = new Date((excelDate - 25569) * 86400 * 1000);
             return date.toLocaleDateString();
         }
-
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/ТрайлП.xlsx";
-
-        // Загрузка данных из Excel
+    
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/TRAILPORTAL.xlsx";
+    
         fetch(excelFileUrl)
             .then(response => {
                 if (!response.ok) {
@@ -145,8 +143,7 @@
                 const firstSheetName = workbook.SheetNames[0];
                 const worksheet = workbook.Sheets[firstSheetName];
                 const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-                // Форматирование данных
+    
                 data = jsonData.map(item => ({
                     companyName: item["Название компании"] || 'Не указано',
                     orgForm: item["Организационно-правовая форма"] || 'Не указано',
@@ -161,39 +158,59 @@
                 document.getElementById('search-results').innerHTML = '<p>Ошибка загрузки данных. Проверьте ссылку или таблицу.</p>';
             });
 
-        // Функция для поиска
+        async function shortenLink(url) {
+            const response = await fetch('https://api-ssl.bitly.com/v4/shorten', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ВАШ_BITLY_ТОКЕН',  // Замените на ваш токен Bitly
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ long_url: url })
+            });
+            const data = await response.json();
+            return data.link;
+        }
+
+        async function createQRCode(item) {
+            let qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
+            
+            if (qrCodeLink.length > 1056) {
+                qrCodeLink = await shortenLink(qrCodeLink);
+            }
+
+            new QRCode(document.getElementById('qrcode'), {
+                text: qrCodeLink,
+                width: 128,
+                height: 128
+            });
+        }
+
         function search() {
-            const certInput = document.getElementById('cert-number').value.trim().toLowerCase();
             const innInput = document.getElementById('inn').value.trim().toLowerCase();
             const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
-
             resultsContainer.innerHTML = '';
-
-            if (!certInput && !innInput && !nameInput) {
-                resultsContainer.innerHTML = '<p>Заполните хотя бы одно поле для поиска.</p>';
+    
+            if (!innInput && nameInput.length < 5) {
+                resultsContainer.innerHTML = '<p>Введите хотя бы 5 символов для названия компании или заполните ИНН.</p>';
                 return;
             }
-
+    
             const filteredData = data.filter(item => {
-                const certMatches = certInput ? item.certCriteria.toLowerCase().includes(certInput) : true;
                 const innMatches = innInput ? item.inn.toLowerCase().includes(innInput) : true;
-
-                // Строгая проверка первых 5 символов названия компании
-                const nameMatches = nameInput.length >= 5 && item.companyName.toLowerCase().startsWith(nameInput.slice(0, 5));
-
-                return certMatches && innMatches && nameMatches;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+                return innMatches && nameMatches;
             });
-
+    
             if (filteredData.length > 0) {
-                filteredData.forEach(item => {
+                filteredData.forEach(async (item) => {
                     const div = document.createElement('div');
                     div.className = 'result-item';
-
+    
                     const qrCodeContainer = document.createElement('div');
                     qrCodeContainer.className = 'qrcode-container';
                     qrCodeContainer.id = 'qrcode';
-
+    
                     div.innerHTML =
                         `<p><strong>Название компании:</strong> ${item.companyName}</p>
                         <p><strong>Организационно-правовая форма:</strong> ${item.orgForm}</p>
@@ -201,59 +218,47 @@
                         <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
                         <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
                         <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-
+    
                     div.appendChild(qrCodeContainer);
                     resultsContainer.appendChild(div);
-
+    
                     qrCodeContainer.innerHTML = '';
-
-                    let qrCodeLink = `https://example.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
-                    new QRCode(qrCodeContainer, {
-                        text: qrCodeLink,
-                        width: 128,
-                        height: 128
-                    });
+    
+                    await createQRCode(item);
                 });
             } else {
                 resultsContainer.innerHTML = '<p>Сертификаты не найдены.</p>';
             }
         }
-
+    
         function handleKeyPress(event) {
             if (event.key === 'Enter') {
                 search();
             }
         }
-
+    
         function showSuggestions() {
             const input = document.getElementById('company-name').value.trim().toLowerCase();
             const suggestionsContainer = document.getElementById('suggestions');
             suggestionsContainer.innerHTML = '';
-
-            if (input.length >= 5) {
+            suggestionsContainer.style.display = input.length > 2 ? 'block' : 'none';
+    
+            if (input.length > 2) {
                 const suggestions = data
-                    .filter(item => item.companyName.toLowerCase().startsWith(input.slice(0, 5)))
+                    .filter(item => item.companyName.toLowerCase().includes(input))
                     .slice(0, 5);
-
-                if (suggestions.length > 0) {
-                    suggestions.forEach(item => {
-                        const p = document.createElement('p');
-                        p.textContent = item.companyName;
-                        p.onclick = () => {
-                            document.getElementById('company-name').value = item.companyName;
-                            suggestionsContainer.style.display = 'none';
-                        };
-                        suggestionsContainer.appendChild(p);
-                    });
-                    suggestionsContainer.style.display = 'block';
-                } else {
-                    suggestionsContainer.style.display = 'none';
-                }
-            } else {
-                suggestionsContainer.style.display = 'none';
+    
+                suggestions.forEach(item => {
+                    const suggestion = document.createElement('p');
+                    suggestion.textContent = item.companyName;
+                    suggestion.onclick = () => {
+                        document.getElementById('company-name').value = item.companyName;
+                        suggestionsContainer.style.display = 'none';
+                    };
+                    suggestionsContainer.appendChild(suggestion);
+                });
             }
         }
     </script>
-
 </body>
 </html>
