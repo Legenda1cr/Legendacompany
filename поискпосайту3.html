@@ -120,124 +120,130 @@
 
     <script>
         let data = [];
-let selectedSuggestionIndex = -1;
+        let selectedSuggestionIndex = -1;
 
-// Преобразование даты из формата Excel
-function excelDateToJSDate(excelDate) {
-    if (isNaN(excelDate)) return '';
-    const date = new Date((excelDate - 25569) * 86400 * 1000);
-    return date.toLocaleDateString();
-}
-
-const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/TRAILPORTAL.xlsx";
-
-// Загрузка данных из Excel
-fetch(excelFileUrl)
-    .then(response => response.arrayBuffer())
-    .then(arrayBuffer => {
-        const workbook = XLSX.read(arrayBuffer, { type: "array" });
-        const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-        data = jsonData.map(item => ({
-            companyName: item["Название компании"] || 'Не указано',
-            orgForm: item["Организационно-правовая форма"] || 'Не указано',
-            inn: String(item["ИНН"]) || 'Не указано',
-            accreditation: item["Аккредитация"] || 'Не указано',
-            certCriteria: item["Критерий сертификации"] || 'Не указано',
-            expirationDate: excelDateToJSDate(item["Дата окончания сертификата"])
-        }));
-
-        // Проверяем наличие параметров в URL и заполняем поля
-        const params = new URLSearchParams(window.location.search);
-        const companyNameParam = params.get('company');
-        const innParam = params.get('inn');
-
-        if (companyNameParam) {
-            document.getElementById('company-name').value = decodeURIComponent(companyNameParam);
-        }
-        if (innParam) {
-            document.getElementById('inn').value = decodeURIComponent(innParam);
+        // Преобразование даты из Excel
+        function excelDateToJSDate(excelDate) {
+            if (isNaN(excelDate)) return '';
+            const date = new Date((excelDate - 25569) * 86400 * 1000);
+            return date.toLocaleDateString();
         }
 
-        // Если оба поля заполнены, вызываем поиск
-        if (companyNameParam || innParam) {
-            search();
-        }
-    })
-    .catch(error => console.error('Ошибка при загрузке данных:', error));
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/TRAILPORTAL.xlsx";
 
-// Функция для поиска
-function search() {
-    const innInput = document.getElementById('inn').value.trim().toLowerCase();
-    const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
-    const resultsContainer = document.getElementById('search-results');
-    resultsContainer.innerHTML = '';
+        // Загрузка данных из Excel
+        fetch(excelFileUrl)
+            .then(response => response.arrayBuffer())
+            .then(arrayBuffer => {
+                const workbook = XLSX.read(arrayBuffer, { type: "array" });
+                const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
 
-    if (!innInput && nameInput.length < 5) {
-        resultsContainer.innerHTML = '<p>Введите хотя бы 5 символов для названия компании или заполните ИНН.</p>';
-        return;
-    }
+                data = jsonData.map(item => ({
+                    companyName: item["Название компании"] || 'Не указано',
+                    orgForm: item["Организационно-правовая форма"] || 'Не указано',
+                    inn: String(item["ИНН"]) || 'Не указано',
+                    accreditation: item["Аккредитация"] || 'Не указано',
+                    certCriteria: item["Критерий сертификации"] || 'Не указано',
+                    expirationDate: excelDateToJSDate(item["Дата окончания сертификата"])
+                }));
 
-    const filteredData = data.filter(item => {
-        const innMatches = innInput ? item.inn.toLowerCase().includes(innInput) : true;
-        const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
-        return innMatches && nameMatches;
-    });
+                const params = new URLSearchParams(window.location.search);
+                const companyNameParam = params.get('company');
+                const innParam = params.get('inn');
 
-    if (filteredData.length > 0) {
-        filteredData.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'result-item';
-
-            const qrCodeContainer = document.createElement('div');
-            qrCodeContainer.className = 'qrcode-container';
-            qrCodeContainer.id = 'qrcode';
-
-            div.innerHTML =
-                `<p><strong>Название компании:</strong> ${item.companyName}</p>
-                 <p><strong>Организационно-правовая форма:</strong> ${item.orgForm}</p>
-                 <p><strong>ИНН:</strong> ${item.inn}</p>
-                 <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
-                 <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
-                 <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-
-            div.appendChild(qrCodeContainer);
-            resultsContainer.appendChild(div);
-
-           // Генерация QR-кода
-            qrCodeContainer.innerHTML = '';
-            let qrCodeLink;
-
-            // Проверка на название компании и выбор соответствующей ссылки
-            if (item.companyName === "ГАЗПРОМ ИНТЕРНЭШНЛ ЛИМИТЕД") {
-                qrCodeLink = 'https://bit.ly/gazprom-international'; // Укороченная ссылка
-            } else {
-                qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
-            }
-
-            
-
-            console.log("Генерация QR-кода для:", item.companyName);
-            console.log("QR-ссылка:", qrCodeLink);
-
-            if (qrCodeContainer) {
-                try {
-                    new QRCode(qrCodeContainer, { text: qrCodeLink, width: 128, height: 128 });
-                } catch (error) {
-                    console.error("Ошибка при генерации QR-кода:", error);
+                if (companyNameParam || innParam) {
+                    search(companyNameParam, innParam);
                 }
-            } else {
-                console.error("Ошибка: QR-контейнер не найден.");
+            })
+            .catch(error => console.error('Ошибка при загрузке данных:', error));
+
+        // Функция для поиска
+        function search(companyName = null, inn = null) {
+            const innInput = inn || document.getElementById('inn').value.trim().toLowerCase();
+            const nameInput = companyName || document.getElementById('company-name').value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+
+            if (!innInput && nameInput.length < 5) {
+                resultsContainer.innerHTML = '<p>Введите хотя бы 5 символов для названия компании или заполните ИНН.</p>';
+                return;
             }
 
+            const filteredData = data.filter(item => {
+                const innMatches = innInput ? item.inn.toLowerCase().includes(innInput) : true;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+                return innMatches && nameMatches;
+            });
+
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+
+                    const qrCodeContainer = document.createElement('div');
+                    qrCodeContainer.className = 'qrcode-container';
+
+                    div.innerHTML =
+                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
+                        <p><strong>Организационно-правовая форма:</strong> ${item.orgForm}</p>
+                        <p><strong>ИНН:</strong> ${item.inn}</p>
+                        <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                        <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
+                        <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
+
+                    div.appendChild(qrCodeContainer);
+                    resultsContainer.appendChild(div);
+
+                    let qrCodeLink;
+                    if (item.companyName === "ГАЗПРОМ ИНТЕРНЭШНЛ ЛИМИТЕД") {
+                        qrCodeLink = 'https://bit.ly/gazprom-international';
+                    } else if (["Топливные системы", "АРТЕКС"].includes(item.companyName)) {
+                        qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
+                    } else {
+                        qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
+                    }
+
+                    new QRCode(qrCodeContainer, { text: qrCodeLink, width: 128, height: 128 });
                 });
             } else {
                 resultsContainer.innerHTML = '<p>Сертификаты не найдены.</p>';
             }
         }
 
-        // Обработка событий ввода и нажатия клавиш
+        // Обновленная функция для показа подсказок
+        function showSuggestions() {
+            const input = document.getElementById('company-name').value.trim().toLowerCase();
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+            selectedSuggestionIndex = -1;
+
+            if (input.length >= 5) {
+                const suggestions = data
+                    .filter(item => item.companyName.toLowerCase().includes(input))
+                    .slice(0, 5);
+
+                if (suggestions.length > 0) {
+                    suggestions.forEach(item => {
+                        const p = document.createElement('p');
+                        p.textContent = item.companyName;
+                        p.onclick = () => {
+                            document.getElementById('company-name').value = item.companyName;
+                            suggestionsContainer.style.display = 'none';
+                            search();
+                        };
+                        suggestionsContainer.appendChild(p);
+                    });
+                    suggestionsContainer.style.display = 'block';
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        }
+
+        // Обработчик для перемещения по подсказкам с клавишами
         function handleKeyPress(event) {
             const suggestions = document.getElementById('suggestions');
             const suggestionItems = Array.from(suggestions.getElementsByTagName('p'));
@@ -274,45 +280,12 @@ function search() {
             }
         }
 
-        // Функции для показа подсказок
+        // Обновляет выделение подсказок
         function updateSuggestionsHighlight(suggestionItems) {
             suggestionItems.forEach((item, index) => {
                 item.classList.toggle('highlight', index === selectedSuggestionIndex);
             });
         }
-
-        function showSuggestions() {
-            const input = document.getElementById('company-name').value.trim().toLowerCase();
-            const suggestionsContainer = document.getElementById('suggestions');
-            suggestionsContainer.innerHTML = '';
-            selectedSuggestionIndex = -1;
-
-            if (input.length >= 5) {
-                const suggestions = data
-                    .filter(item => item.companyName.toLowerCase().startsWith(input))
-                    .slice(0, 5);
-
-                if (suggestions.length > 0) {
-                    suggestions.forEach(item => {
-                        const p = document.createElement('p');
-                        p.textContent = item.companyName;
-                        p.onclick = () => {
-                            document.getElementById('company-name').value = item.companyName;
-                            suggestionsContainer.style.display = 'none';
-                            search();
-                        };
-                        p.onkeydown = handleKeyPress;
-                        suggestionsContainer.appendChild(p);
-                    });
-                    suggestionsContainer.style.display = 'block';
-                } else {
-                    suggestionsContainer.style.display = 'none';
-                }
-            } else {
-                suggestionsContainer.style.display = 'none';
-            }
-}
-
     </script>
     
     
