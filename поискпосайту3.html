@@ -197,8 +197,17 @@
 
                     let qrCodeLink;
                     if (item.companyName === "ГАЗПРОМ ИНТЕРНЭШНЛ ЛИМИТЕД") {
-                        qrCodeLink = 'https://bit.ly/gazprom-international';
-                    } else if (["Топливные системы", "АРТЕКС"].includes(item.companyName)) {
+                        qrCodeLink = 'https://bit.ly/gazprom-international'; }
+                        if (item.companyName === " «РУСАЛ Урал» «Объединенная компания РУСАЛ Уральский алюминиевый завод»") {
+                            qrCodeLink = 'https://bit.ly/gazprom-international'; }
+                            if (item.companyName === "«РУСАЛ Урал» «Объединенная компания РУСАЛ Богословский алюминиевый завод»") {
+                                qrCodeLink = 'https://bit.ly/gazprom-international'; }
+                                if (item.companyName === "ГАЗПРОМ ИНТЕРНЭШНЛ ЛИМИТЕД") {
+                                    qrCodeLink = 'https://bit.ly/gazprom-international'; }
+                                    if (item.companyName === "ГАЗПРОМ ИНТЕРНЭШНЛ ЛИМИТЕД") {
+                                        qrCodeLink = 'https://bit.ly/gazprom-international'; }
+                    
+                     else if (["Топливные системы", "АРТЕКС"].includes(item.companyName)) {
                         qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
                     } else {
                         qrCodeLink = `https://urs-rus.com/proverka?company=${encodeURIComponent(item.companyName)}&inn=${encodeURIComponent(item.inn)}`;
