@@ -144,13 +144,19 @@
         let selectedSuggestionIndex = -1;
     
         function excelDateToJSDate(excelDate) {
-            if (isNaN(excelDate)) return '';
-            const date = new Date((excelDate - 25569) * 86400 * 1000);
-            return date.toLocaleDateString();
+            if (typeof excelDate === "number") {
+                const date = new Date((excelDate - 25569) * 86400 * 1000);
+                return date.toLocaleDateString("ru-RU");
+            } else if (typeof excelDate === "string" && !isNaN(Date.parse(excelDate))) {
+                return new Date(excelDate).toLocaleDateString("ru-RU");
+            }
+            return '';
         }
     
         const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2.xlsx";
     
+        
+
         // Загрузка данных из Excel
         fetch(excelFileUrl)
             .then(response => response.arrayBuffer())
@@ -166,18 +172,50 @@
                     accreditation: item["Аккредитация"] || 'Не указано',
                     certCriteria: item["Критерий сертификации"] || 'Не указано',
                     expirationDate: excelDateToJSDate(item["Дата окончания сертификата"]),
-                    country: item["Страна"] || 'Не указано' // Добавлено поле страны
+                    country: item["Страна"] || 'Не указано'
                 }));
     
-                const params = new URLSearchParams(window.location.search);
-                const innParam = params.get('inn');
-    
-                if (innParam) {
-                    document.getElementById('inn').value = innParam;
-                    search(null, innParam); 
+                // Проверяем наличие хеш-части в URL
+                const hash = window.location.hash.substring(1); // Убираем символ '#'
+                if (hash) {
+                    searchByUniqueId(hash); // Выполняем поиск по уникальному идентификатору
                 }
             })
             .catch(error => console.error('<p class="error-message">Ошибка при загрузке данных.</p>', error));
+    
+        // Функция для поиска компании по уникальному идентификатору
+        function searchByUniqueId(uniqueId) {
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+    
+            // Фильтруем данные для поиска по уникальному идентификатору
+            const filteredData = data.filter(item => {
+                const innDigits = item.inn.replace(/\D/g, ''); // Оставляем только цифры из ИНН
+                const certCriteria = item.certCriteria.replace(/\s/g, ''); // Удаляем пробелы из критерия сертификации
+                const currentUniqueId = `${innDigits}${certCriteria}`; // Составляем уникальный идентификатор
+                return currentUniqueId === uniqueId;
+            });
+    
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+    
+                    // Вывод информации о компании
+                    div.innerHTML =
+                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
+                        <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
+                        <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
+                        <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
+                        <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
+                        <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
+    
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p class="error-message">Компания не найдена.</p>';
+            }
+        }
     
         // Функция для поиска
         function search(companyName = null, inn = null) {
@@ -186,21 +224,21 @@
             const resultsContainer = document.getElementById('search-results');
             resultsContainer.innerHTML = '';
     
+            console.log("Искомое название компании:", nameInput);
+            console.log("Искомый ИНН:", innInput);
+    
             if (!innInput && nameInput.length < 5) {
                 resultsContainer.innerHTML = '<p class="error-message">Введите хотя бы 5 символов названия компании или заполните ИНН.</p>';
                 return;
             }
     
             const filteredData = data.filter(item => {
-                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true;
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; 
                 const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
-    
-                const countryMatches = item.country === "РФ"; // Фильтр по стране
-                const fieldsFilled = item.companyName && item.orgForm && item.inn && item.accreditation && item.certCriteria && item.expirationDate; // Проверка на заполненность всех полей
-                const validCriteria = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018"; // Проверка по критерию сертификации
-    
-                return innMatches && nameMatches && countryMatches && fieldsFilled && validCriteria;
+                return innMatches && nameMatches;
             });
+    
+            console.log("Найденные элементы:", filteredData); // Добавлено логирование найденных элементов
     
             if (filteredData.length > 0) {
                 filteredData.forEach(item => {
@@ -210,13 +248,17 @@
                     const qrCodeContainer = document.createElement('div');
                     qrCodeContainer.className = 'qrcode-container';
     
-                    const innDigits = item.inn.replace(/\D/g, '');
-                    const certCriteria = item.certCriteria.replace(/\s/g, '');
-                    const uniqueId = `${innDigits}${certCriteria}`;
-                    const qrCodeLink = `https://urs-rus.com/proverka#${uniqueId}`;
+                    // Генерация уникального идентификатора
+                    const innDigits = item.inn.replace(/\D/g, ''); // Оставляем только цифры из ИНН
+                    const certCriteria = item.certCriteria.replace(/\s/g, ''); // Удаляем пробелы из критерия сертификации
+                    const uniqueId = `${innDigits}${certCriteria}`; // Составляем из ИНН и критерия сертификации
     
-                    div.innerHTML = `
-                        <p><strong>Название компании:</strong> ${item.companyName}</p>
+                    // Генерация ссылки для сертификата в нужном формате
+                    const qrCodeLink = `https://urs-rus.com/proverka#${uniqueId}`; // Ссылка формируется по новому формату
+    
+                    // Вывод информации о компании
+                    div.innerHTML =
+                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
                         <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
                         <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
                         <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
@@ -226,93 +268,100 @@
                     div.appendChild(qrCodeContainer);
                     resultsContainer.appendChild(div);
     
+                    // Генерация QR-кода
                     new QRCode(qrCodeContainer, { text: qrCodeLink, width: 128, height: 128 });
                 });
             } else {
                 resultsContainer.innerHTML = '<p class="error-message">Сертификаты не найдены.</p>';
             }
         }
-
-           // Закрытие подсказок при клике вне поля
-           document.addEventListener('click', function(event) {
+    
+        // Закрытие подсказок при клике вне поля
+        document.addEventListener('click', function(event) {
             const suggestions = document.getElementById('suggestions');
             if (!suggestions.contains(event.target) && event.target.id !== 'company-name') {
                 suggestions.style.display = 'none';
             }
         });
     
-            // Обновленная функция для показа подсказок
-            function showSuggestions() {
-        const input = document.getElementById('company-name').value.trim().toLowerCase();
-        const suggestionsContainer = document.getElementById('suggestions');
-        suggestionsContainer.innerHTML = '';
-        selectedSuggestionIndex = -1;
-
-        if (input.length >= 5) {
-            const suggestions = data.filter(item => item.companyName.toLowerCase().includes(input));
-
-            if (suggestions.length > 0) {
-                suggestions.forEach(item => {
-                    const p = document.createElement('p');
-                    p.textContent = item.companyName;
-                    p.onclick = () => {
-                        document.getElementById('company-name').value = item.companyName;
-                        suggestionsContainer.style.display = 'none';
-                        search(); // Выполнение поиска при клике на подсказку
-                    };
-                    suggestionsContainer.appendChild(p);
-                });
-                suggestionsContainer.style.display = 'block'; // Отображение подсказок
+        // Обновленная функция для показа подсказок
+        function showSuggestions() {
+            const input = document.getElementById('company-name').value.trim().toLowerCase();
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+            selectedSuggestionIndex = -1;
+    
+            if (input.length >= 5) {
+                // Фильтруем и получаем уникальные названия компаний
+                const uniqueSuggestions = Array.from(
+                    new Set(data.filter(item => item.companyName.toLowerCase().includes(input)).map(item => item.companyName))
+                );
+    
+                if (uniqueSuggestions.length > 0) {
+                    uniqueSuggestions.forEach(companyName => {
+                        const p = document.createElement('p');
+                        p.textContent = companyName;
+                        p.onclick = () => {
+                            document.getElementById('company-name').value = companyName; // Заполнение поля с названием компании
+                            suggestionsContainer.style.display = 'none';
+                            search(companyName); // Выполнение поиска при клике на подсказку
+                        };
+                        suggestionsContainer.appendChild(p);
+                    });
+                    suggestionsContainer.style.display = 'block'; // Отображаем подсказки
+                } else {
+                    suggestionsContainer.style.display = 'none';
+                }
             } else {
                 suggestionsContainer.style.display = 'none';
             }
-        } else {
-            suggestionsContainer.style.display = 'none';
         }
-    }
-
     
-                
-               // Обработчик для перемещения по подсказкам с клавишами
-            function handleKeyPress(event) {
-                const suggestions = document.getElementById('suggestions');
-                const suggestionItems = Array.from(suggestions.getElementsByTagName('p'));
-
-                if (event.key === 'ArrowDown') {
-                    selectedSuggestionIndex = (selectedSuggestionIndex + 1) % suggestionItems.length;
-                    highlightSuggestion(suggestionItems);
-                } else if (event.key === 'ArrowUp') {
-                    selectedSuggestionIndex = (selectedSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
-                    highlightSuggestion(suggestionItems);
-                } else if (event.key === 'Enter') {
-                    if (selectedSuggestionIndex >= 0) {
-                        // Если выбрана подсказка, выполняем её клик
-                        suggestionItems[selectedSuggestionIndex].click();
-                    } else {
-                        // Выполняем поиск по полю ввода названия компании и ИНН
-                        search(); // Функция поиска, которая должна быть определена
-                    }
-                    suggestions.style.display = 'none'; // Скрыть подсказки
-                    event.preventDefault(); // предотвращаем стандартное поведение клавиши Enter
+        // Обработчик для перемещения по подсказкам с клавишами
+        function handleKeyPress(event) {
+            const suggestions = document.getElementById('suggestions');
+            const suggestionItems = Array.from(suggestions.getElementsByTagName('p'));
+    
+            if (event.key === 'ArrowDown') {
+                selectedSuggestionIndex = (selectedSuggestionIndex + 1) % suggestionItems.length;
+                highlightSuggestion(suggestionItems);
+            } else if (event.key === 'ArrowUp') {
+                selectedSuggestionIndex = (selectedSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+                highlightSuggestion(suggestionItems);
+            } else if (event.key === 'Enter') {
+                if (selectedSuggestionIndex >= 0) {
+                    // Выполняем поиск по выбранной подсказке
+                    const selectedCompanyName = suggestionItems[selectedSuggestionIndex].textContent;
+                    document.getElementById('company-name').value = selectedCompanyName; // Заполнение поля с названием компании
+                    search(selectedCompanyName); // Выполняем поиск
+                    suggestions.style.display = 'none'; // Скрываем подсказки
+                } else {
+                    // Выполняем поиск по полю ввода названия компании и ИНН
+                    search();
                 }
+                event.preventDefault(); // предотвращаем стандартное поведение клавиши Enter
+            } else if (event.key === 'Escape') {
+                // Скрытие подсказок при нажатии Escape
+                suggestions.style.display = 'none';
             }
-
-
-
-
-            // Функция для выделения и прокрутки к выбранной подсказке
-            function highlightSuggestion(suggestionItems) {
-        suggestionItems.forEach((item, index) => {
-            item.classList.toggle('highlight', index === selectedSuggestionIndex);
-        });
-
-        // Прокрутка, чтобы текущая подсказка оставалась в видимой области
-        if (suggestionItems[selectedSuggestionIndex]) {
-            suggestionItems[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
         }
-    }
-
+    
+        // Функция для выделения и прокрутки к выбранной подсказке
+        function highlightSuggestion(suggestionItems) {
+            suggestionItems.forEach((item, index) => {
+                item.classList.toggle('highlight', index === selectedSuggestionIndex);
+            });
+            if (suggestionItems[selectedSuggestionIndex]) {
+                suggestionItems[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+            }
+        }
+    
+        // Привязываем обработчик событий к полю ввода
+        document.getElementById('company-name').addEventListener('input', showSuggestions);
+        document.getElementById('company-name').addEventListener('keydown', handleKeyPress);
     </script>
+    
+    
     
 </body>
 </html>
