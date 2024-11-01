@@ -155,8 +155,6 @@
     
         const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2-2.xlsx";
     
-        
-
         // Загрузка данных из Excel
         fetch(excelFileUrl)
             .then(response => response.arrayBuffer())
@@ -175,7 +173,6 @@
                     country: item["Страна"] || 'Не указано'
                 }));
     
-                // Проверяем наличие хеш-части в URL
                 const hash = window.location.hash.substring(1); // Убираем символ '#'
                 if (hash) {
                     searchByUniqueId(hash); // Выполняем поиск по уникальному идентификатору
@@ -187,21 +184,28 @@
         function searchByUniqueId(uniqueId) {
             const resultsContainer = document.getElementById('search-results');
             resultsContainer.innerHTML = '';
-    
+
+            // Декодируем уникальный идентификатор
+            const decodedUniqueId = decodeURIComponent(uniqueId);
+
             // Фильтруем данные для поиска по уникальному идентификатору
             const filteredData = data.filter(item => {
-                const innDigits = item.inn.replace(/\D/g, ''); // Оставляем только цифры из ИНН
-                const certCriteria = item.certCriteria.replace(/\s/g, ''); // Удаляем пробелы из критерия сертификации
-                const currentUniqueId = `${innDigits}${certCriteria}`; // Составляем уникальный идентификатор
-                return currentUniqueId === uniqueId;
+                const innDigits = item.inn.replace(/\D/g, '');
+                const certCriteria = item.certCriteria.replace(/\s/g, '');
+                const currentUniqueId = `${innDigits}${certCriteria}`;
+
+                const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
+                const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
+                const isFromRussia = item.country === "РФ";
+
+                return currentUniqueId === decodedUniqueId && certCriteriaValid && requiredFieldsFilled && isFromRussia;
             });
-    
+
             if (filteredData.length > 0) {
                 filteredData.forEach(item => {
                     const div = document.createElement('div');
                     div.className = 'result-item';
-    
-                    // Вывод информации о компании
+
                     div.innerHTML =
                         `<p><strong>Название компании:</strong> ${item.companyName}</p>
                         <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
@@ -209,13 +213,14 @@
                         <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
                         <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
                         <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-    
+
                     resultsContainer.appendChild(div);
                 });
             } else {
                 resultsContainer.innerHTML = '<p class="error-message">Компания не найдена.</p>';
             }
         }
+
     
         // Функция для поиска
         function search(companyName = null, inn = null) {
@@ -223,9 +228,6 @@
             const nameInput = companyName || document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
             resultsContainer.innerHTML = '';
-    
-            console.log("Искомое название компании:", nameInput);
-            console.log("Искомый ИНН:", innInput);
     
             if (!innInput && nameInput.length < 5) {
                 resultsContainer.innerHTML = '<p class="error-message">Введите хотя бы 5 символов названия компании или заполните ИНН.</p>';
@@ -235,10 +237,13 @@
             const filteredData = data.filter(item => {
                 const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; 
                 const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
-                return innMatches && nameMatches;
-            });
     
-            console.log("Найденные элементы:", filteredData); // Добавлено логирование найденных элементов
+                const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
+                const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
+                const isFromRussia = item.country === "РФ";
+    
+                return innMatches && nameMatches && certCriteriaValid && requiredFieldsFilled && isFromRussia;
+            });
     
             if (filteredData.length > 0) {
                 filteredData.forEach(item => {
@@ -247,16 +252,13 @@
     
                     const qrCodeContainer = document.createElement('div');
                     qrCodeContainer.className = 'qrcode-container';
+                    
+                    const innDigits = item.inn.replace(/\D/g, '');
+                    const certCriteria = item.certCriteria.replace(/\s/g, '');
+                    const uniqueId = `${innDigits}${certCriteria}`;
+
+                    const qrCodeLink = encodeURI(`https://urs-rus.com/proverka#${uniqueId}`);
     
-                    // Генерация уникального идентификатора
-                    const innDigits = item.inn.replace(/\D/g, ''); // Оставляем только цифры из ИНН
-                    const certCriteria = item.certCriteria.replace(/\s/g, ''); // Удаляем пробелы из критерия сертификации
-                    const uniqueId = `${innDigits}${certCriteria}`; // Составляем из ИНН и критерия сертификации
-    
-                    // Генерация ссылки для сертификата в нужном формате
-                    const qrCodeLink = `https://urs-rus.com/proverka#${uniqueId}`; // Ссылка формируется по новому формату
-    
-                    // Вывод информации о компании
                     div.innerHTML =
                         `<p><strong>Название компании:</strong> ${item.companyName}</p>
                         <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
@@ -268,7 +270,6 @@
                     div.appendChild(qrCodeContainer);
                     resultsContainer.appendChild(div);
     
-                    // Генерация QR-кода
                     new QRCode(qrCodeContainer, { text: qrCodeLink, width: 128, height: 128 });
                 });
             } else {
@@ -339,6 +340,7 @@
                     // Выполняем поиск по полю ввода названия компании и ИНН
                     search();
                 }
+                
                 event.preventDefault(); // предотвращаем стандартное поведение клавиши Enter
             } else if (event.key === 'Escape') {
                 // Скрытие подсказок при нажатии Escape
