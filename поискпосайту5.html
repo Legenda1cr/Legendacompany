@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Сертификаты компаний</title>
+    <style>
+        .suggestions { position: absolute; background: #fff; border: 1px solid #ccc; width: 100%; max-height: 150px; overflow-y: auto; z-index: 1; }
+        .suggestions p { padding: 10px; margin: 0; cursor: pointer; }
+        .suggestions p.highlight { background-color: #d3d3d3; }
+    </style>
+</head>
+<body>
+    <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
+    <div id="suggestions" class="suggestions" style="display: none;"></div>
+    <button onclick="search()">Поиск</button>
+    <div id="search-results"></div>
+
+    <script>
+        let data = [{ companyName: "Компания А" }, { companyName: "Компания Б" }, { companyName: "Компания В" }];
+        let selectedSuggestionIndex = -1;
+
+        function showSuggestions() {
+            const input = document.getElementById('company-name').value.trim().toLowerCase();
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+            selectedSuggestionIndex = -1;
+
+            if (input.length >= 2) {
+                const filteredSuggestions = data.filter(item => item.companyName.toLowerCase().includes(input));
+                filteredSuggestions.forEach(company => {
+                    const p = document.createElement('p');
+                    p.textContent = company.companyName;
+                    p.onclick = () => {
+                        document.getElementById('company-name').value = company.companyName;
+                        suggestionsContainer.style.display = 'none';
+                        search(); // Немедленный поиск
+                    };
+                    suggestionsContainer.appendChild(p);
+                });
+                suggestionsContainer.style.display = filteredSuggestions.length ? 'block' : 'none';
+            } else {
+                suggestionsContainer.style.display = 'none';
+            }
+        }
+
+        function handleKeyPress(event) {
+            const suggestions = document.getElementById('suggestions');
+            const suggestionItems = Array.from(suggestions.getElementsByTagName('p'));
+
+            if (event.key === 'ArrowDown') {
+                selectedSuggestionIndex = (selectedSuggestionIndex + 1) % suggestionItems.length;
+                highlightSuggestion(suggestionItems);
+            } else if (event.key === 'ArrowUp') {
+                selectedSuggestionIndex = (selectedSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+                highlightSuggestion(suggestionItems);
+            } else if (event.key === 'Enter') {
+                if (selectedSuggestionIndex >= 0) {
+                    const selectedCompanyName = suggestionItems[selectedSuggestionIndex].textContent;
+                    document.getElementById('company-name').value = selectedCompanyName;
+                    suggestions.style.display = 'none';
+                    search();
+                } else {
+                    search();
+                }
+                event.preventDefault();
+            } else if (event.key === 'Escape') {
+                suggestions.style.display = 'none';
+            }
+        }
+
+        function highlightSuggestion(suggestionItems) {
+            suggestionItems.forEach((item, index) => {
+                item.classList.toggle('highlight', index === selectedSuggestionIndex);
+            });
+            if (suggestionItems[selectedSuggestionIndex]) {
+                suggestionItems[selectedSuggestionIndex].scrollIntoView({ block: 'nearest' });
+            }
+        }
+
+        function search() {
+            const nameInput = document.getElementById('company-name').value.trim();
+            document.getElementById('search-results').innerHTML = `Поиск выполнен для компании: ${nameInput}`;
+        }
+    </script>
+</body>
+</html>
