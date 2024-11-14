@@ -10,11 +10,24 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            display: none;
+        }
+        .auth-container {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
         }
         h1 {
             text-align: center;
@@ -26,18 +39,23 @@
             margin-bottom: 30px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        @media (max-width: 500px) {
-            h1 {
-                font-size: 1.5em;
-            }
+        h2 {
+            text-align: center;
+            font-size: 1.2em;
+            color: #00695c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .search-container {
+        .search-container, .auth-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
         }
-        input[type="text"] {
+        input[type="text"], input[type="email"] {
             padding: 10px;
             font-size: 1.1em;
             border: 1px solid #ccc;
@@ -45,11 +63,7 @@
             width: 100%;
             margin-bottom: 10px;
             box-sizing: border-box;
-        }
-        .search-inputs {
-            width: 100%;
             max-width: 400px;
-            position: relative;
         }
         button {
             padding: 10px 30px;
@@ -71,6 +85,8 @@
             border-radius: 20px;
             border: 1px solid #ddd;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.458);
+            max-width: 800px;
+            box-sizing: border-box;
         }
         .result-item p {
             margin: 5px 0;
@@ -79,211 +95,191 @@
             text-align: center;
             margin-top: 20px;
         }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
         .suggestions {
-            margin-top: -10px;
-            background-color: white;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             max-height: 150px;
             overflow-y: auto;
-            position: absolute;
             width: 100%;
-            box-sizing: border-box;
-            z-index: 1;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            z-index: 1000;
+            display: none;
         }
         .suggestions p {
             padding: 10px;
             margin: 0;
             cursor: pointer;
         }
-        .suggestions p:hover,
-        .suggestions p.highlight {
-            background-color: #d3d3d3; /* Цвет выделенной подсказки */
-        }
-        .error-message {
-            color: red;
-            font-weight: bold;
+        /* Стиль для формы авторизации и основного контента */
+        .auth-container {
             text-align: center;
         }
-        .loader {
+        .container {
             display: none;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #00695c;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            animation: spin 2s linear infinite;
-            margin: 20px auto;
+
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .suggestions {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
         }
-        .input-error-message {
-            color: red;
-            font-weight: bold;
-            margin-top: 10px;
-            display: none; /* Скрыто по умолчанию */
+        .highlight {
+            background-color: #ddd;
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <!-- Авторизация -->
+    <div class="auth-container" id="auth-container">
+        <h2>Введите email для авторизации</h2>
+        <input type="email" id="email" placeholder="Введите свой email..." required>
+        <button onclick="authorize()">Войти</button>
+        <p id="auth-error" class="error-message" style="display: none;">Введите корректный email.</p>
+    </div>
+
+    <!-- Основной контент (поиск) -->
+    <div class="container" id="main-container">
         <h1>Сертификаты компаний</h1>
         <div class="search-container">
-            <div class="search-inputs">
-                <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
-                <div id="suggestions" class="suggestions" style="display: none;"></div>
-                <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
-            </div>
+            <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
+            <div class="suggestions" id="suggestions"></div>
+            <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
             <button id="search-button" onclick="search()">Проверить сертификат</button>
-            <p id="input-error-message" class="input-error-message">Введите хотя бы 5 символов названия компании или заполните ИНН.</p>
         </div>
         <div id="search-results"></div>
     </div>
 
     <script>
         let data = [];
-        let selectedSuggestionIndex = -1;
+        let userEmail = ''; // Переменная для хранения email пользователя
+        let selectedSuggestionIndex = -1; // Индекс выбранной подсказки
+
+        function authorize() {
+            const emailInput = document.getElementById('email').value.trim();
+            const authError = document.getElementById('auth-error');
+            authError.style.display = 'none';
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
+                authError.textContent = 'Введите корректный email.';
+                authError.style.display = 'block';
+                return;
+            }
+
+            userEmail = emailInput;
+
+            // Сохраняем email в localStorage
+            let savedEmails = JSON.parse(localStorage.getItem('savedEmails')) || [];
+            if (!savedEmails.includes(userEmail)) {
+                savedEmails.push(userEmail);
+                localStorage.setItem('savedEmails', JSON.stringify(savedEmails));
+            }
+
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('main-container').style.display = 'block';
+            loadExcelData();
+        }
+
+        function loadExcelData() {
+            const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2-2.xlsx";
+            fetch(excelFileUrl)
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    const workbook = XLSX.read(arrayBuffer, { type: "array" });
+                    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                    data = jsonData.map(item => ({
+                        companyName: item["Название компании"] || 'Не указано',
+                        orgForm: item["Организационно-правовая форма"] || 'Не указано',
+                        inn: String(item["ИНН"]) || 'Не указано',
+                        accreditation: item["Аккредитация"] || 'Не указано',
+                        certCriteria: item["Критерий сертификации"] || 'Не указано',
+                        expirationDate: excelDateToJSDate(item["Дата окончания сертификата"]),
+                        country: item["Страна"] || 'Не указано'
+                    }));
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке данных:', error);
+                    document.getElementById('search-results').innerHTML = '<p class="error-message">Ошибка при загрузке данных.</p>';
+                });
+        }
 
         function excelDateToJSDate(excelDate) {
             if (typeof excelDate === "number") {
                 const date = new Date((excelDate - 25569) * 86400 * 1000);
-                return date.toLocaleDateString("ru-RU");
+                return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
             } else if (typeof excelDate === "string" && !isNaN(Date.parse(excelDate))) {
-                return new Date(excelDate).toLocaleDateString("ru-RU");
+                return new Date(excelDate).toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
             }
             return '';
         }
 
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2-2.xlsx";
-
-        // Загрузка данных из Excel
-        fetch(excelFileUrl)
-            .then(response => response.arrayBuffer())
-            .then(arrayBuffer => {
-                const workbook = XLSX.read(arrayBuffer, { type: "array" });
-                const worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet);
-
-                data = jsonData.map(item => ({
-                    companyName: item["Название компании"] || 'Не указано',
-                    orgForm: item["Организационно-правовая форма"] || 'Не указано',
-                    inn: String(item["ИНН"]) || 'Не указано',
-                    accreditation: item["Аккредитация"] || 'Не указано',
-                    certCriteria: item["Критерий сертификации"] || 'Не указано',
-                    expirationDate: excelDateToJSDate(item["Дата окончания сертификата"]),
-                    country: item["Страна"] || 'Не указано'
-                }));
-
-                const hash = window.location.hash.substring(1); // Убираем символ '#'
-                if (hash) {
-                    searchByUniqueId(hash); // Выполняем поиск по уникальному идентификатору
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка при загрузке данных:', error);
-                document.getElementById('search-results').innerHTML = '<p class="error-message">Ошибка при загрузке данных.</p>';
-            });
-
-        // Функция для поиска компании по уникальному идентификатору
-        function searchByUniqueId(uniqueId) {
-            const resultsContainer = document.getElementById('search-results');
-            resultsContainer.innerHTML = '';
-
-            // Декодируем уникальный идентификатор
-            const decodedUniqueId = decodeURIComponent(uniqueId);
-
-            // Фильтруем данные для поиска по уникальному идентификатору
-            const filteredData = data.filter(item => {
-                const innDigits = item.inn.replace(/\D/g, '');
-                const certCriteria = item.certCriteria.replace(/\s/g, '');
-                const currentUniqueId = `${innDigits}${certCriteria}`;
-
-                return currentUniqueId === decodedUniqueId && 
-                       item.certCriteria !== "СТО ГАЗПРОМ 9001-2018" && 
-                       item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate && 
-                       item.country === "РФ";
-            });
-
-            if (filteredData.length > 0) {
-                filteredData.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'result-item';
-                    div.innerHTML =
-                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
-                        <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
-                        <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
-                        <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
-                        <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
-                        <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-                    resultsContainer.appendChild(div);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p class="error-message">Компания не найдена.</p>';
-            }
-        }
-
-        // Функция для выполнения поиска
+        //функция для выполнения поиска
         function search() {
             const innInput = document.getElementById('inn').value.trim().toLowerCase();
             const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
-            const errorMessage = document.getElementById('input-error-message'); // Сообщение об ошибке
             resultsContainer.innerHTML = '';
-            errorMessage.style.display = 'none'; // Скрываем сообщение об ошибке
 
-            if (!innInput && nameInput.length < 5) {
-                errorMessage.style.display = 'block'; // Показываем сообщение об ошибке
+            const filteredData = data.filter(item => {
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+                const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
+                const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
+
+                return innMatches && nameMatches && certCriteriaValid && requiredFieldsFilled;
+            });
+
+            if (filteredData.length === 0) {
+                resultsContainer.innerHTML = '<p>По вашему запросу ничего не найдено.</p>';
                 return;
             }
 
-            const filteredData = data.filter(item => {
-                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; 
-                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+            filteredData.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                
+                resultItem.innerHTML = `
+                    <p><strong>Название компании:</strong> ${item.companyName}</p>
+                    <p><strong>Орг. форма:</strong> ${item.orgForm}</p>
+                    <p><strong>ИНН:</strong> ${item.inn}</p>
+                    <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                    <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
+                    <p><strong>Дата окончания:</strong> ${item.expirationDate}</p>
+                `;
 
-                const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
-                const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
-                const isFromRussia = item.country === "РФ";
+                // Добавление QR-кода для выбранного email
+                if (userEmail === 'maksim-karasev@yandex.ru') {
+                    const qrContainer = document.createElement('div');
+                    qrContainer.classList.add('qrcode-container');
 
-                return innMatches && nameMatches && certCriteriaValid && requiredFieldsFilled && isFromRussia;
+                    // Создаем контейнер для QR-кода
+                    const qrCodeContainer = document.createElement('div');
+                    qrCodeContainer.id = 'qrCodeContainer';
+                    qrContainer.appendChild(qrCodeContainer);
+                    resultItem.appendChild(qrContainer);
+
+                    new QRCode(qrCodeContainer, {
+                        text: `https://your-website.com/certificate/${item.inn}`, // замените на URL QR-кода
+                        width: 85,
+                        height: 85
+                    });
+                }
+
+                resultsContainer.appendChild(resultItem);
             });
-
-            if (filteredData.length > 0) {
-                filteredData.forEach(item => {
-                    createResultItem(item, resultsContainer);
-                });
-            } else {
-                resultsContainer.innerHTML = '<p class="error-message">Сертификаты не найдены.</p>';
-            }
-        }
-
-        function createResultItem(item, resultsContainer) {
-            const div = document.createElement('div');
-            div.className = 'result-item';
-
-            const qrCodeContainer = document.createElement('div');
-            qrCodeContainer.className = 'qrcode-container';
-
-            const innDigits = item.inn.replace(/\D/g, '');
-            const certCriteria = item.certCriteria.replace(/\s/g, '');
-            const uniqueId = `${innDigits}${certCriteria}`;
-            const qrCodeLink = encodeURI(`https://urs-rus.com/proverka#${uniqueId}`);
-
-            div.innerHTML =
-                `<p><strong>Название компании:</strong> ${item.companyName}</p>
-                <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
-                <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
-                <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
-                <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
-                <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-
-            div.appendChild(qrCodeContainer);
-            resultsContainer.appendChild(div);
-            
-            new QRCode(qrCodeContainer, { text: qrCodeLink, width: 128, height: 128 });
         }
 
         // Функция для отображения подсказок
@@ -298,7 +294,6 @@
                 return;
             }
 
-            // Используем Set для удаления дубликатов
             const filteredSuggestions = [...new Set(data
                 .filter(item => item.companyName.toLowerCase().includes(input))
                 .map(item => item.companyName))];
@@ -309,7 +304,7 @@
                     suggestionElement.textContent = suggestion;
                     suggestionElement.onclick = () => {
                         selectSuggestion(suggestion);
-                        search(); // Выполняем поиск сразу после выбора подсказки
+                        search();
                     };
                     suggestionsContainer.appendChild(suggestionElement);
                 });
@@ -328,34 +323,36 @@
         // Обработка нажатий клавиш
         function handleKeyPress(event) {
             const suggestions = document.querySelectorAll('.suggestions p');
+            const suggestionsContainer = document.getElementById('suggestions');
+            
             if (event.key === 'ArrowDown') {
                 selectedSuggestionIndex++;
                 if (selectedSuggestionIndex >= suggestions.length) {
-                    selectedSuggestionIndex = suggestions.length - 1; // Не позволяйте выйти за пределы
+                    selectedSuggestionIndex = suggestions.length - 1;
                 }
                 updateSuggestionHighlight(suggestions);
-                scrollSuggestions(suggestions); // Прокрутка вниз
+                scrollSuggestions(suggestions);
             } else if (event.key === 'ArrowUp') {
                 selectedSuggestionIndex--;
                 if (selectedSuggestionIndex < 0) {
-                    selectedSuggestionIndex = 0; // Не позволяйте выйти за пределы
+                    selectedSuggestionIndex = 0;
                 }
                 updateSuggestionHighlight(suggestions);
-                scrollSuggestions(suggestions); // Прокрутка вверх
+                scrollSuggestions(suggestions);
             } else if (event.key === 'Enter') {
-                // Если подсказки видимы и есть выбранная подсказка
-                if (document.getElementById('suggestions').style.display === 'block' && selectedSuggestionIndex > -1) {
-                    selectSuggestion(suggestions[selectedSuggestionIndex].textContent);
-                    search(); // Выполняем поиск по выбранной подсказке
+                if (document.getElementById('auth-container').style.display !== 'none') {
+                    authorize();
                 } else {
-                    search(); // Если подсказки не выбраны, выполняем поиск
+                    if (suggestionsContainer.style.display === 'block' && selectedSuggestionIndex !== -1) {
+                        suggestions[selectedSuggestionIndex].click();
+                    } else {
+                        search();
+                    }
                 }
-            } else {
-                selectedSuggestionIndex = -1; // Сброс индекса выбранной подсказки
             }
         }
 
-        // Обновление выделения подсказки
+        // Функция подсветки выбранной подсказки
         function updateSuggestionHighlight(suggestions) {
             suggestions.forEach((suggestion, index) => {
                 suggestion.classList.toggle('highlight', index === selectedSuggestionIndex);
@@ -364,21 +361,9 @@
 
         // Прокрутка подсказок
         function scrollSuggestions(suggestions) {
-            const suggestionsContainer = document.getElementById('suggestions');
-            const activeSuggestion = suggestions[selectedSuggestionIndex];
-
-            if (activeSuggestion) {
-                const containerHeight = suggestionsContainer.clientHeight;
-                const activeSuggestionHeight = activeSuggestion.offsetTop;
-
-                // Прокрутка вниз
-                if (activeSuggestionHeight >= containerHeight) {
-                    suggestionsContainer.scrollTop = activeSuggestionHeight - containerHeight + activeSuggestion.clientHeight;
-                }
-                // Прокрутка вверх
-                if (activeSuggestionHeight < suggestionsContainer.scrollTop) {
-                    suggestionsContainer.scrollTop = activeSuggestionHeight;
-                }
+            const selectedElement = suggestions[selectedSuggestionIndex];
+            if (selectedElement) {
+                selectedElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
     </script>
