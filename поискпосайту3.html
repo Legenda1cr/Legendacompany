@@ -148,18 +148,35 @@
         let data = [];
         let selectedSuggestionIndex = -1;
 
-        function excelDateToJSDate(excelDate) {
+                function excelDateToJSDate(excelDate) {
             if (typeof excelDate === "number") {
+                // Если дата представлена числом (формат Excel)
                 const date = new Date((excelDate - 25569) * 86400 * 1000);
                 return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
-            } else if (typeof excelDate === "string" && !isNaN(Date.parse(excelDate))) {
-                return new Date(excelDate).toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
+            } else if (typeof excelDate === "string") {
+                // Если дата строковая, проверяем, является ли она ISO-форматом
+                const parts = excelDate.split(/[-/.]/);
+                if (parts.length === 3) {
+                    let day, month, year;
+                    if (parts[0].length === 4) {
+                        // Формат YYYY-MM-DD
+                        [year, month, day] = parts;
+                    } else {
+                        // Формат DD-MM-YYYY или MM-DD-YYYY
+                        [day, month, year] = parts;
+                        if (Number(day) > 12) {
+                            // Похоже на DD-MM-YYYY
+                            [day, month] = [month, day];
+                        }
+                    }
+                    return new Date(year, month - 1, day).toLocaleDateString("ru-RU");
+                }
             }
-            return '';
+            return ''; // Если формат не распознан, возвращаем пустую строку
         }
 
 
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2-2.xlsx";
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications.xlsx";
 
         // Загрузка данных из Excel
         fetch(excelFileUrl)
