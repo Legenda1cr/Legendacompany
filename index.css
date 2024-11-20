@@ -1091,6 +1091,10 @@ strong {
       width: 100%; /* Адаптивные изображения */
       border-radius: 20px; /* Скругление углов изображений */
   }
+  .slider .slide:nth-child(4) {
+    margin-top: 40%;
+  }
+
   
   .snap {
       position: absolute;

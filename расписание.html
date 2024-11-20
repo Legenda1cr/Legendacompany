@@ -43,15 +43,59 @@
             navbar.classList.toggle('active');
         });
 
-</script>
+</script>   
 
         <div class="page-content">
         
-            <script src="certificate.js"></script>
+            <script>
+                let next = document.querySelector('.next')
+                let prev = document.querySelector('.prev')
+
+                next.addEventListener('click', function(){
+                    let items = document.querySelectorAll('.item')
+                    document.querySelector('.slide').appendChild(items[0])
+                }) 
+
+                prev.addEventListener('click', function(){
+                    let items = document.querySelectorAll('.item')
+                    document.querySelector('.slide').prepend(items[items.lenght - 1])
+                }) 
+            </script>
             
             <div class="container-logo">
                 <h1> Расписание семинаров на 2024 год</h1>
             </div> 
+
+                    <!-- Форма заявки (скрыта по умолчанию) -->
+                <div id="form-modal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <span id="close-modal" class="close">&times;</span>
+                        <h2>Подать заявку</h2>
+                        <form id="application-form">
+                            <label for="program-name">Название программы</label>
+                            <input type="text" id="program-name" name="program-name" readonly>
+
+                            <label for="full-name">ФИО</label>
+                            <input type="text" id="full-name" name="full-name" required>
+
+                            <label for="contact-number">Контактный номер телефона</label>
+                            <input type="tel" id="contact-number" name="contact-number" required>
+
+                            <label for="email">Email</label>
+                            <input type="tel" id="email" name="email" required>
+
+                            <label for="training-format">Формат обучения</label>
+                            <select id="training-format" name="training-format" required>
+                                <option value="open">Открытое обучение</option>
+                                <option value="corporate">Корпоративное обучение</option>
+                                <option value="distance">Дистанционное обучение</option>
+                            </select>
+
+                            <button type="submit">Отправить</button>
+                        </form>
+                    </div>
+                </div>
+
 
             
         <div class="content-menu">
@@ -60,7 +104,11 @@
             <!-- 1 менюшка -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента качества</div>
+                <div class="menu-title">
+                    Системы менеджмента качества
+                    <button class="apply-button" data-program="Системы менеджмента качества">Записаться</button>
+                </div>
+
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации</strong><br>
                     "Аудитор/Ведущий аудитор системы менеджмента качества" (курс одобрен в Академии Русского Регистра)<br>
@@ -124,7 +172,10 @@
             <!-- 2 -->
     
             <div class="menu-item">
-                <div class="menu-title">Экологический менеджмент</div>
+                <div class="menu-title">
+                    Системы экологического менеджмента
+                    <button class="apply-button" data-program="Системы экологического менеджмента">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации</strong><br>
                     "Аудитор/Ведущий аудитор систем экологического менеджмента" (курс одобрен в Академии Русского Регистра)<br>
@@ -162,7 +213,10 @@
             <!-- 3 -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента охраны здоровья и безопасности труда</div>
+                <div class="menu-title">
+                    Системы менеджмента охраны здоровья и безопасности труда
+                    <button class="apply-button" data-program="Системы менеджмента охраны здоровья и безопасности труда">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации</strong><br>
                     "Аудитор/Ведущий аудитор систем менеджмента охраны здоровья и безопасности труда" (курс одобрен в Академии Русского Регистра)<br>
@@ -201,7 +255,10 @@
             <!-- 4 -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента качества автомобильной промышленности</div>
+                <div class="menu-title">
+                    Системы менеджмента качества автомобильной промышленности
+                    <button class="apply-button" data-program="Системы менеджмента качества автомобильной промышленности">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Новая программа</strong><br>
                         <strong>ГОСТ Р 58139-2018 Система менеджмента качества. Требования к организациям автомобильной промышленности</strong><br>
@@ -296,46 +353,13 @@
                     
                 </div>
             </div>
-            <!-- cнизу 6 менюшка -->   
-            
+            <!-- cнизу 5 менюшка -->   
+    
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента безопасности пищевой продукции</div>
-                <div class="menu-content">
-                    <p><strong>Программа повышения квалификации</strong><br>
-                    <strong>Аудитор/Ведущий аудитор систем менеджмента безопасности пищевых продуктов (СМБПП) на основе ISO 22000:2018/FSSC 22000 версия 6 (курс Академии Русского Регистра)</strong><br>
-                    <strong>5 дней</strong><br>
-                    <strong>65 900 руб</strong><br>
-                    По мере комплектования групп СПб</p>
-                    <hr>
-                    <p><strong>Реализация требований международных и российских стандартов (ISO 22000/ГОСТ Р ИСО 22000, FSSC 22000) при построении системы менеджмента безопасности пищевых продуктов на основе принципов ХАССП. Внутренний аудит СМБПП (Курс Академии Русского Регистра)</strong><br>
-                    <strong>5 дней</strong><br>
-                    <strong>39 900 руб</strong><br>
-                    29.01 - 02.02.2024 СПб</p>
-                    <hr>
-                    <p><strong>Требования IATF 16949:2016 к системам менеджмента качества автомобильной промышленности</strong><br>
-                    <strong>2 дня</strong><br>
-                    <strong>15 000 руб</strong><br>
-                    13.03-14.03 М<br>
-                    25.09-26.09 М<br>
-                    27.11-28.11 М</p>
-                    <hr>
-                    <p><strong>Модуль 1:</strong><br>
-                    <strong>«Разработка и внедрение СМБПП на основе ISO 22000:2018/FSSC 22000 версия 6»;</strong><br>
-                    <strong>3 дня</strong><br>
-                    <strong>24 900 руб</strong></p>
-                    <hr>
-                    <p><strong>Модуль 2:</strong><br>
-                    <strong>«Внутренний аудит системы менеджмента безопасности пищевых продуктов».</strong><br>
-                    <strong>2 дня</strong><br>
-                    <strong>19 900 руб</strong><br>
-                    01 - 02.02.2024 СПб</p>
+                <div class="menu-title">
+                    Системы энергетического менеджмента
+                    <button class="apply-button" data-program="Системы энергетического менеджмента">Записаться</button>
                 </div>
-            </div>
-    
-            <!-- снизу 7 менюшка -->
-    
-            <div class="menu-item">
-                <div class="menu-title">Системы энергетического менеджмента</div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации</strong><br>
                     <strong>Разработка, внедрение и внутренний аудит системы энергетического менеджмента</strong><br>
@@ -360,10 +384,13 @@
                 </div>
             </div>
             
-            <!-- 8 -->
+            <!-- 6 -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента качества в атомной отрасли</div>
+                <div class="menu-title">
+                    Системы менеджмента качества в атомной отрасли
+                    <button class="apply-button" data-program="Системы менеджмента качества в атомной отрасли">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации:</strong><br>
                     <strong>ГОСТ Р ИСО 19443-2020. Специальные требования по применению ИСО 9001:2015 организациями цепи поставок ядерного энергетического сектора, поставляющими продукцию и услуги, важные для ядерной безопасности. Внутренний аудит.</strong><br>
@@ -395,10 +422,13 @@
                 </div>
             </div>
     
-            <!-- 9 -->
+            <!-- 7 -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента нефтегазового комплекса</div>
+                <div class="menu-title">
+                    Системы менеджмента нефтегазового комплекса
+                    <button class="apply-button" data-program="Системы менеджмента нефтегазового комплекса">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации:</strong><br>
                     <strong>Требования СТО Газпром 9001 к организациям, являющимся внутренними и внешними поставщиками ПАО «Газпром». Разработка, внедрение и внутренний аудит системы менеджмента качества.</strong><br>
@@ -445,10 +475,13 @@
             </div>
     
             
-            <!-- 10 -->
+            <!-- 8 -->
     
             <div class="menu-item">
-                <div class="menu-title">Системы менеджмента качества предприятий ВПК</div>
+                <div class="menu-title">
+                    Системы менеджмента качества предприятий ВПК
+                    <button class="apply-button" data-program="Системы менеджмента качества предприятий ВПК">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации:</strong><br>
                     <strong>Требования ГОСТ РВ 0015-002-2020. Разработка, внедрение и внутренний аудит СМК на предприятиях оборонной промышленности</strong><br>
@@ -476,10 +509,13 @@
                 </div>
             </div>
             
-            <!-- 11 -->
+            <!-- 9 -->
     
             <div class="menu-item">
-                <div class="menu-title">Интегрированные системы менеджмента</div>
+                <div class="menu-title">
+                    Интегрированные системы менеджмента
+                    <button class="apply-button" data-program="Интегрированные системы менеджмента">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации:</strong><br>
                     <strong>Разработка, внедрение и внутренний аудит интегрированных систем менеджмента (ISO 9001, ISO 14001, ISO 45001)</strong><br>
@@ -490,10 +526,13 @@
                 </div>
             </div>
         
-            <!-- 12 -->
+            <!-- 10 -->
     
             <div class="menu-item">
-                <div class="menu-title">Актуальные методы, подходы, инструменты менеджмента</div>
+                <div class="menu-title">
+                    Актуальные методы, подходы, инструменты менеджмента
+                    <button class="apply-button" data-program="Актуальные методы, подходы, инструменты менеджмента">Записаться</button>
+                </div>
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации:</strong><br>
                     <strong>Управление рисками в организации на основе применения международного стандарта ISO 31000:2018</strong><br>
@@ -625,13 +664,59 @@
                     <strong>33 000 руб</strong></p>
                 </div>
             </div>
-            
-    
-    
-    
-    
         </div>
-        <script src="расписание.js"></script>
+
+        <script>
+            // JavaScript для управления выдвижением меню
+            const menuTitles = document.querySelectorAll('.menu-title');
+
+            menuTitles.forEach(title => {
+                title.addEventListener('click', () => {
+                    const content = title.nextElementSibling;
+
+                    // Проверяем, открыто ли меню
+                    const isVisible = content.style.maxHeight;
+
+                    // Закрыть все открытые меню
+                    document.querySelectorAll('.menu-content').forEach(item => {
+                        item.style.maxHeight = null; // Устанавливаем max-height в null
+                    });
+
+                    // Если текущее меню не открыто, открыть его
+                    if (!isVisible) {
+                        content.style.maxHeight = content.scrollHeight + "px"; // Устанавливаем max-height в scrollHeight
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            // Открытие формы при нажатии на кнопку "Запись"
+            const applyButtons = document.querySelectorAll('.apply-button');
+            const modal = document.getElementById('form-modal');
+            const closeModal = document.getElementById('close-modal');
+            const programNameInput = document.getElementById('program-name');
+
+            applyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const programName = button.dataset.program;
+                    programNameInput.value = programName;
+                    modal.style.display = 'block';
+                });
+            });
+
+            // Закрытие формы
+            closeModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            // Закрытие формы при клике вне модального окна
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        </script>
 
 
         </body>
