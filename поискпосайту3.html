@@ -148,32 +148,40 @@
         let data = [];
         let selectedSuggestionIndex = -1;
 
-                function excelDateToJSDate(excelDate) {
-            if (typeof excelDate === "number") {
-                // Если дата представлена числом (формат Excel)
-                const date = new Date((excelDate - 25569) * 86400 * 1000);
-                return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
-            } else if (typeof excelDate === "string") {
-                // Если дата строковая, проверяем, является ли она ISO-форматом
-                const parts = excelDate.split(/[-/.]/);
-                if (parts.length === 3) {
-                    let day, month, year;
-                    if (parts[0].length === 4) {
-                        // Формат YYYY-MM-DD
-                        [year, month, day] = parts;
-                    } else {
-                        // Формат DD-MM-YYYY или MM-DD-YYYY
-                        [day, month, year] = parts;
-                        if (Number(day) > 12) {
-                            // Похоже на DD-MM-YYYY
-                            [day, month] = [month, day];
-                        }
-                    }
-                    return new Date(year, month - 1, day).toLocaleDateString("ru-RU");
+        function excelDateToJSDate(excelDate) {
+    console.log("Обрабатываемое значение:", excelDate); // Логируем входные данные
+
+    if (typeof excelDate === "number") {
+        const date = new Date((excelDate - 25569) * 86400 * 1000); // Excel -> JS
+        console.log("Преобразовано в дату:", date); // Логируем результат преобразования
+        return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
+    }
+
+    if (typeof excelDate === "string") {
+        console.log("Строковое значение:", excelDate); // Логируем строковые значения
+
+        const parts = excelDate.split(/[-./]/);
+        if (parts.length === 3) {
+            let day, month, year;
+
+            if (parts[0].length === 4) {
+                [year, month, day] = parts;
+            } else {
+                [day, month, year] = parts;
+                if (Number(day) > 12 && Number(month) <= 12) {
+                    [day, month] = [month, day];
                 }
             }
-            return ''; // Если формат не распознан, возвращаем пустую строку
+
+            const date = new Date(year, month - 1, day);
+            console.log("Преобразовано из строки в дату:", date);
+            return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
         }
+    }
+
+    return "Некорректная дата";
+    }
+
 
 
         const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications.xlsx";
