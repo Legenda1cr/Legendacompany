@@ -651,19 +651,19 @@ h3 {
 
 
 
-    /*подвал снизу*/
+  /*подвал снизу*/
   
-    footer{
-      width: 100%;
-      height: auto;
-      background: rgb(0, 0, 0);
-      box-shadow: 0 -10px 10px #ffffff;
-      text-align: center;
-      padding-top: 30px;
-      position: relative;
-      overflow: hidden;
-      margin-top: auto;
-    }
+  footer{
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: absolute;
+    padding-bottom: 50px;
+  }
 
 footer a{
   color:white;

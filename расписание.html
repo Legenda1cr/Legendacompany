@@ -66,35 +66,67 @@
                 <h1> Расписание семинаров на 2024 год</h1>
             </div> 
 
-                    <!-- Форма заявки (скрыта по умолчанию) -->
-                <div id="form-modal" class="modal" style="display: none;">
-                    <div class="modal-content">
-                        <span id="close-modal" class="close">&times;</span>
-                        <h2>Подать заявку</h2>
-                        <form id="application-form">
-                            <label for="program-name">Название программы</label>
-                            <input type="text" id="program-name" name="program-name" readonly>
+                    <!-- Форма заявки -->
+<div id="form-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="close-modal" class="close">&times;</span>
+        <h2>Подать заявку</h2>
+        <form id="application-form">
+            <!-- Название программы -->
+            <label for="program-name">Название программы</label>
+            <input type="text" id="program-name" name="program-name" readonly>
 
-                            <label for="full-name">ФИО</label>
-                            <input type="text" id="full-name" name="full-name" required>
+            <!-- Контактное лицо -->
+            <label for="contact-type">Контактное лицо</label>
+            <select id="contact-type" name="contact-type" required>
+                <option value="individual">Физическое лицо</option>
+                <option value="organization">Юридическое лицо</option>
+            </select>
 
-                            <label for="contact-number">Контактный номер телефона</label>
-                            <input type="tel" id="contact-number" name="contact-number" required>
+            <!-- Поля для физического лица -->
+            <div id="individual-fields" style="display: none;">
+                <label for="individual-name">ФИО</label>
+                <input type="text" id="individual-name" name="individual-name">
+            </div>
 
-                            <label for="email">Email</label>
-                            <input type="tel" id="email" name="email" required>
+            <!-- Поля для юридического лица -->
+            <div id="organization-fields" style="display: none;">
+                <label for="organization-name">Название организации</label>
+                <input type="text" id="organization-name" name="organization-name">
 
-                            <label for="training-format">Формат обучения</label>
-                            <select id="training-format" name="training-format" required>
-                                <option value="open">Открытое обучение</option>
-                                <option value="corporate">Корпоративное обучение</option>
-                                <option value="distance">Дистанционное обучение</option>
-                            </select>
-
-                            <button type="submit">Отправить</button>
-                        </form>
-                    </div>
+                <label for="organization-card">Прикрепите карточку организации</label>
+                <div class="file-upload">
+                    <input type="file" id="organization-card" name="organization-card" accept="image/*">
+                    <span id="file-name">Файл не выбран</span>
+                    <button type="button" id="remove-file" style="display: none;">&times;</button>
                 </div>
+            </div>
+
+            <!-- Формат обучения -->
+            <label for="training-format">Формат обучения</label>
+            <select id="training-format" name="training-format" required>
+                <option value="open">Открытое обучение</option>
+                <option value="corporate">Корпоративное обучение</option>
+                <option value="distance">Дистанционное обучение</option>
+            </select>
+
+            <!-- Даты проведения -->
+            <label for="training-dates">Даты проведения</label>
+            <input type="text" id="training-dates" name="training-dates" required>
+
+            <!-- Телефон -->
+            <label for="contact-number">Телефон</label>
+            <input type="tel" id="contact-number" name="contact-number" placeholder="+7 (999) 999-99-99" required maxlength="18">
+
+            <!-- Email -->
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+
+            <!-- Кнопка отправки -->
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
 
 
             
@@ -691,16 +723,68 @@
         </script>
 
         <script>
-            // Открытие формы при нажатии на кнопку "Запись"
             const applyButtons = document.querySelectorAll('.apply-button');
             const modal = document.getElementById('form-modal');
             const closeModal = document.getElementById('close-modal');
             const programNameInput = document.getElementById('program-name');
+            const contactType = document.getElementById('contact-type');
+            const individualFields = document.getElementById('individual-fields');
+            const organizationFields = document.getElementById('organization-fields');
+            const organizationCard = document.getElementById('organization-card');
+            const fileNameDisplay = document.getElementById('file-name');
+            const removeFileButton = document.getElementById('remove-file');
 
+            // Переключение между физическим и юридическим лицом
+            contactType.addEventListener('change', () => {
+                if (contactType.value === 'individual') {
+                    individualFields.style.display = 'block';
+                    organizationFields.style.display = 'none';
+                } else if (contactType.value === 'organization') {
+                    organizationFields.style.display = 'block';
+                    individualFields.style.display = 'none';
+                } else {
+                    individualFields.style.display = 'none';
+                    organizationFields.style.display = 'none';
+                }
+            });
+
+            // Обработчик выбора файла
+            organizationCard.addEventListener('change', () => {
+                if (organizationCard.files.length > 0) {
+                    fileNameDisplay.textContent = organizationCard.files[0].name;
+                    removeFileButton.style.display = 'inline-block';
+                } else {
+                    fileNameDisplay.textContent = 'Файл не выбран';
+                    removeFileButton.style.display = 'none';
+                }
+            });
+
+            // Удаление выбранного файла
+            removeFileButton.addEventListener('click', () => {
+                organizationCard.value = '';
+                fileNameDisplay.textContent = 'Файл не выбран';
+                removeFileButton.style.display = 'none';
+            });
+
+            // Проверка номера телефона: только 11 цифр
+        const phoneInput = document.getElementById('contact-number');
+
+        phoneInput.addEventListener('input', () => {
+            // Удаляем все символы, кроме цифр
+            const digitsOnly = phoneInput.value.replace(/\D/g, '');
+
+            if (digitsOnly.length !== 11) {
+                phoneInput.setCustomValidity("Номер должен содержать ровно 11 цифр");
+            } else {
+                phoneInput.setCustomValidity("");
+            }
+        });
+
+            // Открытие формы
             applyButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const programName = button.dataset.program;
-                    programNameInput.value = programName;
+                button.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                    programNameInput.value = button.dataset.program;
                     modal.style.display = 'block';
                 });
             });
@@ -710,14 +794,12 @@
                 modal.style.display = 'none';
             });
 
-            // Закрытие формы при клике вне модального окна
             window.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     modal.style.display = 'none';
                 }
             });
         </script>
-
 
         </body>
             <footer>
@@ -729,13 +811,6 @@
 
                     <div class="logopng">
                         <a href="index3.html"><img class="graficlogo"src="logo.png" alt=""></a>
-                    </div>
-
-                    <div class="social">
-                        <a href="#"><img src="./gmail.png"></img></a>
-                        <a href="#"><img src="./tg.jpg"></img></a>
-                        <a href="#"><img src="./VK.jpg"></img></a>
-                        <a href="#"><img src="./whatsapp.jpg"></img></a>
                     </div>
 
                     <nav>

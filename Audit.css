@@ -647,18 +647,18 @@ h3 {
 
 
 
-    /*подвал снизу*/
+  /*подвал снизу*/
   
   footer{
     width: 100%;
     height: auto;
     background: rgb(0, 0, 0);
     box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
     text-align: center;
     padding-top: 30px;
-    position: relative;
-    overflow: hidden;
-    margin-top: auto;
+    position: absolute;
+    padding-bottom: 50px;
   }
 
 footer a{
@@ -688,4 +688,4 @@ footer nav a:hover{
 
 .social img:hover{
   border: 2px solid #ffffffe4;
-}   
+}
