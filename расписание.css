@@ -8,21 +8,13 @@ body{
     margin: 0;
     padding: 0;
     box-shadow: border-box;
-    height: 100%;
-
-
-.page {
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
+    height: auto;
 
 }
 .parallax{
     background: rgb(255, 255, 255);
     background-attachment: fixed;
     background-size: 100%;
-    height: auto;
     display: flex;
     justify-content: center;
     position:relative;
@@ -450,7 +442,7 @@ body {
 
     .content-menu {
       width: 100%;
-      max-width: 900px; /* Максимальная ширина контейнера */
+      max-width: 1000px; /* Максимальная ширина контейнера */
       margin: 20px auto;
       padding: 10px;
       background-color: #307cff00; /* Мягкий синий фон */
@@ -505,9 +497,174 @@ body {
       margin-bottom: 5px;
   }
 
-    hr {
-       
+
+.menu-title {
+    position: relative;
+    font-size: 1.5rem; /* размер шрифта заголовка */
+}
+.apply-button {
+  position: absolute;
+  background-color: #007bff;
+  color: white;
+  right: 0;
+  margin-top: -15px;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 50px; /* Округленные края */
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid #007bff;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgb(0, 0, 0);
+}
+
+.apply-button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+  transform: scale(0.9);
+}
+.apply-button:active {
+  transform: scale(0.9); /* Ещё сильнее при клике */
+}
+
+/* Стиль для модального окна */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.file-upload {
+  display: flex;
+  align-items: center;
+}
+
+#file-name {
+  margin-left: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+#remove-file {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  background: red;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Стиль для формы */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+  .custom-button {
+      background-color: #007bff;
+      color: white;
+      padding: 15px 30px;
+      font-size: 25px;
+      border-radius: 50px; /* Округленные края */
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgb(0, 0, 0);
+  }
+
+  @media (max-width:500px) {
+    .custom-button {
+      font-size: 15px;
     }
+  }
+
+
+
+@media (max-width:500px) {
+  .apply-button {
+    font-size: 15px;
+  }
+}
+
+
+.apply-button:active {
+    transform: scale(0.9); /* Ещё сильнее при клике */
+}
+
+  h2 {
+    text-align: center;
+  }
+
+
+  hr {
+    border: none; /* Убираем стандартные границы */
+    height: 2px; /* Высота линии */
+    background-color: rgb(0, 0, 0); /* Цвет линии */
+    margin: 20px 0; /* Отступы сверху и снизу */
+    width: 100%; /* Ширина на всю ширину родительского элемента */
+  }
 
     @media (max-width: 900px) {
         .menu-title {
@@ -636,50 +793,46 @@ body {
       }
 
 
-
-    /*подвал снизу*/
+  /*подвал снизу*/
   
-    footer{
-        width: 100%;
-        height: 500px;
-        background: rgb(0, 0, 0);
-        box-shadow: 0 -10px 10px #ffffff;
-        margin: 0 auto;
-        text-align: center;
-        padding-top: 30px;
-        position: absolute;
-      }
-    
-      footer {
-        display: grid;
-        grid-template-rows: 1fr auto; /* Основной контент и футер */
-      }
+  footer{
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: absolute;
+    padding-bottom: 50px;
+  }
 
-    footer a{
-      color:white;
-      font-size: 20px;
-      margin-left: 20px;
-    }
-    
-    footer nav a:hover{
-      border-bottom: 1px solid white;
-    }
-    
-    .graficlogo{
-        margin-top: 30px;
-        margin-bottom: 0px;
-        width:200px;
-        height:200px;
-          float:center;
-        
-    }
-    .social img{
-      margin-bottom: 20px;
-      border-radius: 50%;
-      height: 100px;
-      width: 100px;
-    }
-    
-    .social img:hover{
-      border: 2px solid #ffffffe4;
-    }
+footer a{
+  color:white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+.graficlogo{
+  margin-top: 30px;
+  margin-bottom: 0px;
+  width:200px;
+  height:200px;
+  float:center;
+  
+}
+
+footer nav a:hover{
+  border-bottom: 1px solid white;
+}
+
+.social img{
+  margin-bottom: 20px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.social img:hover{
+  border: 2px solid #ffffffe4;
+}

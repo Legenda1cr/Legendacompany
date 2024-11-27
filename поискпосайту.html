@@ -3,184 +3,369 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Сертификаты компаний</title>
+    <title>Сертификаты компаний с QR-кодом</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
+            display: none;
         }
-
+        .auth-container {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
+        }
         h1 {
             text-align: center;
             font-size: 2.5em;
-            margin-bottom: 20px;
+            color: #00695c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-
-        .search-container {
+        h2 {
+            text-align: center;
+            font-size: 1.2em;
+            color: #00695c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .search-container, .auth-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-bottom: 20px;
         }
-
-        input[type="text"] {
+        input[type="text"], input[type="email"] {
             padding: 10px;
             font-size: 1.1em;
             border: 1px solid #ccc;
             border-radius: 30px;
             width: 100%;
             margin-bottom: 10px;
-        }
-
-        .search-inputs {
-            width: 100%;
+            box-sizing: border-box;
             max-width: 400px;
         }
-
         button {
             padding: 10px 30px;
             font-size: 1.1em;
-            background-color: #4CAF50;
+            background-color: #00695c;
             color: white;
             border: none;
             cursor: pointer;
             border-radius: 20px;
             margin-top: 10px;
         }
-
         button:hover {
-            background-color: #45a049;
+            background-color: #004d40;
         }
-
         .result-item {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 20px;
             border: 1px solid #ddd;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.458);
+            max-width: 800px;
+            box-sizing: border-box;
         }
-
         .result-item p {
             margin: 5px 0;
         }
+        .qrcode-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+        .suggestions {
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            z-index: 1000;
+            display: none;
+        }
+        .suggestions p {
+            padding: 10px;
+            margin: 0;
+            cursor: pointer;
+        }
+        /* Стиль для формы авторизации и основного контента */
+        .auth-container {
+            text-align: center;
+        }
+        .container {
+            display: none;
+
+        }
+        .suggestions {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .highlight {
+            background-color: #ddd;
+        }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
+    <!-- Авторизация -->
+    <div class="auth-container" id="auth-container">
+        <h2>Введите email для авторизации</h2>
+        <input type="email" id="email" placeholder="Введите свой email..." required>
+        <button onclick="authorize()">Войти</button>
+        <p id="auth-error" class="error-message" style="display: none;">Введите корректный email.</p>
+    </div>
 
-    <div class="container">
+    <!-- Основной контент (поиск) -->
+    <div class="container" id="main-container">
         <h1>Сертификаты компаний</h1>
-
-        <!-- Поля для поиска -->
         <div class="search-container">
-            <div class="search-inputs">
-                <input type="text" id="cert-number" placeholder="Введите номер сертификата...">
-                <input type="text" id="inn" placeholder="Введите ИНН...">
-                <input type="text" id="company-name" placeholder="Введите название компании...">
-            </div>
-            <button id="search-button" onclick="search()">Поиск</button>
+            <input type="text" id="company-name" placeholder="Введите название компании..." oninput="showSuggestions()" onkeydown="handleKeyPress(event)">
+            <div class="suggestions" id="suggestions"></div>
+            <input type="text" id="inn" placeholder="Введите ИНН..." onkeydown="handleKeyPress(event)">
+            <button id="search-button" onclick="search()">Проверить сертификат</button>
         </div>
-
-        <!-- Результаты поиска -->
         <div id="search-results"></div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
     <script>
         let data = [];
+        let userEmail = ''; // Переменная для хранения email пользователя
+        let selectedSuggestionIndex = -1; // Индекс выбранной подсказки
 
-        // Загрузка Excel-файла по ссылке
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82%D1%8B.xlsx"; 
+        function authorize() {
+            const emailInput = document.getElementById('email').value.trim();
+            const authError = document.getElementById('auth-error');
+            authError.style.display = 'none';
 
-        fetch(excelFileUrl)
-            .then(response => response.arrayBuffer())
-            .then(dataBuffer => {
-                const workbook = XLSX.read(dataBuffer, {type: 'array'});
-                const sheetName = workbook.SheetNames[0];  // Используем первый лист
-                const worksheet = workbook.Sheets[sheetName];
-                const jsonData = XLSX.utils.sheet_to_json(worksheet);
-                
-                data = jsonData.map(item => ({
-                    companyName: item["Название компании"],
-                    isActive: item["Статус сертификата"] === 'Действует',
-                    certNumber: item["Номер сертификата"],
-                    inn: String(item["ИНН"]), // Преобразуем ИНН в строку
-                    location: item["Местоположение"],
-                    lastAuditDate: formatExcelDate(item["Дата последнего аудита"]) // Преобразуем дату
-                }));
-            })
-            .catch(error => console.error('Ошибка при загрузке Excel:', error));
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
+                authError.textContent = 'Введите корректный email.';
+                authError.style.display = 'block';
+                return;
+            }
 
-        // Функция для преобразования даты из Excel
-        function formatExcelDate(excelDate) {
-            if (!excelDate) return 'Дата не указана';
-            const date = new Date(Math.round((excelDate - 25569) * 86400 * 1000)); // Преобразование даты из формата Excel
-            return date.toLocaleDateString('ru-RU');
+            userEmail = emailInput;
+
+            // Сохраняем email в localStorage
+            let savedEmails = JSON.parse(localStorage.getItem('savedEmails')) || [];
+            if (!savedEmails.includes(userEmail)) {
+                savedEmails.push(userEmail);
+                localStorage.setItem('savedEmails', JSON.stringify(savedEmails));
+            }
+
+            document.getElementById('auth-container').style.display = 'none';
+            document.getElementById('main-container').style.display = 'block';
+            loadExcelData();
         }
 
-        // Функция для поиска
+        function loadExcelData() {
+            const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-2-2.xlsx";
+            fetch(excelFileUrl)
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => {
+                    const workbook = XLSX.read(arrayBuffer, { type: "array" });
+                    const worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+                    data = jsonData.map(item => ({
+                        companyName: item["Название компании"] || 'Не указано',
+                        orgForm: item["Организационно-правовая форма"] || 'Не указано',
+                        inn: String(item["ИНН"]) || 'Не указано',
+                        accreditation: item["Аккредитация"] || 'Не указано',
+                        certCriteria: item["Критерий сертификации"] || 'Не указано',
+                        expirationDate: excelDateToJSDate(item["Дата окончания сертификата"]),
+                        country: item["Страна"] || 'Не указано'
+                    }));
+                })
+                .catch(error => {
+                    console.error('Ошибка при загрузке данных:', error);
+                    document.getElementById('search-results').innerHTML = '<p class="error-message">Ошибка при загрузке данных.</p>';
+                });
+        }
+
+        function excelDateToJSDate(excelDate) {
+            if (typeof excelDate === "number") {
+                const date = new Date((excelDate - 25569) * 86400 * 1000);
+                return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
+            } else if (typeof excelDate === "string" && !isNaN(Date.parse(excelDate))) {
+                return new Date(excelDate).toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
+            }
+            return '';
+        }
+
+        //функция для выполнения поиска
         function search() {
-            const certInput = document.getElementById('cert-number').value.trim().toLowerCase();
             const innInput = document.getElementById('inn').value.trim().toLowerCase();
             const nameInput = document.getElementById('company-name').value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
-
-            // Очищаем предыдущие результаты
             resultsContainer.innerHTML = '';
 
-            // Проверяем, введены ли хоть какие-то данные
-            if (!certInput && !innInput && !nameInput) {
-                return; // Если все поля пустые, ничего не выводим
-            }
-
-            // Фильтруем данные по условиям
             const filteredData = data.filter(item => {
-                const certMatches = certInput ? item.certNumber.toLowerCase() === certInput : true; // Полное совпадение по сертификату
-                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; // Полное совпадение по ИНН
-                const nameMatches = nameInput ? item.companyName.toLowerCase() === nameInput : true; // Полное совпадение по названию компании
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true;
+                const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
+                const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
+                const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
 
-                return certMatches && innMatches && nameMatches;
+                return innMatches && nameMatches && certCriteriaValid && requiredFieldsFilled;
             });
 
-            // Выводим результаты поиска
-            if (filteredData.length > 0) {
-                filteredData.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'result-item';
-                    div.innerHTML = `
-                        <p><strong>Название компании:</strong> ${item.companyName}</p>
-                        <p><strong>Статус сертификата:</strong> ${item.isActive ? 'Действует' : 'Не действует'}</p>
-                        <p><strong>Номер сертификата:</strong> ${item.certNumber}</p>
-                        <p><strong>Местоположение:</strong> ${item.location}</p>
-                        <p><strong>Дата последнего аудита:</strong> ${item.lastAuditDate}</p>
-                    `;
-                    resultsContainer.appendChild(div);
+            if (filteredData.length === 0) {
+                resultsContainer.innerHTML = '<p>По вашему запросу ничего не найдено.</p>';
+                return;
+            }
+
+            filteredData.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.classList.add('result-item');
+                
+                resultItem.innerHTML = `
+                    <p><strong>Название компании:</strong> ${item.companyName}</p>
+                    <p><strong>Орг. форма:</strong> ${item.orgForm}</p>
+                    <p><strong>ИНН:</strong> ${item.inn}</p>
+                    <p><strong>Аккредитация:</strong> ${item.accreditation}</p>
+                    <p><strong>Критерий сертификации:</strong> ${item.certCriteria}</p>
+                    <p><strong>Дата окончания:</strong> ${item.expirationDate}</p>
+                `;
+
+                // Добавление QR-кода для выбранного email
+                if (userEmail === 'maksim-karasev@yandex.ru') {
+                    const qrContainer = document.createElement('div');
+                    qrContainer.classList.add('qrcode-container');
+
+                    // Создаем контейнер для QR-кода
+                    const qrCodeContainer = document.createElement('div');
+                    qrCodeContainer.id = 'qrCodeContainer';
+                    qrContainer.appendChild(qrCodeContainer);
+                    resultItem.appendChild(qrContainer);
+
+                    new QRCode(qrCodeContainer, {
+                        text: `https://your-website.com/certificate/${item.inn}`, // замените на URL QR-кода
+                        width: 85,
+                        height: 85
+                    });
+                }
+
+                resultsContainer.appendChild(resultItem);
+            });
+        }
+
+        // Функция для отображения подсказок
+        function showSuggestions() {
+            const input = document.getElementById('company-name').value.toLowerCase();
+            const suggestionsContainer = document.getElementById('suggestions');
+            suggestionsContainer.innerHTML = '';
+            selectedSuggestionIndex = -1;
+
+            if (input.length < 5) {
+                suggestionsContainer.style.display = 'none';
+                return;
+            }
+
+            const filteredSuggestions = [...new Set(data
+                .filter(item => item.companyName.toLowerCase().includes(input))
+                .map(item => item.companyName))];
+
+            if (filteredSuggestions.length > 0) {
+                filteredSuggestions.forEach(suggestion => {
+                    const suggestionElement = document.createElement('p');
+                    suggestionElement.textContent = suggestion;
+                    suggestionElement.onclick = () => {
+                        selectSuggestion(suggestion);
+                        search();
+                    };
+                    suggestionsContainer.appendChild(suggestionElement);
                 });
+                suggestionsContainer.style.display = 'block';
             } else {
-                const noResults = document.createElement('div');
-                noResults.className = 'result-item';
-                noResults.textContent = 'Ничего не найдено.';
-                resultsContainer.appendChild(noResults);
+                suggestionsContainer.style.display = 'none';
             }
         }
 
-        // Функция для обработки нажатия клавиши Enter
-        document.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    search();
-                }
-            });
-        });
-    </script>
+        // Функция для выбора подсказки
+        function selectSuggestion(suggestion) {
+            document.getElementById('company-name').value = suggestion;
+            document.getElementById('suggestions').style.display = 'none';
+        }
 
+        // Обработка нажатий клавиш
+        function handleKeyPress(event) {
+            const suggestions = document.querySelectorAll('.suggestions p');
+            const suggestionsContainer = document.getElementById('suggestions');
+            
+            if (event.key === 'ArrowDown') {
+                selectedSuggestionIndex++;
+                if (selectedSuggestionIndex >= suggestions.length) {
+                    selectedSuggestionIndex = suggestions.length - 1;
+                }
+                updateSuggestionHighlight(suggestions);
+                scrollSuggestions(suggestions);
+            } else if (event.key === 'ArrowUp') {
+                selectedSuggestionIndex--;
+                if (selectedSuggestionIndex < 0) {
+                    selectedSuggestionIndex = 0;
+                }
+                updateSuggestionHighlight(suggestions);
+                scrollSuggestions(suggestions);
+            } else if (event.key === 'Enter') {
+                if (document.getElementById('auth-container').style.display !== 'none') {
+                    authorize();
+                } else {
+                    if (suggestionsContainer.style.display === 'block' && selectedSuggestionIndex !== -1) {
+                        suggestions[selectedSuggestionIndex].click();
+                    } else {
+                        search();
+                    }
+                }
+            }
+        }
+
+        // Функция подсветки выбранной подсказки
+        function updateSuggestionHighlight(suggestions) {
+            suggestions.forEach((suggestion, index) => {
+                suggestion.classList.toggle('highlight', index === selectedSuggestionIndex);
+            });
+        }
+
+        // Прокрутка подсказок
+        function scrollSuggestions(suggestions) {
+            const selectedElement = suggestions[selectedSuggestionIndex];
+            if (selectedElement) {
+                selectedElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    </script>
 </body>
 </html>

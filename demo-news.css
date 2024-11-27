@@ -33,32 +33,11 @@ body{
   margin-top: 0px;
 }
 
-/* Левая часть: стиль для изображений */
-.left-images {
-  margin-top: 120px;
-  width: 20%;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-  margin-left: 5%;
-}
-
-.left-images img {
-  width: 65%;
-  min-width: 70px;
-  box-shadow: 0 0px 20px rgb(0, 0, 0);
-  transition: transform 0.3s ease;
-  border-radius: 23%;
-}
-
-.left-images img:hover {
-  transform: scale(0.95);
-}
 
 /* Правая часть: стиль для текста */
 .right-text {
   margin-top: 120px;
-  width: 80%;
+  width: 100%;
   padding-left: 30px;
   display: flex;
   flex-direction: column;
@@ -442,6 +421,7 @@ body {
     position: absolute;
     padding-bottom: 50px;
   }
+
 
 footer a{
   color:white;

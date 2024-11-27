@@ -7,8 +7,25 @@ function moveCarousel() {
     if (index >= totalItems) {
         index = 0;
     }
-    const translateX = index * -100 / totalItems;
+
+    // Проверяем ширину экрана
+    const screenWidth = window.innerWidth;
+    
+    // Если ширина меньше 500px, меняем прокрутку на -500, иначе -100
+    let translateX;
+    if (screenWidth < 500) {
+        translateX = index * -100; // Прокрутка для мобильных
+    } else {
+        translateX = index * -33; // Прокрутка для десктопа
+    }
+
     track.style.transform = `translateX(${translateX}%)`;
 }
 
 setInterval(moveCarousel, 3000); // Смена каждые 3 секунды
+
+// Также можем отслеживать изменение ширины экрана при изменении размера окна
+window.addEventListener('resize', () => {
+    // Если изменяется ширина экрана, перезапускаем карусель с нужными значениями
+    moveCarousel();
+});
