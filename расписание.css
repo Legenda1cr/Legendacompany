@@ -437,9 +437,6 @@ body {
         }
     }
 
-
-    /*выше все что к слайдеру*/
-
     .content-menu {
       width: 100%;
       max-width: 1000px; /* Максимальная ширина контейнера */
@@ -516,7 +513,7 @@ body {
   cursor: pointer;
   border: 2px solid #007bff;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgb(0, 0, 0);
+  box-shadow: 0 5px 20px rgb(0, 0, 0);
 }
 
 .apply-button:hover {
@@ -606,6 +603,13 @@ input, select {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+/* Фиксированный календарь (встроен в форму) */
+.flatpickr-calendar {
+  z-index: 1100 !important; /* Повышаем z-index для перекрытия других элементов */
+  position: absolute !important; /* Обеспечиваем фиксированное положение */
+}
+
 
 button {
     padding: 15px;

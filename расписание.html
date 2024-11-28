@@ -8,6 +8,9 @@
     <tittle Parallax></tittle>
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>  
 <body>
     <div class="page">
@@ -110,9 +113,27 @@
                 <option value="distance">Дистанционное обучение</option>
             </select>
 
-            <!-- Даты проведения -->
-            <label for="training-dates">Даты проведения</label>
-            <input type="text" id="training-dates" name="training-dates" required>
+            <form id="application-form">
+                <!-- Поле выбора дат -->
+                <label for="training-dates">Даты проведения</label>
+                <input type="text" id="training-dates" name="training-dates" placeholder="Выберите даты" readonly>
+            </form>
+            
+            <script>
+                // Инициализация flatpickr
+                document.addEventListener('DOMContentLoaded', () => {
+                    flatpickr("#training-dates", {
+                        mode: "multiple", // Режим выбора нескольких дат
+                        dateFormat: "d.m.Y", // Формат отображения даты
+                        locale: "ru", // Локализация календаря
+                        altInput: true, // Альтернативное отображение
+                        altFormat: "d.m.Y", // Формат для альтернативного отображения
+                        onChange: (selectedDates, dateStr) => {
+                            console.log("Выбранные даты:", dateStr); // Логируем выбранные даты
+                        }
+                    });
+                });
+            </script>
 
             <!-- Телефон -->
             <label for="contact-number">Телефон</label>
@@ -143,7 +164,7 @@
 
                 <div class="menu-content">
                     <p><strong>Программа повышения квалификации</strong><br>
-                    "Аудитор/Ведущий аудитор системы менеджмента качества" (курс одобрен в Академии Русского Регистра)<br>
+                    <strong>"Аудитор/Ведущий аудитор системы менеджмента качества" (курс одобрен в Академии Русского Регистра)</strong><br>
                     <strong>5 дней</strong><br>
                     <strong>45 000 руб</strong><br>
                     12 - 16.02.2024 СПб<br>
