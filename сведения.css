@@ -364,7 +364,7 @@ body {
     border: 10px solid var(--clr-dark);
     margin-top: 100px;
     background-color: #d2b41c00;
-    margin-bottom: 500px;
+    margin-bottom: 100px;
   }  
 
 
@@ -451,7 +451,7 @@ body {
 
     .content-menu {
       width: 90%;
-      max-width: 900px; /* Максимальная ширина контейнера */
+      max-width: 1500px; /* Максимальная ширина контейнера */
       margin: 20px auto;
       padding: 10px;
       background-color: #307cff00; /* Мягкий синий фон */
@@ -461,13 +461,13 @@ body {
  
 
 .menu {
-
     max-width: 1000px; /* Максимальная ширина для выравнивания */
     margin: 20px auto;
 }
 
 .menu-item {
     margin-bottom: 10px;
+    position: relative;
 }
 
 .menu-header {
@@ -493,24 +493,57 @@ body {
 }
 
 .menu-content {
-    opacity: 1;
-    background-color: white;
-    border: 0px solid #007bff;
-    padding: 0px 15px; /* Уменьшаем padding сверху и снизу */
-    font-size: 16px;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.4s ease, padding 0.4s ease; /* Плавная анимация */
+  opacity: 0;
+  background-color: white;
+  border: 0px solid #007bff;
+  padding: 0px 15px;
+  font-size: 16px;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease, padding 0.4s ease; /* Плавная анимация */
+  display: flex;
+  flex-direction: column;
 }
 
+/* Стиль для контента в разделе "Основные сведения" */
+.menu-content p {
+  font-size: 16px; /* Устанавливаем размер шрифта */
+  line-height: 1.6; /* Межстрочный интервал */
+  margin-bottom: 10px; /* Отступ снизу для параграфов */
+}
 
-.menu-content p, .menu-content ul {
-    margin: 10px 0;
+.menu-content strong {
+  font-weight: bold; /* Сделать текст в <strong> жирным */
 }
 
 .menu-content ul {
-    list-style-type: disc;
-    margin-left: 20px;
+  padding-left: 20px; /* Отступ слева для списка */
+}
+
+.menu-content ul li {
+  margin-bottom: 5px; /* Отступ снизу для элементов списка */
+}
+
+/* Убираем точки от списка и добавляем отступы */
+.menu-content ul {
+  list-style-type: none; /* Убираем маркеры (точки) */
+  padding-left: 0; /* Убираем отступ слева */
+}
+
+.menu-content ul li {
+  padding-left: 10px; /* Отступ слева для элементов */
+  margin-bottom: 10px; /* Расстояние между элементами подменю */
+}
+
+.menu-content.open {
+  opacity: 1;
+  max-height: 500px; /* Ограничиваем максимальную высоту, чтобы подменю не вылезало за пределы */
+  padding: 15px;
+}
+
+.menu-item .menu-header.active + .menu-content {
+  max-height: 6000px; /* Увеличиваем максимальную высоту */
+  padding: 15px;
 }
 
 .arrow {
@@ -531,8 +564,16 @@ body {
 
 
 .sub-menu {
-    margin-top: 10px; /* Отступ сверху для подменю */
-    padding-left: 20px; /* Отступ слева для списка */
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+  padding-left: 20px; /* Отступ для подменю */
+}
+
+.sub-menu.open {
+  opacity: 1;
+  max-height: 500px; /* Увеличиваем максимальную высоту для подменю */
 }
 
 .sub-menu-item {
@@ -544,6 +585,67 @@ body {
 
 .sub-menu-item:hover {
     text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+
+
+/* Оформление таблицы */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th, td {
+  padding: 10px;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Оформление кнопок "Посмотреть" */
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Оформление подменю и текста */
+.menu-content p, .menu-content ul {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Для всех ul в .menu-content */
+.menu-content ul {
+  list-style-type: disc; /* Ставим маркеры по умолчанию */
+  margin-left: 20px;
+}
+
+/* Для li, содержащих кнопки с классом .menu-header, убираем маркеры */
+.menu-content ul li button.menu-header {
+  list-style-type: none; /* Убираем маркеры */
+  background: none; /* Чтобы не было фона у кнопок */
+  border: none; /* Убираем бордер, если есть */
+  padding: 0; /* Убираем отступы */
+}
+
+.menu-content h4 {
+  font-size: 18px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 
