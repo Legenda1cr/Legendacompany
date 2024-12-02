@@ -118,6 +118,8 @@ section {
   width: 70px;
   height: 70px;
   position: relative;
+  margin-left: 25px;
+  margin-top: 8px;
 }
 
 
@@ -453,7 +455,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -468,7 +470,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -483,7 +485,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -498,7 +500,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -513,7 +515,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -528,7 +530,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -543,7 +545,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -558,7 +560,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -573,7 +575,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -588,7 +590,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -603,7 +605,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -618,7 +620,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -633,7 +635,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -648,7 +650,7 @@ body {
     width: 300px;
     height: 300px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-size: cover;
     display: inline-block;
     transition: 0.5s;
@@ -663,7 +665,7 @@ body {
     width: 300px;
     height: 150px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     background-repeat: no-repeat;
     display: inline-block;
     transition: 0.5s;
@@ -678,7 +680,7 @@ body {
     width: 300px;
     height: 230px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 30px #000000;
     display: inline-block;
     background-repeat: no-repeat;
     transition: 0.5s;

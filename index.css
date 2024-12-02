@@ -393,6 +393,8 @@ section {
   width: 70px;
   height: 70px;
   position: relative;
+  margin-left: 25px;
+  margin-top: 8px;
 }
 
 
@@ -1026,6 +1028,10 @@ strong {
     background-color: rgb(255, 255, 255); /* Цвет линии */
     margin: 20px 0; /* Отступы сверху и снизу */
     width: 100%; /* Ширина на всю ширину родительского элемента */
+  }
+
+  .unique-sub-title {
+    padding-bottom: 15px;
   }
 
 
