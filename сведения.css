@@ -634,13 +634,6 @@ button:hover {
   margin-left: 20px;
 }
 
-/* Для li, содержащих кнопки с классом .menu-header, убираем маркеры */
-.menu-content ul li button.menu-header {
-  list-style-type: none; /* Убираем маркеры */
-  background: none; /* Чтобы не было фона у кнопок */
-  border: none; /* Убираем бордер, если есть */
-  padding: 0; /* Убираем отступы */
-}
 
 .menu-content h4 {
   font-size: 18px;
