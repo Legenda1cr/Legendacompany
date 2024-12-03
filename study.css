@@ -434,14 +434,20 @@ body {
 }
 
 .item {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    background-color: white;
-    padding: 1em;
-    font-weight: 700;
-    border-radius: 10px;
-    box-sizing: border-box;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  background-color: white;
+  padding: 1em;
+  font-weight: 700;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность эффекта */
+}
+
+.item:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 }
 
 .item h1 {
@@ -469,10 +475,9 @@ body {
     max-width: 650px;
     height: 500px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 15px #000000;
     background-size: cover;
     border-radius: 30px;
-    transition: 0.5s;
     display: inline-block;
     overflow: hidden;
     margin-bottom: 30px;
@@ -484,10 +489,9 @@ body {
     max-width: 650px;
     height: 500px;
     position: relative;
-    box-shadow: 0 30px 40px #000000;
+    box-shadow: 0 5px 15px #000000;
     background-size: cover;
     border-radius: 30px;
-    transition: 0.5s;
     display: inline-block;
     overflow: hidden;
     margin-bottom: 30px;

@@ -944,14 +944,6 @@ body {
   margin-bottom: 20px;
 }
 
-.blue-knopka a {
-  color: white;
-}
-
-.blue-knopka a:hover {
-  color: black;
-}
-
 .blue-knopka {
   background-color: #007bff; /* Цвет фона кнопки */
   padding: 15px 30px;
@@ -960,6 +952,30 @@ body {
   border-radius: 20px;
   cursor: pointer;
   font-size: 20px;
+  color: white; /* Цвет текста */
+  text-align: center;
+  display: inline-block; /* Для правильного центрирования текста */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавные эффекты */
+}
+
+.blue-knopka:hover {
+  transform: translateY(-3px); /* Поднимаем кнопку */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Добавляем тень */
+}
+
+.blue-knopka a {
+  color: white; /* Цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+}
+
+.blue-knopka a:hover {
+  color: white; /* Оставляем цвет текста неизменным */
+}
+
+.knopki {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .cachel {
@@ -993,12 +1009,6 @@ body {
 .cachel-slide p {
   font-size: 18px;
   line-height: 1.6;
-}
-
-.knopki {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
 }
 
 .cachel-prev,
