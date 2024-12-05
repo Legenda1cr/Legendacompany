@@ -701,7 +701,7 @@ body {
   }
   
   .unique-slider {
-    margin-top: 80px;
+    margin-top: 0px;
     display: flex;
     transition: transform 0.5s ease-in-out;
   }
@@ -713,8 +713,8 @@ body {
   }
   
   .unique-slide img {
-    width: 100%; /* Установить ширину изображения 80% */
-    height: 100vh; /* Установить высоту 75% от видимой области */
+    width: 90%; /* Установить ширину изображения 80% */
+    height: 90vh; /* Установить высоту % от видимой области */
     object-fit: cover; /* Масштабирование изображений */
     margin: 0 auto; /* Центрирование изображения */
     display: block;
@@ -737,7 +737,7 @@ body {
   
   button {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     border: none;
@@ -922,7 +922,7 @@ body {
 
 /* Schedule section */
 .schedule {
-  margin-top: 50px;
+  margin-top: 15px;
   padding: 0px;
   background: transparent;
 }

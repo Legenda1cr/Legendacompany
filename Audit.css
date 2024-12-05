@@ -484,6 +484,112 @@ body {
     margin-bottom: 30px;
 }
 
+/* Модальное окно */
+.modal {
+  display: none; /* Изначально скрыто */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Затемнённый фон */
+  opacity: 0; /* Для плавного появления */
+  transition: opacity 0.3s ease; /* Анимация */
+}
+
+/* Показать модальное окно */
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  animation: fadeIn 0.3s ease; /* Анимация появления */
+  position: relative;
+}
+
+.modal-content h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-content p, .modal-content ul {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.modal-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.modal-content ul li {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Анимация для модального окна */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 700px) {
+  .modal-content {
+      width: 95%; /* На всю ширину экрана */
+      height: 100%; /* На всю высоту экрана */
+      max-height: none; /* Убираем ограничение высоты */
+      border-radius: 0; /* Убираем скругления для мобильной версии */
+      padding: 15px; /* Уменьшаем отступы */
+      overflow-y: auto; /* Включаем скроллинг */
+      border-radius: 20px;
+  }
+
+  .modal-content h2 {
+      font-size: 22px; /* Уменьшаем размер заголовка */
+  }
+
+  .modal-content p, .modal-content ul {
+      font-size: 14px; /* Уменьшаем размер текста */
+  }
+
+  .close {
+      font-size: 24px; /* Уменьшаем размер кнопки закрытия */
+  }
+}
+
   .item-2 {
     background-image: url(./аудит2.jpg);
     width: 100%;
