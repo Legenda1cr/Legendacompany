@@ -66,6 +66,7 @@ section {
   z-index: 100;
   border-radius: 50px;
   line-height: 35px;
+  padding-right: 20px;
 }
 
 .header .logo img {
@@ -75,6 +76,7 @@ section {
   margin-left: 25px;
   margin-top: 8px;
 }
+
 
 
 

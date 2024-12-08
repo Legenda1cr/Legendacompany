@@ -116,6 +116,7 @@ section {
   z-index: 100;
   border-radius: 50px;
   line-height: 35px;
+  padding-right: 20px;
 }
 
 .header .logo img {
@@ -412,6 +413,19 @@ body {
 
   /*ниже все что к слайдеру*/
 
+  h5 {
+    position: relative;
+    margin-top: 100px; 
+    margin-bottom: -150px;
+    text-align: center;
+    background-color: #2259ff;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #ffffff;
+    padding: 10px 10px 20px 10px;
+  }
+
 
   .container{
     width: 90%;
@@ -440,7 +454,6 @@ body {
     transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
 }
-
 
 
 

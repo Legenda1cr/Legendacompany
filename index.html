@@ -38,7 +38,7 @@
         <a href="study.html">Обучение</a>
         <a href="consalting.html">Консалтинг</a>
         <a href="regcon-contacts.html">Контакты</a>
-        <a href="сведения.html">Сведения об образовательной организации</a>
+        <a href="сведения.html">Сведения</a>
     </nav>
 
     <div class="burger" id="burger">
@@ -47,8 +47,6 @@
         <div class="line"></div>
     </div>
 </header>
-
-
 
     <script>
             // Открытие и закрытие меню при нажатии на иконку бургер
@@ -60,38 +58,15 @@
             });
 
     </script>
+
+
     <div class="page-content">
-        
     <div class="parallax">
 
       <!-- для верхнего слайдера -->
       <div class="container">
-        <!-- Уникальный слайдер -->
-        <div class="unique-slider">
-            <!-- Слайды -->
-            <div class="unique-slide">
-                <img src="фото-главная3.jpg" alt="Image 1">
-                <p id="audit"><a href="Audit.html"><!-- какой-то текст --></a></p>
-            </div>
-            <div class="unique-slide">
-                <img src="фото-главная.jpeg" alt="Image 2">
-                <p id="training"><a href="study.html"><!-- какой-то текст --></a></p>
-            </div>
-            <div class="unique-slide">
-                <img src="фото-главная1.jpg" alt="Image 3">
-                <p id="implementation"><a href="consalting.html"><!-- какой-то текст --></a></p>
-            </div>
-            <div class="unique-slide">
-                <img src="фото-главная4.jpg" alt="Image 4">
-                <p id="deadpool"><a href="#"><!-- какой-то текст --></a></p>
-            </div>
-        </div>
-    
-        <!-- Кнопки управления уникальным слайдером -->
-        <button class="unique-prev">&#10094;</button>
-        <button class="unique-next">&#10095;</button>
-    
-        <!-- Новый блок "Ближайшее обучение" -->
+        <h5>Регистр-Консалтинг</h5>
+
         <!-- Новый блок "Ближайшее обучение" -->
 <div class="schedule">
   <h2>Ближайшее обучение</h2>
@@ -104,6 +79,7 @@
 
   <!-- Блок с расписанием (кэшель) -->
   <div class="cachel">
+  
       <div class="cachel-track">
           <!-- Группа блоков с расписанием 1-3 -->
           <div class="cachel-slide-group">
@@ -341,7 +317,66 @@
                         05 - 06.02.2025 Мск
                         </p> 
 
+                        <script>
+                          document.addEventListener("DOMContentLoaded", () => {
+  const cachelTrack = document.querySelector(".cachel-track");
+  const cachelSlides = document.querySelectorAll(".cachel-slide");
+  const cachelPrev = document.querySelector(".cachel-prev");
+  const cachelNext = document.querySelector(".cachel-next");
 
+  let currentIndex = 0; // Индекс текущего слайда
+  let visibleSlides = getVisibleSlides(); // Количество видимых слайдов
+  const totalSlides = cachelSlides.length;
+
+  // Вычисляем ширину одного слайда
+  function getSlideWidth() {
+    return cachelSlides[0].clientWidth;
+  }
+
+  // Определяем количество видимых слайдов в зависимости от ширины экрана
+  function getVisibleSlides() {
+    return window.innerWidth < 700 ? 1 : 3; // 1 слайд для мобильных, 3 — для десктопа
+  }
+
+  // Обновляем позицию слайдов
+  function updateSliderPosition() {
+  const slideWidth = cachelSlides[0].clientWidth; // Динамическая ширина слайда
+  cachelTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    cachelTrack.style.transition = "transform 0.5s ease-in-out";
+  }
+
+  // Переход к следующему слайду
+  function showNextSlides() {
+    if (currentIndex < totalSlides - visibleSlides) {
+      currentIndex++;
+      updateSliderPosition();
+    }
+  }
+
+  // Переход к предыдущему слайду
+  function showPrevSlides() {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSliderPosition();
+    }
+  }
+
+  // Обновление видимых слайдов при изменении размера окна
+ window.addEventListener("resize", () => {
+  visibleSlides = getVisibleSlides(); // Обновляем количество видимых слайдов
+  updateSliderPosition(); // Обновляем положение трека
+});
+
+
+  // Обработчики кнопок
+  cachelNext.addEventListener("click", showNextSlides);
+  cachelPrev.addEventListener("click", showPrevSlides);
+
+  // Инициализация
+  updateSliderPosition();
+});
+
+                        </script>
               </div> 
           </div>
       </div>
@@ -353,6 +388,46 @@
       <knopka class="cachel-next">&#10095;</knopka>
   </div>
 </div>
+
+<hr>
+
+<div class="news-section">
+    
+  <div class="carousel-container">
+    <h2 class="news-title">НОВОСТИ</h2>
+    <div class="carousel-track">
+
+        <div class="carousel-item">
+            <img src="фото-главная2.jpg" alt="Новость 1">
+            <p>Вручение сертификатов</p>
+            <span>08.11.2024</span>
+        </div>
+        <div class="carousel-item">
+          <img src="фото-главная5.jpg" alt="Новость 2">
+          <p></p>
+          <span>31.10.2024</span>
+      </div>
+        <div class="carousel-item">
+            <img src="фото-главная6.jpg" alt="Новость 3">
+            <p></p>
+            <span>31.10.2024</span>
+        </div>
+        <div class="carousel-item">
+            <img src="фото-главная8.jpeg" alt="Новость 4">
+            <p>Вручение сертификатов</p>
+            <span>08.11.2024</span>
+        </div>
+        <div class="carousel-item">
+            <img src="фото-главная7.jpeg" alt="Новость 5">
+            <p>Вручение сертификатов</p>
+            <span>08.11.2024</span>
+        </div>
+    </div>
+</div>
+    <script src="карусельдляindex.js"></script>
+</div>
+
+<hr>
 
     </div>
     
@@ -383,62 +458,38 @@
 
       </script>
       
-    
-      <script src="unique-script.js"></script>
-
-
-
-     <div class="animate-on-scroll">
+    <div class="animate-on-scroll">
       <div class="parallax-content unique-content">
-          <!-- Фотографии слева -->
-          <div class="news-section">
-    
-            <div class="carousel-container">
-              <h2 class="news-title">НОВОСТИ</h2>
-              <div class="carousel-track">
-
-                  <div class="carousel-item">
-                      <img src="фото-главная2.jpg" alt="Новость 1">
-                      <p>Вручение сертификатов</p>
-                      <span>08.11.2024</span>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="фото-главная5.jpg" alt="Новость 2">
-                    <p></p>
-                    <span>31.10.2024</span>
-                </div>
-                  <div class="carousel-item">
-                      <img src="фото-главная6.jpg" alt="Новость 3">
-                      <p></p>
-                      <span>31.10.2024</span>
-                  </div>
-                  <div class="carousel-item">
-                      <img src="фото-главная8.jpeg" alt="Новость 4">
-                      <p>Вручение сертификатов</p>
-                      <span>08.11.2024</span>
-                  </div>
-                  <div class="carousel-item">
-                      <img src="фото-главная7.jpeg" alt="Новость 5">
-                      <p>Вручение сертификатов</p>
-                      <span>08.11.2024</span>
-                  </div>
-              </div>
-          </div>
+        <!-- Уникальный слайдер -->
+        <h1 class="unique-sub-title">Лицензии и сертификаты</h1>
+        <div class="unique-slider">
           
+          <!-- Слайды -->
+          <div class="unique-slide">
+              <img src="фото-главная3.jpg" alt="Image 1">
+              <p id="audit"><a href="Audit.html"><!-- какой-то текст --></a></p>
+          </div>
+          <div class="unique-slide">
+              <img src="фото-главная.jpeg" alt="Image 2">
+              <p id="training"><a href="study.html"><!-- какой-то текст --></a></p>
+          </div>
+          <div class="unique-slide">
+              <img src="фото-главная1.jpg" alt="Image 3">
+              <p id="implementation"><a href="consalting.html"><!-- какой-то текст --></a></p>
+          </div>
+          <div class="unique-slide">
+              <img src="фото-главная4.jpg" alt="Image 4">
+              <p id="deadpool"><a href="#"><!-- какой-то текст --></a></p>
+          </div>
 
-              <script src="карусельдляindex.js"></script>
+      <script src="unique-script.js"></script>
+      </div>
+                <!-- Кнопки управления уникальным слайдером -->
+      <button class="unique-prev">&#10094;</button>
+      <button class="unique-next">&#10095;</button>
+  
 
         </div>
-        
-
-          <!-- Текстовый блок -->
-
-            <h1 class="unique-sub-title">Лицензии и сертификаты</h1>
-
-
-
-        </div>
-
 
       </div>
       

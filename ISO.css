@@ -112,6 +112,7 @@ section {
   z-index: 100;
   border-radius: 50px;
   line-height: 35px;
+  padding-right: 20px;
 }
 
 .header .logo img {
@@ -442,6 +443,7 @@ body {
     color: white;
   }
 
+
   h5 {
     text-align: center;
     font-size: 40px;
@@ -718,16 +720,18 @@ body {
         line-height: 35px;
       }
 
-      @media (max-width:500px) {
+      @media (max-width:700px) {
         .parallax-text p {
           margin: 2% 5% 2% 5%;
           line-height: 35px;
         }
         h1 {
-          font-size: 40px;
+          font-size: 30px;
+          padding-bottom: 5px;
+          padding-top: 5px;
         }
         h5 {
-          font-size: 25px;
+          font-size: 23px;
         }
         .parallax-text .title {
           margin-top: 30px;

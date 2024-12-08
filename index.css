@@ -25,7 +25,23 @@ body{
     overflow: hidden;
 }
 
+h5 {
+  margin-top: 100px; 
+  margin-bottom: -80px;
+  text-align: center;
+  background-color: #2259ff;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 1000;
+  color: #ffffff;
+  padding: 10px 10px 20px 10px;
+}
 
+@media (max-width:700px) {
+  h5 {
+    font-size: 30px;
+  }
+}
 
 
 /* Основные стили заголовков */
@@ -43,7 +59,7 @@ h2 {
 }
 
 .unique-sub-title {
-  margin-top: 30px; /* Увеличиваем отступ сверху */
+  margin-top: 0px; /* Увеличиваем отступ сверху */
   margin-bottom: 10px; /* Увеличиваем отступ снизу */
 }
 
@@ -77,6 +93,10 @@ p {
   .unique-text-container {
     padding: 20px; /* Увеличиваем отступы внутри контейнера */
     margin: 0 15px; /* Добавляем отступы от краев экрана */
+  }
+  .unique-sub-title {
+    margin-top: 0px; /* Увеличиваем отступ сверху */
+    margin-bottom: 10px; /* Увеличиваем отступ снизу */
   }
 }
 
@@ -117,8 +137,8 @@ p {
   background-position: center;
   width: 100vw; /* Растягиваем блок на всю ширину окна */
   height: auto;
-  padding-top: 50px;
-  padding-bottom: 0;
+  padding-top: 30px;
+  padding-bottom: 50px;
   text-align: center;
 }
 
@@ -222,6 +242,7 @@ p {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  margin-top: 25px;
 }
 
 /* Внутренний контейнер, который будет прокручиваться */
@@ -336,14 +357,6 @@ p {
 
 
 
-
-
-
-
-
-
-
-  
 .slaider {
   background-color: #00000000;
   width: 100%;
@@ -354,9 +367,6 @@ p {
   position: absolute;
 }
 
-
-
-  
 /*снизу всё что к менюшке*/
 
 * {
@@ -387,6 +397,7 @@ section {
   z-index: 100;
   border-radius: 50px;
   line-height: 35px;
+  padding-right: 20px;
 }
 
 .header .logo img {
@@ -576,7 +587,9 @@ body {
     font-size: 16px
     }
       .parallax-content h1 {
-        font-size: 30px;
+        font-size: 26px;
+        margin-top: -40px;
+        margin-bottom: -90px;
         }
         .custom-button {
           font-size: 20px;
@@ -721,45 +734,38 @@ body {
 }
 
   
-  .button {
-    position: absolute;
-    bottom: 10px; /* Отступ снизу от изображения */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон под кнопкой */
-    padding: 10px 20px;
-    border-radius: 5px;
-    width: auto; /* Кнопки адаптируются по содержимому */
-    text-align: center;
-    z-index: 2; /* Убедиться, что кнопки находятся выше изображения */
-  }
+  /* Для кнопок управления слайдером */
+button.unique-prev,
+button.unique-next {
+    position: absolute; /* Устанавливаем абсолютное позиционирование */
+    top: 50%; /* Центрируем по вертикали относительно слайдера */
+    transform: translateY(-50%); /* Смещаем вверх на 50% высоты кнопки */
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    border: none; /* Убираем границу */
+    color: white; /* Белый цвет текста */
+    font-size: 50px; /* Размер текста */
+    border-radius: 10px; /* Закругление углов */
+    padding: 10px; /* Внутренние отступы */
+    cursor: pointer; /* Указатель "рука" при наведении */
+    z-index: 10; /* Устанавливаем кнопки выше других элементов */
+}
 
-  
-  button {
-    position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    border: none;
-    color: white;
-    font-size: 50px;
-    border-radius: 10px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
-  }
-  
-  button.unique-prev {
-    left: 10px;
-  }
-  
-  button.unique-next {
-    right: 10px;
-  }
-  
-  button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
+/* Левая кнопка */
+button.unique-prev {
+    left: 10px; /* Располагаем кнопку с отступом от левого края */
+}
+
+/* Правая кнопка */
+button.unique-next {
+    right: 10px; /* Располагаем кнопку с отступом от правого края */
+}
+
+/* Hover эффект */
+button.unique-prev:hover,
+button.unique-next:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Более темный фон при наведении */
+}
+
   
 
   #audit {
@@ -922,7 +928,7 @@ body {
 
 /* Schedule section */
 .schedule {
-  margin-top: 15px;
+  margin-top: 100px;
   padding: 0px;
   background: transparent;
 }
@@ -980,14 +986,68 @@ body {
 
 .cachel {
   width: 100%;
-  overflow: hidden;
   position: relative;
 }
 
 .cachel-track {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  display: flex; /* Выстраивает слайды в линию */
+  transition: transform 0.3s ease-in-out; /* Анимация для переключения */
 }
+
+@media (max-width:700px) {
+  .cachel-track {
+    display: flex; /* Выстраивает слайды в линию */
+    transition: transform 0.3s ease-in-out; /* Анимация для переключения */
+    width: max-content; /* Автоматически растягивает трек */
+  }
+  .cachel-slide {
+    width: 100%; /* Ограничивает ширину слайда */
+    max-width: 100%; /* Гарантирует, что слайд не будет больше контейнера */
+    padding: 20px; /* Добавляет внутренние отступы */
+    box-sizing: border-box; /* Включает паддинги в расчет ширины */
+  }
+  .cachel-slide p, .cachel-slide div, .cachel-slide span {
+    white-space: normal; /* Перенос текста */
+    overflow: hidden; /* Прячем, если что-то все равно выходит за пределы */
+    text-overflow: ellipsis; /* Добавляем многоточие, если текст не помещается */
+  }
+  .cachel-slide {
+    display: flex;
+    flex-direction: column; /* Столбец, чтобы текст шел вниз */
+    align-items: flex-start; /* Выравнивание текста по левому краю */
+  }
+}
+
+@media (max-width: 700px) {
+  .cachel-slide {
+    margin: 0; /* Убираем внешние отступы */
+  }
+
+  .cachel-slide-group {
+    flex-wrap: nowrap; /* Отключаем перенос */
+    justify-content: flex-start; /* Выравниваем группы по началу */
+  }
+
+  .schedule h2 {
+    font-size: 24px; /* Адаптивный размер заголовка */
+  }
+
+  .schedule p {
+    font-size: 14px; /* Уменьшение текста */
+  }
+
+  .blue-knopka {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+
+  .cachel-prev, 
+  .cachel-next {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
 
 .cachel-slide-group {
   display: flex;
@@ -996,20 +1056,29 @@ body {
 }
 
 .cachel-slide {
-  width: 30%;
-  margin: 0 25px; /* Внешние отступы для обычного разрешения */
+  width: 33%; /* По умолчанию каждый блок занимает треть ширины */
+  margin: 0 15px; /* Внешние отступы между блоками */
   padding: 20px;
-  background-color: #007bff; /* Цвет фона слайдов */
-  color: white;              /* Цвет текста слайдов */
+  background-color: #007bff; /* Цвет фона слайда */
+  color: white;
   border-radius: 30px;
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cachel-slide {
+  white-space: normal; /* Разрешает перенос текста */
+  overflow-wrap: break-word; /* Переносит длинные слова */
+  word-wrap: break-word; /* Устаревшее, но поддерживается в старых браузерах */
+  word-break: break-word; /* Поддержка переноса длинных слов */
+  box-sizing: border-box; /* Учитывает паддинги при расчете ширины */
 }
 
 .cachel-slide p {
   font-size: 18px;
   line-height: 1.6;
 }
+
 
 .cachel-prev,
 .cachel-next {
@@ -1059,13 +1128,6 @@ strong {
     padding: 10px 20px; /* Уменьшение отступов для кнопок */
     font-size: 16px; /* Уменьшение размера шрифта кнопок */
   }
-
-  .cachel-slide {
-    width: 100%; /* Ширина слайда, чтобы он занимал всю ширину экрана */
-    margin: 5px; /* Убираем внешние отступы */
-    padding: 10px; /* Можно оставить отступ внутри слайда для содержимого */
-  }
-
   .cachel-prev,
   .cachel-next {
     padding: 10px 20px; /* Уменьшение отступов для кнопок навигации */
@@ -1073,14 +1135,19 @@ strong {
   }
 }
 
+/* Медиазапрос для экранов шириной менее 700px */
+@media (max-width: 700px) {
+  .cachel-slide {
 
+    margin: 0; /* Убираем внешние отступы */
+  }
 
+  .cachel-slide-group {
+    flex-wrap: nowrap; /* Убираем перенос */
+    justify-content: flex-start; /* Выравниваем группы слайдов по началу */
+  }
+}
 
-
-  
-
-
-  
   
   /*сверху всё что к red blue yellow*/
 
