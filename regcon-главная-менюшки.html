@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Icon Grid with Animation</title>
+<style>
+body {
+  background-image: url('your-background-image.jpg'); /* Replace with your background image */
+  background-size: cover;
+  font-family: sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);  /* 6 columns in the main grid */
+  grid-gap: 15px;
+  width: 900px; /* Adjust width as needed */
+  margin: 30px auto;  /* Center the container */
+  padding: 20px;
+    position: relative;
+}
+
+.icon-block {
+  background-color: white;
+  border-radius: 15px; 
+  padding: 20px;
+  text-align: center;
+  cursor: pointer; /* Indicate that it's clickable */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  transition: transform 0.3s ease; /* Add a transition for the animation */
+}
+
+
+.top-row{
+    grid-column: span 3; /* Each top row item spans 3 columns*/
+}
+
+.icon-block:hover {
+    transform: scale(1.1); /* Make the block slightly larger on hover */
+}
+
+/*  Click Animation */
+.clicked {
+  animation: pulse 0.5s ease; /* Apply pulse animation when clicked */
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+
+.icon-image {
+  width: 60px;  /* Adjust icon size as needed */
+  height: 60px;
+  object-fit: contain; /* Ensure image fits without stretching */
+}
+.icon-name{
+    margin-top: 10px;
+    font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="icon-block" data-index="3"><img src="photo-main4.jpg" alt="Icon 4" class="icon-image"><p class="icon-name">Вконтакте</p></div>
+  <div class="icon-block" data-index="4"><img src="photo-main5.jpg" alt="Icon 5" class="icon-image"><p class="icon-name">YouTube</p></div>
+  <div class="icon-block" data-index="5"><img src="photo-main6.jpg" alt="Icon 6" class="icon-image"><p class="icon-name">Market</p></div>
+    <div class="icon-block" data-index="6"><img src="photo-main7.jpg" alt="Icon 7" class="icon-image"><p class="icon-name">Карты</p></div>
+    <div class="icon-block" data-index="7"><img src="photo-main8.jpg" alt="Icon 8" class="icon-image"><p class="icon-name">Почта</p></div>
+    <div class="icon-block" data-index="8"><img src="photo-main9.jpg" alt="Icon 9" class="icon-image"><p class="icon-name">Кинопоиск</p></div>
+    <div class="icon-block" data-index="9"><img src="photo-main10.jpg" alt="Icon 10" class="icon-image"><p class="icon-name">Gmail</p></div>
+    <div class="icon-block" data-index="10"><img src="photo-main11.jpg" alt="Icon 11" class="icon-image"><p class="icon-name">Музыка</p></div>
+    <div class="icon-block" data-index="11"><img src="photo-main12.jpg" alt="Icon 12" class="icon-image"><p class="icon-name">Переводчик</p></div>
+    <div class="icon-block" data-index="12"><img src="photo-main13.jpg" alt="Icon 13" class="icon-image"><p class="icon-name">Госуслуги</p></div>
+    <div class="icon-block" data-index="13"><img src="photo-main14.jpg" alt="Icon 14" class="icon-image"><p class="icon-name">Погода</p></div>
+    <div class="icon-block" data-index="14"><img src="photo-main15.jpg" alt="Icon 15" class="icon-image"><p class="icon-name">Авто.ру</p></div>
+
+</div>
+
+
+<script>
+const iconBlocks = document.querySelectorAll('.icon-block');
+
+iconBlocks.forEach(block => {
+  block.addEventListener('click', () => {
+    block.classList.add('clicked'); // Add the 'clicked' class
+
+    // Remove the class after the animation duration
+    setTimeout(() => {
+      block.classList.remove('clicked');
+    }, 500); // 500ms matches the animation duration
+  });
+});
+</script>
+
+</body>
+</html>

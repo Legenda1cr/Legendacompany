@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Icons</title>
+<style>
+body {
+  background-color: #f0f0f0;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0; /* Remove default margin */
+}
+
+.container {
+    width: 600px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+    border: 5px solid blue;
+    border-radius: 10px;  
+    position: relative;
+    overflow: hidden;  
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    flex-direction: column;  
+}
+
+.icon-button {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease; /* Smoother transition */
+
+}
+
+.icon-button img {
+  width: 50%;
+  height: auto;
+}
+
+.icon-button a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+/*added for small circles*/
+.small-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #007bff; /* Blue color for small circles */
+  position: absolute;
+}
+
+
+.text-container { /* updated styles */
+    font-size: 2em;
+    font-weight: bold;
+    color: transparent;  /* Initially transparent */
+    -webkit-text-stroke: 2px blue; /* Blue outline for text */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    display:flex;
+    flex-direction: row;
+    align-items:center;
+
+
+}
+
+.exploded {
+    animation: explode 1s ease-in-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0); opacity: 0; }
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div class="container" id="iconContainer">
+
+
+        <div class="icon-button" style="top: 20px; left: 20px;"><a href="https://www.vk.com"><img src="vk.png" alt="VK"></a></div>
+        <div class="icon-button" style="top: 20px; left: 120px;"><a href="https://www.telegram.org"><img src="telegram.png" alt="Telegram"></a></div>
+        <div class="icon-button" style="top: 20px; left: 220px;"><a href="https://www.discord.com"><img src="discord.png" alt="Discord"></a></div>
+        <div class="icon-button" style="top: 20px; left: 320px;"><a href="https://www.whatsapp.com"><img src="whatsapp.png" alt="WhatsApp"></a></div>
+
+
+        <div class="icon-button" style="top: 120px; left: 20px;"><a href="https://www.twitter.com"><img src="twitter.png" alt="Twitter"></a></div>
+        <div class="icon-button" style="top: 120px; left: 120px;"><a href="https://www.instagram.com"><img src="instagram.png" alt="Instagram"></a></div>
+        <div class="icon-button" style="top: 120px; left: 220px;"><a href="https://www.twitch.tv"><img src="twitch.png" alt="Twitch"></a></div>
+        <div class="icon-button" style="top: 120px; left: 320px;"><a href="https://www.youtube.com"><img src="youtube.png" alt="YouTube"></a></div>
+
+
+  <div class="text-container" id="textContainer">Регистр-Консалтинг</div>
+
+</div>
+
+
+
+
+<script>
+
+
+
+const iconContainer = document.getElementById('iconContainer');
+const textContainer = document.getElementById('textContainer');
+const containerRect = iconContainer.getBoundingClientRect();
+let smallCircles = [];
+let animationState = 'icons';
+
+textContainer.style.display = 'none'; //hide text initially
+
+
+
+// Function to generate small circles
+function createSmallCircles(icon) {
+
+  const iconRect = icon.getBoundingClientRect();
+  const numCircles = 50; // Adjust the number of small circles
+
+  for (let i = 0; i < numCircles; i++) {
+    let smallCircle = document.createElement('div');
+    smallCircle.className = 'small-circle';
+      smallCircle.style.left = iconRect.left + iconRect.width / 2 + 'px';
+    smallCircle.style.top = iconRect.top + iconRect.height / 2 + 'px';
+      smallCircles.push(smallCircle);
+      iconContainer.appendChild(smallCircle);
+    }
+}
+
+
+
+
+function explodeIcons() {
+    smallCircles = [];
+    let delay = 0;
+    iconContainer.querySelectorAll('.icon-button').forEach(icon => {
+
+        icon.style.transitionDelay = delay + 's'; // Add a delay for each icon
+        icon.classList.add('exploded');
+        createSmallCircles(icon);
+        delay += 0.1; // Increment delay for the next icon
+  });
+}
+
+
+function animateSmallCircles() {
+
+
+        smallCircles.forEach(circle => {
+
+        // Random movement within the container
+        const maxX = containerRect.width - circle.offsetWidth;
+          const maxY = containerRect.height - circle.offsetHeight;
+        const randomX = Math.random() * maxX;
+          const randomY = Math.random() * maxY;
+
+          circle.style.left = randomX + 'px';
+          circle.style.top = randomY + 'px';
+
+        // Animate the circles randomly
+        circle.animate([{
+                transform: `translate(${Math.random() * 50 -25 }px, ${Math.random() * 50 - 25}px) `
+
+            }], {
+                duration: 1000, // Adjust duration
+            iterations: Infinity, // Make it loop infinitely
+            direction: 'alternate', // Make it go back and forth
+            easing: 'ease-in-out'
+        });
+
+    });
+}
+
+
+
+
+function formTextFromCircles() {
+  textContainer.style.display = 'flex';  // Show the text
+  let charPositions = [];
+
+
+        // Calculate positions for each character (simplified)
+    const textWidth = textContainer.offsetWidth;
+    const textHeight = textContainer.offsetHeight;
+
+    for (let i = 0; i < textContainer.textContent.length; i++) {
+
+
+            // Calculate approximate positions for characters
+            const x = (i / textContainer.textContent.length) * textWidth + textContainer.offsetLeft - (textWidth/2) +10;
+            const y = textContainer.offsetTop + textHeight / 2;
+
+
+        charPositions.push({ x, y });
+
+
+    }
+
+
+
+    // Animate small circles to form the text
+    smallCircles.forEach((circle, index) => {
+
+
+        let targetPosition = charPositions[index % charPositions.length]; // Cycle through character positions
+
+
+        circle.animate([{
+            left: `${targetPosition.x}px`,
+      top: `${targetPosition.y}px`,
+      opacity:1
+
+        }], {
+            duration: 2000,
+            easing: 'ease-in-out',
+            fill: 'forwards'
+        });
+  });
+}
+
+
+
+function reformIcons() {
+
+    let delay = 0;
+    const positions = [];
+    iconContainer.querySelectorAll('.icon-button').forEach(icon => {
+        positions.push({ x: icon.offsetLeft, y: icon.offsetTop });
+    });
+
+
+    iconContainer.innerHTML = '';  // Clear the container
+
+
+    // Recreate icons  with initial images and links
+        const newIcons = createInitialIcons();
+
+
+
+
+  newIcons.forEach((icon, index) => {
+
+
+          iconContainer.appendChild(icon);
+
+
+          icon.animate([
+
+
+              { left: `${smallCircles[index].offsetLeft}px`, top: `${smallCircles[index].offsetTop}px`, opacity: 0 },  // starting position from circles
+            { left: `${positions[index].x}px`, top: `${positions[index].y}px`, opacity: 1 }
+          ], {
+              duration: 2000,
+          delay: delay,
+          easing: 'ease-in-out',
+          fill: 'forwards'
+          });
+
+
+        delay += 0.1;
+
+  });
+
+
+
+    smallCircles.forEach(circle => {
+        circle.remove();
+    });
+
+      smallCircles = []; // Clear the array
+
+
+
+}
+
+
+function createInitialIcons(){
+    const icons = [
+        { link: "https://www.vk.com", imgSrc: "vk.png", alt: "VK" },
+        { link: "https://www.telegram.org", imgSrc: "telegram.png", alt: "Telegram" },
+        { link: "https://www.discord.com", imgSrc: "discord.png", alt: "Discord" },
+        { link: "https://www.whatsapp.com", imgSrc: "whatsapp.png", alt: "WhatsApp" },
+        { link: "https://www.twitter.com", imgSrc: "twitter.png", alt: "Twitter" },
+        { link: "https://www.instagram.com", imgSrc: "instagram.png", alt: "Instagram" },
+        { link: "https://www.twitch.tv", imgSrc: "twitch.png", alt: "Twitch" },
+        { link: "https://www.youtube.com", imgSrc: "youtube.png", alt: "YouTube" }
+        ];
+        const newIcons = icons.map((iconData,index) => {
+
+
+    const iconButton = document.createElement('div');
+    iconButton.classList.add('icon-button');
+
+                // Set initial positions
+                if (index < 4) {
+                    iconButton.style.top = '20px';
+                    iconButton.style.left = `${20 + index * 100}px`; // Adjust spacing as needed
+                } else {
+                    iconButton.style.top = '120px';
+                    iconButton.style.left = `${20 + (index-4) * 100}px`;
+                }
+    const link = document.createElement('a');
+    link.href = iconData.link;
+    const img = document.createElement('img');
+    img.src = iconData.imgSrc;
+    img.alt = iconData.alt;
+
+
+    link.appendChild(img);
+    iconButton.appendChild(link);
+    return iconButton;
+  });
+
+
+        return newIcons;
+}
+
+
+
+function startAnimation() {
+  if (animationState === 'icons') {
+        explodeIcons();
+        setTimeout(animateSmallCircles, 1000);   // Start small circle animation after explosion
+        setTimeout(formTextFromCircles, 4000);   // Start forming text after a delay
+        animationState = 'text';
+
+  } else {
+    reformIcons();
+    setTimeout(() => animationState = 'icons', 2000);  // Reset animation state after reforming
+  }
+}
+
+
+
+setInterval(startAnimation, 8000);  // Adjust the interval as needed
+
+
+</script>
+
+</body>
+</html>

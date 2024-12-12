@@ -149,16 +149,16 @@
         let selectedSuggestionIndex = -1;
 
         function excelDateToJSDate(excelDate) {
-    console.log("Обрабатываемое значение:", excelDate); // Логируем входные данные
+   // console.log("Обрабатываемое значение:", excelDate); // Логируем входные данные
 
     if (typeof excelDate === "number") {
         const date = new Date((excelDate - 25569) * 86400 * 1000); // Excel -> JS
-        console.log("Преобразовано в дату:", date); // Логируем результат преобразования
+      // console.log("Преобразовано в дату:", date); // Логируем результат преобразования
         return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
     }
 
     if (typeof excelDate === "string") {
-        console.log("Строковое значение:", excelDate); // Логируем строковые значения
+      // console.log("Строковое значение:", excelDate); // Логируем строковые значения
 
         const parts = excelDate.split(/[-./]/);
         if (parts.length === 3) {
@@ -174,7 +174,7 @@
             }
 
             const date = new Date(year, month - 1, day);
-            console.log("Преобразовано из строки в дату:", date);
+           // console.log("Преобразовано из строки в дату:", date);
             return date.toLocaleDateString("ru-RU", { timeZone: "Europe/Moscow" });
         }
     }
@@ -184,7 +184,7 @@
 
 
 
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications-1.xlsx";
+    const excelFileUrl = "http://localhost:5000/files/URS_Certifications 10.12.24.xlsx";
 
         // Загрузка данных из Excel
         fetch(excelFileUrl)
@@ -215,24 +215,24 @@
             });
 
         // Функция для поиска компании по уникальному идентификатору
-        function searchByUniqueId(uniqueId) {
-    const resultsContainer = document.getElementById('search-results');
-    resultsContainer.innerHTML = '';
+            function searchByUniqueId(uniqueId) {
+        const resultsContainer = document.getElementById('search-results');
+        resultsContainer.innerHTML = '';
 
-    // Декодируем уникальный идентификатор
-    const decodedUniqueId = decodeURIComponent(uniqueId);
+        // Декодируем уникальный идентификатор
+        const decodedUniqueId = decodeURIComponent(uniqueId);
 
-    // Фильтруем данные для поиска по уникальному идентификатору
-    const filteredData = data.filter(item => {
-    const innDigits = item.inn.replace(/\D/g, ''); // Эта строка в порядке, если inn всегда строка
-    const certCriteria = typeof item.certCriteria === 'string' ? item.certCriteria.replace(/\s/g, '') : ''; // Проверяем, что certCriteria - строка
-    const currentUniqueId = `${innDigits}${certCriteria}`;
+        // Фильтруем данные для поиска по уникальному идентификатору
+        const filteredData = data.filter(item => {
+        const innDigits = item.inn.replace(/\D/g, ''); // Эта строка в порядке, если inn всегда строка
+        const certCriteria = typeof item.certCriteria === 'string' ? item.certCriteria.replace(/\s/g, '') : ''; // Проверяем, что certCriteria - строка
+        const currentUniqueId = `${innDigits}${certCriteria}`;
 
-    return currentUniqueId === decodedUniqueId && 
-           item.certCriteria !== "СТО ГАЗПРОМ 9001-2018" && 
-           item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate && 
-           item.country === "РФ";
-});
+        return currentUniqueId === decodedUniqueId && 
+            item.certCriteria !== "СТО ГАЗПРОМ 9001-2018" && 
+            item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate && 
+            item.country === "РФ";
+    });
 
 
     if (filteredData.length > 0) {
