@@ -17,7 +17,7 @@
 <body>
   
   <header class="header">
-    <a href="#" class="logo">
+    <a href="index.html" class="logo">
         <img src="./logo.png" alt="logo">
     </a>
 
@@ -62,7 +62,7 @@
 
     <div class="page-content">
     <div class="parallax">
-
+      
       <!-- для верхнего слайдера -->
       <div class="container">
         <h5>Регистр-Консалтинг</h5>
@@ -70,6 +70,56 @@
 
         <!-- Новый блок "Ближайшее обучение" -->
 <div class="schedule">
+  <div class="top-buttons">
+    <a href="audit.html" class="button-small">Аудит</a>
+    <a href="training.html" class="button-small">Обучение</a>
+    <a href="consulting.html" class="button-small">Консалтинг</a>
+</div>
+
+<div class="grid">
+    <!-- First row -->
+    <a href="news.html" class="button-large">
+        <img src="НОВОСТИ.jpg" alt="">
+        <span>Новости</span>
+    </a>
+    <a href="standarts.html" class="button-large">
+        <img src="ISO.jpg" alt="">
+        <span>Стандарты</span>
+    </a>
+    <a href="regcon-contacts.html" class="button-large">
+        <img src="КОНТАКТЫ.jpg" alt="">
+        <span>Контакты</span>
+    </a>
+
+    <!-- Second row -->
+    <a href="расписание.html" class="button-large">
+        <img src="РАСПИСАНИЕСЕМИНАРОВ.jpg" alt="">
+        <span>Расписание</span>
+    </a>
+    <a href="regcon-contacts.html" class="button-large">
+        <img src="ЗАПИСАТЬСЯ.jpg" alt="">
+        <span>Записаться</span>
+    </a>
+    <a href="сведения.html" class="button-large">
+        <img src="СВЕДЕНИЯ.jpg" alt="">
+        <span>Сведения</span>
+    </a>
+</div>
+
+<script>
+    // Add animation on button click
+    document.querySelectorAll('button').forEach(button => {
+        button.addEventListener('click', () => {
+            button.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 200);
+        });
+    });
+</script>
+<karakula>
+  <div class="animate-on-scroll">
+  <div class="parallax-content unique-content">
   <h2>Ближайшее обучение</h2>
   
   <!-- Кнопки расписания -->
@@ -254,9 +304,9 @@
       <knopka class="cachel-prev">&#10094;</knopka>
       <knopka class="cachel-next">&#10095;</knopka>
   </div>
-</div>
-
 <hr>
+
+
 
 <div class="news-section">
     
@@ -266,7 +316,7 @@
 
         <div class="carousel-item">
             <img src="фото-главная2.jpg" alt="Новость 1">
-            <p>Вручение сертификатов</p>
+            <p></p>
             <span>08.11.2024</span>
         </div>
         <div class="carousel-item">
@@ -281,22 +331,21 @@
         </div>
         <div class="carousel-item">
             <img src="фото-главная8.jpeg" alt="Новость 4">
-            <p>Вручение сертификатов</p>
+            <p></p>
             <span>08.11.2024</span>
         </div>
         <div class="carousel-item">
             <img src="фото-главная7.jpeg" alt="Новость 5">
-            <p>Вручение сертификатов</p>
+            <p></p>
             <span>08.11.2024</span>
         </div>
     </div>
 </div>
+
     <script src="карусельдляindex.js"></script>
 </div>
 
 <hr>
-
-    </div>
     
       <script>
                     const cachelTrack = document.querySelector('.cachel-track');
@@ -323,9 +372,9 @@
 
 
       </script>
-      
-    <div class="animate-on-scroll">
-      <div class="parallax-content unique-content">
+  
+      </karakula>
+  
         <h1>Лицензии и сертификаты</h1>
         </div>
 
@@ -357,10 +406,9 @@
 
 
       </div>
-          
+    </div>  
 
     <script src="scroll.js"></script>
-
       </div>
     </div>
     
