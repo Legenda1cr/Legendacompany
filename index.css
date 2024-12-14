@@ -40,7 +40,7 @@ h5 {
 
 @media (max-width:700px) {
   h5 {
-    font-size: 30px;
+    font-size: 25px;
   }
 }
 
@@ -66,11 +66,12 @@ h5 {
 }
 
 .button-small:hover {
-  box-shadow: 0 15px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .button-small:active {
-  transform: scale(0.95);
+  transform: scale(1.05);
 }
 
 .grid {
@@ -121,7 +122,7 @@ h5 {
   .top-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 5px;
     margin-bottom: 40px;
   }
 
@@ -132,7 +133,7 @@ h5 {
   .button-small {
       padding: 10px 12px;
       font-size: 17px;
-      border-radius: 10px;
+      border-radius: 20px;
   }
 
   .button-large {
@@ -233,7 +234,7 @@ p {
 
 /* Параллакс-контент */
 .parallax-content.unique-content {
-  background: rgb(214, 213, 224);
+  background: rgba(214, 213, 224, 0.608);
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
