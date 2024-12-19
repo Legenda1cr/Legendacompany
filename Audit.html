@@ -47,23 +47,48 @@
                     <div class="page-content">
                         <h5>Аудит</h5> 
                         <div class="parallax">
+
                             <div class="container"> 
                                 
                                 
-                                <div class="item item-1" onclick="showModal('modal1')">
+                                <div class="item item-1" onmouseover="playVideo('video1')" onmouseout="pauseVideo('video1')">
+                                    <video id="video1" muted loop playsinline class="background-video">
+                                        <source src="audit.mp4" type="video/mp4">
+                                    </video>
                                     <div class="text">
                                         <h1>Повышение эффективности</h1>
                                     </div>
                                     <h3>смотреть</h3>
                                 </div>
                                 
-                                <div class="item item-2" onclick="showModal('modal2')">
+                                <div class="item item-2" onmouseover="playVideo('video2')" onmouseout="pauseVideo('video2')">
+                                    <video id="video2" muted loop playsinline class="background-video">
+                                        <source src="audit-2.mp4" type="video/mp4">
+                                    </video>
                                     <div class="text">
                                         <h1>Подготовка к сертификации</h1>
                                     </div>
                                     <h3>смотреть</h3>
                                 </div>
                                 
+                                <script>
+                                    function playVideo(id) {
+    const video = document.getElementById(id);
+    if (video) {
+        video.play();
+    }
+}
+
+function pauseVideo(id) {
+    const video = document.getElementById(id);
+    if (video) {
+        video.pause();
+        video.currentTime = 0; // Вернуть к первому кадру
+    }
+}
+
+                                </script>
+
                                 <!-- Модальные окна -->
                                 <div id="modal1" class="modal" onclick="closeModal(event)">
                                     <div class="modal-content" onclick="event.stopPropagation()"> <!-- Остановить всплытие событий -->

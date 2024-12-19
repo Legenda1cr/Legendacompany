@@ -18,15 +18,13 @@ body{
 
 }
 .parallax{
-    background: rgb(255, 255, 255);
     background-attachment: fixed;
     background-size: 100%;
     height: auto;
     display: flex;
     justify-content: center;
-    position:relative;
+    position: relative;
     overflow: hidden;
-
 }
 
 .parallax .mask{
@@ -409,7 +407,7 @@ body {
   /*ниже все что к слайдеру*/
 
   h5 {
-    margin-top: 100px; 
+    margin-top: 90px; 
     text-align: center;
     background-color: #2259ff;
     text-align: center;
@@ -446,15 +444,33 @@ body {
 }
 
 .item {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    background-color: white;
-    padding: 1em;
-    font-weight: 700;
-    border-radius: 10px;
-    box-sizing: border-box;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность эффекта */
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  height: 500px;
+  background-color: transparent;
+  overflow: hidden;
+  border-radius: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.item .background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.item:hover .background-video {
+  opacity: 1;
+}
+
+.item .background-video:not(:hover) {
+  opacity: 1; /* Прозрачность для статичного кадра */
 }
 
 .item:hover {
@@ -470,20 +486,19 @@ body {
 }
 
 .item .text {
-    color: white;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 1em;
-    background-color: rgba(0, 0, 0, 0.6);
-    text-align: center;
-    border-radius: 0 0 10px 10px;
-    box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  text-align: center;
+  padding: 1em;
+  border-radius: 0 0 10px 10px;
 }
 
 .item-1 {
-    background-image: url(./аудит1.jpg);
+    background: url(./audit.mp4);
     width: 100%;
     max-width: 650px;
     height: 500px;
@@ -603,7 +618,6 @@ body {
 }
 
   .item-2 {
-    background-image: url(./аудит2.jpg);
     width: 100%;
     max-width: 650px;
     height: 500px;
@@ -635,7 +649,7 @@ h3 {
     transition: 0.3s;
     display: inline-block;
     margin: 1em 0;
-    box-shadow: 0 20px 30px #000000;
+    box-shadow: 0 5px 10px #000000;
 }
 
 h3:hover {
