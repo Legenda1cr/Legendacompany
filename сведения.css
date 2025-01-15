@@ -454,7 +454,7 @@ body {
     /*выше все что к слайдеру*/
 
     .content-menu {
-      width: 90%;
+      width: 100%;
       max-width: 1500px; /* Максимальная ширина контейнера */
       margin: 20px auto;
       padding: 10px;
@@ -489,6 +489,12 @@ body {
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+}
+
+@media (max-width:700px) {
+  .menu-header {
+    font-size: 14px;
+  }
 }
 
 

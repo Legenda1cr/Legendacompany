@@ -300,9 +300,6 @@ body {
       .parallax-content h1 {
         font-size: 30px;
         }
-        .custom-button {
-          font-size: 20px;
-        }
         .title {
           font-size: 30px;
         }
@@ -617,6 +614,13 @@ body {
   }
 }
 
+@media (max-width:500px) {
+  .button-container .custom-button {
+    font-size: 18px;
+    padding: 12px 20px;
+  }
+}
+
   .item-2 {
     width: 100%;
     max-width: 650px;
@@ -771,6 +775,7 @@ h3 {
       box-shadow: 0 8px 20px rgb(0, 0, 0);
   }
   
+
   .custom-button:hover {
       background-color: #0056b3;
       transform: scale(0.95); /* Scale при наведении */

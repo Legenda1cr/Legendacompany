@@ -1,16 +1,21 @@
 
-head {
-    
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 0;
-    box-shadow: border-box;
-
-
+html, body {
+  height: 100%; /* Устанавливает высоту на 100% экрана */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
+
+.page-content {
+  flex: 1; /* Заставляет этот блок занимать всё доступное пространство */
+}
+
+
 .parallax{
     background-color: #ffffff;
     background-attachment: fixed;
@@ -490,7 +495,7 @@ hr {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #007bff;
   text-align: left;
-  margin-bottom: 50px;
+  z-index: 100;
 }
 
 .contact-form h2 {
@@ -537,30 +542,17 @@ hr {
   margin-top: 10px;
 }
 
-
-
-
-
   /*сверху  gmail*/
-
-  /*снизу всё что к red blue yellow*/
-
- 
-  
-  /*сверху всё что к red blue yellow*/
 
   /*подвал снизу*/
   
-  footer{
+  footer {
     width: 100%;
-    height: auto;
     background: rgb(0, 0, 0);
     box-shadow: 0 -10px 10px #ffffff;
     text-align: center;
-    padding-top: 30px;
-    position: relative;
-    margin-top: 100px;
-    padding-bottom: 50px;
+    padding: 30px 0;
+    margin-top: auto; /* Автоматически двигает футер вниз */
   }
 
 footer a{
@@ -590,4 +582,11 @@ footer nav a:hover{
 
 .social img:hover{
   border: 2px solid #ffffffe4;
+}
+
+@media (max-width: 768px) {
+  footer {
+    margin-top: 900px; /* Убедитесь, что это включено для мобильной версии */
+    padding: 20px 0;
+  }
 }
