@@ -13,5 +13,5 @@
 - Телеграмм-боты от низкой до высокой сложности разработки
 
 ## Связаться со мной
-- Telegram: [[https://linkedin.com]
+- Telegram: https://t.me/Legenda_1Cr
 - Email: fulladress98@gmail.com
