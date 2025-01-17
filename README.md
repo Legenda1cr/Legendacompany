@@ -1,4 +1,4 @@
-# Программист JavaScript Matveevsky Ilya
+# Программист JavaScript Legenda1cr
 - Занимаюсь разработкой систем для компаний такие как CRM, CMS
 - Разработку веду на JS библиотеке React
 - Работаю с БД на Postgre
