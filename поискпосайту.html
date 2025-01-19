@@ -307,7 +307,7 @@
 
 
 
-        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications 14.01.25.xlsx";
+        const excelFileUrl = "https://raw.githubusercontent.com/Legenda1cr/Legendacompany/master/URS_Certifications 18.01.25.xlsx";
 
         // Загрузка данных из Excel
         fetch(excelFileUrl)
@@ -337,46 +337,47 @@
                 document.getElementById('search-results').innerHTML = '<p class="error-message">Ошибка при загрузке данных.</p>';
             });
 
-        // Функция для поиска компании по уникальному идентификатору
+       // Функция для выполнения поиска по уникальному
         function searchByUniqueId(uniqueId) {
-        const resultsContainer = document.getElementById('search-results');
-        resultsContainer.innerHTML = '';
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
 
-        // Декодируем уникальный идентификатор
-        const decodedUniqueId = decodeURIComponent(uniqueId);
+            // Декодируем уникальный идентификатор
+            const decodedUniqueId = decodeURIComponent(uniqueId);
 
-        // Фильтруем данные для поиска по уникальному идентификатору
-        const filteredData = data.filter(item => {
-            const innDigits = item.inn.replace(/\D/g, '');
-            const certCriteria = typeof item.certCriteria === 'string' ? item.certCriteria.replace(/\s/g, '') : '';
-            const currentUniqueId = `${innDigits}${certCriteria}`;
+            // Фильтруем данные для поиска по уникальному идентификатору
+            const filteredData = data.filter(item => {
+                const innDigits = item.inn.replace(/\D/g, '');
+                const certCriteria = typeof item.certCriteria === 'string' ? item.certCriteria.replace(/\s/g, '') : '';
+                const truncatedCriteria = getTruncatedCertCriteria(certCriteria); // Укорачиваем критерий
+                const currentUniqueId = `${innDigits}${truncatedCriteria}`; // Уникальный ID на основе укороченного критерия
 
-            // Условие для отображения сертификатов "РФ" и "РБ"
-            const isFromRussiaOrBelarus = item.country === "РФ" || item.country === "РБ";
+                // Условие для отображения сертификатов "РФ" и "РБ"
+                const isFromRussiaOrBelarus = item.country === "РФ" || item.country === "РБ";
 
-            return currentUniqueId === decodedUniqueId && 
-                item.certCriteria !== "СТО ГАЗПРОМ 9001-2018" && 
-                item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate && 
-                isFromRussiaOrBelarus;
-        });
-
-        if (filteredData.length > 0) {
-            filteredData.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'result-item';
-                div.innerHTML =
-                    `<p><strong>Название компании:</strong> ${item.companyName}</p>
-                    <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
-                    <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
-                    <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
-                    <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
-                    <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
-                resultsContainer.appendChild(div);
+                return currentUniqueId === decodedUniqueId && 
+                    item.certCriteria !== "СТО ГАЗПРОМ 9001-2018" && 
+                    item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate && 
+                    isFromRussiaOrBelarus;
             });
-        } else {
-            resultsContainer.innerHTML = '<p class="error-message">Компания не найдена.</p>';
+
+            if (filteredData.length > 0) {
+                filteredData.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'result-item';
+                    div.innerHTML =
+                        `<p><strong>Название компании:</strong> ${item.companyName}</p>
+                        <p><strong>Организационно-правовая форма:</strong> ${item.orgForm || 'Не указано'}</p>
+                        <p><strong>ИНН:</strong> ${item.inn || 'Не указано'}</p>
+                        <p><strong>Аккредитация:</strong> ${item.accreditation || 'Не указано'}</p>
+                        <p><strong>Критерий сертификации:</strong> ${item.certCriteria || 'Не указано'}</p>
+                        <p><strong>Дата окончания сертификата:</strong> ${item.expirationDate || 'Не указана'}</p>`;
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                resultsContainer.innerHTML = '<p class="error-message">Компания не найдена.</p>';
+            }
         }
-    }
 
         // Функция для выполнения поиска
         function search() {
@@ -387,20 +388,27 @@
             resultsContainer.innerHTML = '';
             errorMessage.style.display = 'none'; // Скрываем сообщение об ошибке
 
+            // Если ИНН не введён и в названии компании меньше 5 символов, показываем ошибку
             if (!innInput && nameInput.length < 5) {
                 errorMessage.style.display = 'block'; // Показываем сообщение об ошибке
                 return;
             }
 
             const filteredData = data.filter(item => {
-                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true; 
+                const innMatches = innInput ? item.inn.toLowerCase() === innInput : true;
                 const nameMatches = nameInput ? item.companyName.toLowerCase().includes(nameInput) : true;
 
                 const certCriteriaValid = item.certCriteria !== "СТО ГАЗПРОМ 9001-2018";
                 const requiredFieldsFilled = item.companyName && item.inn && item.accreditation && item.certCriteria && item.expirationDate;
                 const isFromRussiaOrBelarus = item.country === "РФ" || item.country === "РБ";
 
-                return innMatches && nameMatches && certCriteriaValid && requiredFieldsFilled && isFromRussiaOrBelarus;
+                return (
+                    innMatches &&
+                    nameMatches &&
+                    certCriteriaValid &&
+                    requiredFieldsFilled &&
+                    isFromRussiaOrBelarus
+                );
             });
 
             if (filteredData.length > 0) {
@@ -412,6 +420,34 @@
             }
         }
 
+        // Функция для обрезки критерия сертификации
+        function getTruncatedCertCriteria(str) {
+            if (!str) return '';
+
+            const commaIndex = str.indexOf(',');
+            const slashIndex = str.indexOf('/');
+
+            // Нет ни запятой, ни слэша
+            if (commaIndex === -1 && slashIndex === -1) {
+                return str;
+            }
+
+            // Определяем, что идёт первым — запятая или слэш
+            let cutIndex;
+            if (commaIndex === -1) {
+                // Запятой нет, но есть слэш
+                cutIndex = slashIndex;
+            } else if (slashIndex === -1) {
+                // Слэша нет, но есть запятая
+                cutIndex = commaIndex;
+            } else {
+                // И запятая, и слэш: берём меньший индекс
+                cutIndex = Math.min(commaIndex, slashIndex);
+            }
+
+            return str.slice(0, cutIndex).trim();
+        }
+
         function createResultItem(item, resultsContainer) {
             const div = document.createElement('div');
             div.className = 'result-item';
@@ -421,7 +457,8 @@
 
             const innDigits = item.inn.replace(/\D/g, '');
             const certCriteria = item.certCriteria.replace(/\s/g, '');
-            const uniqueId = `${innDigits}${certCriteria}`;
+            const truncatedCriteria = getTruncatedCertCriteria(certCriteria); // Укорачиваем критерий сертификации
+            const uniqueId = `${innDigits}${truncatedCriteria}`; // Используем укороченный критерий для ссылки
             const qrCodeLink = encodeURI(`https://urs-rus.com/proverka#${uniqueId}`);
 
             div.innerHTML =
@@ -434,7 +471,7 @@
 
             div.appendChild(qrCodeContainer);
             resultsContainer.appendChild(div);
-            
+
             new QRCode(qrCodeContainer, { text: qrCodeLink, width: 85, height: 85 });
         }
 
