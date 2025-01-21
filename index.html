@@ -87,9 +87,9 @@
         <span>Стандарты</span>
     </a>
     <a href="regcon-contacts.html" class="button-large">
-        <img src="КОНТАКТЫ.jpg" alt="">
-        <span>Контакты</span>
-    </a>
+      <img src="КОНТАКТЫ.jpg" alt="">
+      <span>Контакты</span>
+  </a>
 
     <!-- Second row -->
     <a href="расписание.html" class="button-large">
@@ -105,6 +105,7 @@
         <span>Сведения</span>
     </a>
 </div>
+
 
 <script>
     // Add animation on button click
@@ -236,62 +237,64 @@
                 </p>
                         <script>
                           document.addEventListener("DOMContentLoaded", () => {
-  const cachelTrack = document.querySelector(".cachel-track");
-  const cachelSlides = document.querySelectorAll(".cachel-slide");
-  const cachelPrev = document.querySelector(".cachel-prev");
-  const cachelNext = document.querySelector(".cachel-next");
+                      const cachelTrack = document.querySelector(".cachel-track");
+                      const cachelSlides = document.querySelectorAll(".cachel-slide");
+                      const cachelPrev = document.querySelector(".cachel-prev");
+                      const cachelNext = document.querySelector(".cachel-next");
 
-  let currentIndex = 0; // Индекс текущего слайда
-  let visibleSlides = getVisibleSlides(); // Количество видимых слайдов
-  const totalSlides = cachelSlides.length;
+                      let currentIndex = 0; // Индекс текущего слайда
+                      let visibleSlides = getVisibleSlides(); // Количество видимых слайдов
+                      const totalSlides = cachelSlides.length;
 
-  // Вычисляем ширину одного слайда
-  function getSlideWidth() {
-    return cachelSlides[0].clientWidth;
-  }
+                      // Вычисляем ширину одного слайда
+                      function getSlideWidth() {
+                          return cachelSlides[0].offsetWidth; // Используем offsetWidth для более точного измерения
+                      }
 
-  // Определяем количество видимых слайдов в зависимости от ширины экрана
-  function getVisibleSlides() {
-    return window.innerWidth < 700 ? 1 : 3; // 1 слайд для мобильных, 3 — для десктопа
-  }
+                      // Определяем количество видимых слайдов в зависимости от ширины экрана
+                      function getVisibleSlides() {
+                          return window.innerWidth < 700 ? 1 : 3; // 1 слайд для мобильных, 3 — для десктопа
+                      }
 
-  // Обновляем позицию слайдов
-  function updateSliderPosition() {
-  const slideWidth = cachelSlides[0].clientWidth; // Динамическая ширина слайда
-  cachelTrack.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-    cachelTrack.style.transition = "transform 0.5s ease-in-out";
-  }
+                      // Обновляем позицию слайдов
+                      function updateSliderPosition() {
+                          const slideWidth = getSlideWidth(); // Ширина одного слайда
+                          const offset = currentIndex * slideWidth; // Вычисляем точное смещение
+                          cachelTrack.style.transform = `translateX(-${offset}px)`;
+                          cachelTrack.style.transition = "transform 0.5s ease-in-out";
+                      }
 
-  // Переход к следующему слайду
-  function showNextSlides() {
-    if (currentIndex < totalSlides - visibleSlides) {
-      currentIndex++;
-      updateSliderPosition();
-    }
-  }
+                      // Переход к следующему слайду
+                      function showNextSlides() {
+                          if (currentIndex < totalSlides - visibleSlides) {
+                              currentIndex++;
+                              updateSliderPosition();
+                          }
+                      }
 
-  // Переход к предыдущему слайду
-  function showPrevSlides() {
-    if (currentIndex > 0) {
-      currentIndex--;
-      updateSliderPosition();
-    }
-  }
+                      // Переход к предыдущему слайду
+                      function showPrevSlides() {
+                          if (currentIndex > 0) {
+                              currentIndex--;
+                              updateSliderPosition();
+                          }
+                      }
 
-  // Обновление видимых слайдов при изменении размера окна
- window.addEventListener("resize", () => {
-  visibleSlides = getVisibleSlides(); // Обновляем количество видимых слайдов
-  updateSliderPosition(); // Обновляем положение трека
-});
+                      // Обновление видимых слайдов при изменении размера окна
+                      window.addEventListener("resize", () => {
+                          visibleSlides = getVisibleSlides(); // Обновляем количество видимых слайдов
+                          currentIndex = Math.min(currentIndex, totalSlides - visibleSlides); // Ограничиваем индекс
+                          updateSliderPosition(); // Обновляем положение трека
+                      });
 
+                      // Обработчики кнопок
+                      cachelNext.addEventListener("click", showNextSlides);
+                      cachelPrev.addEventListener("click", showPrevSlides);
 
-  // Обработчики кнопок
-  cachelNext.addEventListener("click", showNextSlides);
-  cachelPrev.addEventListener("click", showPrevSlides);
+                      // Инициализация
+                      updateSliderPosition();
+                  });
 
-  // Инициализация
-  updateSliderPosition();
-});
 
                         </script>
               </div> 

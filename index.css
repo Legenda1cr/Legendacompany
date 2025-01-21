@@ -1,5 +1,5 @@
-html{
-
+html {
+  scroll-behavior: smooth;
 }
 
 body{
@@ -382,7 +382,7 @@ p {
 /* Стили для даты */
 .carousel-item span {
   font-size: 14px;
-  color: #666;
+  color: #000000;
   display: block;
   margin-top: 5px;
 }
@@ -1039,6 +1039,7 @@ button.unique-next:hover {
 
 .cachel {
   width: 100%;
+  overflow: hidden; /* Скрываем содержимое, выходящее за пределы контейнера */
   position: relative;
 }
 
@@ -1109,9 +1110,10 @@ button.unique-next:hover {
 }
 
 .cachel-slide {
-  width: 33%; /* По умолчанию каждый блок занимает треть ширины */
-  margin: 0 15px; /* Внешние отступы между блоками */
+  flex: 0 0 33.33%; /* Каждый слайд занимает треть ширины контейнера */
+  margin: 0px; /* Убираем внешние отступы */
   padding: 20px;
+  box-sizing: border-box;
   background-color: #007bff; /* Цвет фона слайда */
   color: white;
   border-radius: 30px;
@@ -1127,10 +1129,6 @@ button.unique-next:hover {
   box-sizing: border-box; /* Учитывает паддинги при расчете ширины */
 }
 
-.cachel-slide p {
-  font-size: 18px;
-  line-height: 1.6;
-}
 
 
 .cachel-prev,
