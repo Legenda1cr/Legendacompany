@@ -1,0 +1,820 @@
+
+head {
+    
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+
+
+.page {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+}
+.parallax{
+    background: rgb(255, 255, 255);
+    background-attachment: fixed;
+    background-size: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    position:relative;
+    overflow: hidden;
+
+}
+
+.parallax .mask{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0,7);
+    z-index:2;
+}
+.parallax-content{
+    z-index:3;
+    display:block
+
+}
+
+.parallax-content{
+  background: #000000d6;
+  box-shadow: 0 10px 30px #ffffff;
+  width:90%; 
+  height: auto;
+  border-radius: 40px;
+  float:center;
+  color: white;
+  margin-top: 10%;
+}
+
+
+
+.parallax-content p a{
+  color: white;
+}
+
+.parallax-content p a:hover {
+  color: #f96900;
+  cursor: pointer;
+}
+
+
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    
+}
+
+
+/*снизу всё что к менюшке*/
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 0rem 2%;
+} 
+
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 50px;
+  line-height: 35px;
+  padding-right: 20px;
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  margin-left: 25px;
+  margin-top: 8px;
+}
+
+
+
+.navbar a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: blue;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease; /* Плавное появление черты */
+}
+
+.navbar a:hover::after {
+    width: 100%; /* Черта появляется полностью при наведении */
+}
+
+.navbar a:hover {
+    color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+html {
+  text-align: center;
+}
+
+#menu {
+  cursor: pointer;
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+  transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: blue;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease; /* Плавное появление черты */
+}
+
+.navbar a:hover::after {
+  width: 100%; /* Черта появляется полностью при наведении */
+}
+
+.navbar a:hover {
+  color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  margin-right: 20px;
+}
+
+.burger .line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width:1300px) {
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1250px) {
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1200px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1150px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1100px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1050px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1000px) {
+  section {
+    padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  .parallax-content p {
+    font-size: 16px
+    }
+      .parallax-content h1 {
+        font-size: 30px;
+        }
+        .custom-button {
+          font-size: 20px;
+        }
+        .title {
+          font-size: 30px;
+        }
+        .container p {
+          font-size: 30px;
+        }
+  }
+  
+  @media (max-width:950px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:900px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:887px) {
+    section {
+      padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 70%;
+    }
+    }
+  
+  @media (max-width:850px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 70%;
+  }
+  }
+  
+  @media (max-width:800px) {
+  section {
+  padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 60%;
+  }
+  }
+  
+  @media (max-width:700px) {
+    section {
+    padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 65%;
+    }
+    .container p {
+      font-size: 20px;
+    }
+  }
+@media (max-width: 500px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+  }
+
+  .navbar.active {
+      display: flex;
+  }
+
+  .burger {
+      display: flex;
+  }
+
+  .navbar a {
+      margin: 10px 0;
+      font-size: 20px;
+  }
+}
+
+  /*сверху всё что к менюшке*/
+
+
+
+  /*ниже все что к слайдеру*/
+
+  h5 {
+    margin-top: 100px; 
+    text-align: center;
+    background-color: #2259ff;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #ffffff;
+    padding: 10px 10px 20px 10px;
+  }
+
+  .container {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 10px solid var(--clr-dark);
+    background-color: transparent;
+    margin-top: 50px;
+    margin-bottom: 0;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+
+@media (max-width: 500px) {
+    .container {
+        margin-top: 15%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+}
+
+.item {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  background-color: white;
+  padding: 1em;
+  font-weight: 700;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность эффекта */
+}
+
+.item:hover {
+transform: translateY(-10px);
+box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+.item h1 {
+    font-size: 24px;
+    font-weight: 1000;
+    margin: 0;
+}
+
+.item .text {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 1em;
+    background-color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    box-sizing: border-box;
+}
+
+.item-1 {
+    background-image: url(./аудит2.jpg);
+    width: 100%;
+    max-width: 650px;
+    height: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000;
+    background-size: cover;
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+/* Модальное окно */
+.modal {
+  display: none; /* Изначально скрыто */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Затемнённый фон */
+  opacity: 0; /* Для плавного появления */
+  transition: opacity 0.3s ease; /* Анимация */
+}
+
+/* Показать модальное окно */
+.modal.show {
+  display: block;
+  opacity: 1;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 60%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  animation: fadeIn 0.3s ease; /* Анимация появления */
+  position: relative;
+}
+
+.modal-content h2 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.modal-content p, .modal-content ul {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.modal-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.modal-content ul li {
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+/* Анимация для модального окна */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: scale(0.9);
+  }
+  to {
+      opacity: 1;
+      transform: scale(1);
+  }
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 700px) {
+  .modal-content {
+      width: 95%; /* На всю ширину экрана */
+      height: 100%; /* На всю высоту экрана */
+      max-height: none; /* Убираем ограничение высоты */
+      border-radius: 0; /* Убираем скругления для мобильной версии */
+      padding: 15px; /* Уменьшаем отступы */
+      overflow-y: auto; /* Включаем скроллинг */
+      border-radius: 20px;
+  }
+
+  .modal-content h2 {
+      font-size: 22px; /* Уменьшаем размер заголовка */
+  }
+
+  .modal-content p, .modal-content ul {
+      font-size: 14px; /* Уменьшаем размер текста */
+  }
+
+  .close {
+      font-size: 24px; /* Уменьшаем размер кнопки закрытия */
+  }
+}
+
+
+  .item-2 {
+    background-image: url(./аудит1.jpg);
+    width: 100%;
+    max-width: 650px;
+    height: 500px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000;
+    background-size: cover;
+    border-radius: 30px;
+    display: inline-block;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+
+@media (max-width: 500px) {
+    .item-1, .item-2 {
+        max-width: 100%;
+        height: 300px;
+        border-radius: 20px;
+    }
+}
+
+h3 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  background-color: rgba(221, 219, 219, 0.8);
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 1em 0;
+  box-shadow: 0 5px 10px #000000;
+}
+
+h3:hover {
+    background-color: rgba(106, 106, 112, 0.63);
+    color: #fff;
+}
+
+h3 {
+    opacity: 0;
+    animation: animate 0.7s ease-in-out 0.3s 1 forwards;
+}
+
+@keyframes animate {
+    from {
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(0);
+        filter: blur(0);
+    }
+}
+
+@media (max-width: 768px) {
+    h3 {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
+
+    /*выше все что к слайдеру*/
+
+
+    .parallax-text {
+      background-image: url('your-parallax-background-image.jpg'); /* Фон с параллакс эффектом */
+      background-attachment: fixed;
+      background-size: cover;
+      padding: 0;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: left;
+  }
+  
+  .content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Тень для блока */
+      position: relative;
+  }
+  
+  h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #ffdd57;
+  }
+  
+  h4 {
+      font-size: 22px;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #ffdd57;
+  }
+  
+  p {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+  }
+  
+  ul {
+      font-size: 18px;
+      margin-top: 10px;
+      list-style: none;
+      padding-left: 20px;
+  }
+  
+  ul li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+      position: relative;
+      color: #d9d9d9;
+  }
+  
+  ul li::before {
+      content: '•';
+      color: #ffdd57;
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 24px;
+  }
+  
+  strong {
+      color: #ffdd57;
+  }
+  
+  .button-container {
+      display: flex;
+      justify-content: center; /* Центрирование кнопки */
+      margin-top: 30px;
+  }
+  
+  .custom-button {
+      background-color: #007bff;
+      color: white;
+      padding: 15px 30px;
+      font-size: 25px;
+      border-radius: 50px; /* Округленные края */
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgb(0, 0, 0);
+  }
+
+  @media (max-width:500px) {
+    .custom-button {
+      font-size: 15px;
+    }
+  }
+  
+  .custom-button:hover {
+      background-color: #0056b3;
+      transform: scale(0.95); /* Scale при наведении */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Усиление тени при наведении */
+  }
+  
+  .custom-button:active {
+      transform: scale(0.9); /* Ещё сильнее при клике */
+  }
+  
+
+
+
+
+  /*подвал снизу*/
+  
+  footer{
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 0);
+    box-shadow: 0 -10px 10px #ffffff;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 30px;
+    position: absolute;
+    padding-bottom: 50px;
+  }
+
+footer a{
+  color:white;
+  font-size: 20px;
+  margin-left: 20px;
+}
+
+footer nav a:hover{
+  border-bottom: 1px solid white;
+}
+
+.graficlogo{
+    margin-top: 30px;
+    margin-bottom: 0px;
+    width:200px;
+    height:200px;
+	  float:center;
+    
+}
+.social img{
+  margin-bottom: 20px;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.social img:hover{
+  border: 2px solid #ffffffe4;
+}
