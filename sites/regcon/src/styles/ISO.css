@@ -453,7 +453,7 @@ body {
 
 
   .item-1 {
-    background-image: url(./logo1.jpg);
+    background-image: url('../assets/logo1.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -468,7 +468,7 @@ body {
   }
 
   .item-2 {
-    background-image: url(./logo2.jpg);
+    background-image: url('../assets/logo2.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -483,7 +483,7 @@ body {
   }
 
   .item-3 {
-    background-image: url(./logo3.jpg);
+    background-image: url('../assets/logo3.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -498,7 +498,7 @@ body {
   }
 
   .item-4 {
-    background-image: url(./logo4.jpg);
+    background-image: url('../assets/logo4.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -513,7 +513,7 @@ body {
   }
 
   .item-5 {
-    background-image: url(./logo5.jpg);
+    background-image: url('../assets/logo5.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -528,7 +528,7 @@ body {
   }
 
   .item-6 {
-    background-image: url(./logo6.jpg);
+    background-image: url('../assets/logo6.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -543,7 +543,7 @@ body {
   }
 
   .item-7 {
-    background-image: url(./logo7.jpg);
+    background-image: url('../assets/logo7.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -558,7 +558,7 @@ body {
   }
 
   .item-8 {
-    background-image: url(./logo8.jpg);
+    background-image: url('../assets/logo8.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -573,7 +573,7 @@ body {
   }
 
   .item-9 {
-    background-image: url(./logo9.jpg);
+    background-image: url('../assets/logo9.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -588,7 +588,7 @@ body {
   }
 
   .item-10 {
-    background-image: url(./logo10.jpg);
+    background-image: url('../assets/logo10.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -603,7 +603,7 @@ body {
   }
 
   .item-11 {
-    background-image: url(./logo11.jpg);
+    background-image: url('../assets/logo11.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -618,7 +618,7 @@ body {
   }
 
   .item-12 {
-    background-image: url(./logo12.jpg);
+    background-image: url('../assets/logo12.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -633,7 +633,7 @@ body {
   }
 
   .item-13 {
-    background-image: url(./logo13.jpg);
+    background-image: url('../assets/logo13.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -648,7 +648,7 @@ body {
   }
 
   .item-14 {
-    background-image: url(./logo14.jpg);
+    background-image: url('../assets/logo14.jpg');
     width: 300px;
     height: 300px;
     position: relative;
@@ -663,7 +663,7 @@ body {
   }
 
   .item-15 {
-    background-image: url(./logo15.jpg);
+    background-image: url('../assets/logo15.jpg');
     width: 300px;
     height: 150px;
     position: relative;
@@ -678,7 +678,7 @@ body {
   }
 
   .item-16 {
-    background-image: url(./logo16.jpg);
+    background-image: url('../assets/logo16.jpg');
     width: 300px;
     height: 230px;
     position: relative;

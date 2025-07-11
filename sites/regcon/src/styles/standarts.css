@@ -482,7 +482,7 @@ body {
   }
 
   .item-1 {
-    background-image: url(./ISO\ 9001.jpg);
+    background-image: url('../assets/ 9001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -496,7 +496,7 @@ body {
 
 
   .item-2 {
-    background-image: url(./СТО\ ГАЗПРОМ.jpg);
+    background-image: url('../assets/ ГАЗПРОМ.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -509,7 +509,7 @@ body {
 
 
   .item-3 {
-    background-image: url(./ISO\ 14001.jpg);
+    background-image: url('../assets/ 14001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -522,7 +522,7 @@ body {
   
 
   .item-4 {
-    background-image: url(./ГОСТ\ РВ\ 0015-002.jpg);
+    background-image: url('../assets/ 0015-002.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -534,7 +534,7 @@ body {
 
 
   .item-5 {
-    background-image: url(IATF\ 16949.jpg);
+    background-image: url('../assets/ 16949.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -546,7 +546,7 @@ body {
 
 
   .item-6 {
-    background-image: url(./ISO-IEC\ 17025.jpg);
+    background-image: url('../assets/ 17025.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -558,7 +558,7 @@ body {
 
 
   .item-7 {
-    background-image: url(./ISO\ 22000.jpg);
+    background-image: url('../assets/ 22000.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -570,7 +570,7 @@ body {
 
 
   .item-8 {
-    background-image: url(./ISO-IEC\ 27001.jpg);
+    background-image: url('../assets/ 27001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -582,7 +582,7 @@ body {
 
 
   .item-9 {
-    background-image: url(./ISO-TS\ 29001.jpg);
+    background-image: url('../assets/ 29001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -595,7 +595,7 @@ body {
 
 
   .item-10 {
-    background-image: url(./ISO\ 31000.jpg);
+    background-image: url('../assets/ 31000.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -608,7 +608,7 @@ body {
 
 
   .item-11 {
-    background-image: url(./ISO\ 39001.jpg);
+    background-image: url('../assets/ 39001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -620,7 +620,7 @@ body {
 
 
   .item-12 {
-    background-image: url(./ISO\ 45001.jpg);
+    background-image: url('../assets/ 45001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -632,7 +632,7 @@ body {
 
 
   .item-13 {
-    background-image: url(./ISO\ 50001.jpg);
+    background-image: url('../assets/ 50001.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -643,7 +643,7 @@ body {
   }
 
   .item-14 {
-    background-image: url(./API.jpg);
+    background-image: url('../assets/API.jpg');
     width: 250px;
     height: 300px;
     position: relative;
@@ -655,7 +655,7 @@ body {
 
 
   .item-15 {
-    background-image: url(./AS\ 9100.jpg);
+    background-image: url('../assets/ 9100.jpg');
     width: 250px;
     height: 300px;
     position: relative;

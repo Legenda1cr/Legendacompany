@@ -495,7 +495,7 @@ body {
 }
 
 .item-1 {
-    background: url(./audit.mp4);
+    background: url('../assets/audit.mp4');
     width: 100%;
     max-width: 650px;
     height: 500px;
@@ -692,7 +692,7 @@ h3 {
 
 
     .parallax-text {
-      background-image: url('your-parallax-background-image.jpg'); /* Фон с параллакс эффектом */
+      background-image: url('../assets/your-parallax-background-image.jpg'); /* Фон с параллакс эффектом */
       background-attachment: fixed;
       background-size: cover;
       padding: 0;

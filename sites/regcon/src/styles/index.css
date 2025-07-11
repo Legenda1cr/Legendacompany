@@ -13,7 +13,7 @@ body{
 
 
 .parallax{
-    background: url(./природа0.gif);  
+    background: url('../assets/природа0.gif');  
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
