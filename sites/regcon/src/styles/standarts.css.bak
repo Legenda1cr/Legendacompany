@@ -1,0 +1,736 @@
+
+head {
+    
+}
+
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-shadow: border-box;
+
+
+}
+.parallax{
+  background: white; 
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.parallax .mask{
+    position: absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background: rgba(0, 0, 0, 0,7);
+    z-index:2;
+}
+.parallax-content{
+    z-index:3;
+    display:block
+
+}
+
+.parallax-content{
+  background: #000000d6;
+  box-shadow: 0 10px 30px #ffffff;
+  width:90%; 
+  height: auto;
+  border-radius: 40px;
+  float:center;
+  color: white;
+  display: flex;
+}
+
+.parallax-content p {
+  margin-top: 2%;
+  margin-bottom: 3%;
+  font-size: 20px;
+  text-align: center;
+  font-family: sans-serif;
+  padding-left: 5%;
+  padding-right: 5%;
+  line-height: 35px;
+}
+
+.parallax-content p a{
+  color: white;
+}
+
+.parallax-content p a:hover {
+  color: #f96900;
+  cursor: pointer;
+}
+
+
+
+.text1{
+    color:#ffff;
+    font-size: 75px;
+    font-weight: 800;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    
+}
+
+
+/*снизу всё что к менюшке*/
+
+
+    
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+
+section {
+  padding: 0rem 2%;
+} 
+
+.header {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 5px 10px #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  border-radius: 50px;
+  line-height: 35px;
+  padding-right: 20px;
+}
+
+.header .logo img {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  margin-left: 25px;
+  margin-top: 8px;
+}
+
+
+
+.navbar a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    position: relative;
+    padding: 10px 0;
+    transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: blue;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease; /* Плавное появление черты */
+}
+
+.navbar a:hover::after {
+    width: 100%; /* Черта появляется полностью при наведении */
+}
+
+.navbar a:hover {
+    color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+html {
+  text-align: center;
+}
+
+#menu {
+  cursor: pointer;
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+  transition: color 0.3s ease; /* Плавный переход цвета текста */
+}
+
+.navbar a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: blue;
+  bottom: 0;
+  left: 0;
+  transition: width 0.3s ease; /* Плавное появление черты */
+}
+
+.navbar a:hover::after {
+  width: 100%; /* Черта появляется полностью при наведении */
+}
+
+.navbar a:hover {
+  color: black; /* Оставляем цвет текста неизменным при наведении */
+}
+
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 24px;
+  margin-right: 20px;
+}
+
+.burger .line {
+  width: 30px;
+  height: 3px;
+  background-color: black;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width:1300px) {
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1250px) {
+  section {
+      padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+    font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1200px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1150px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1100px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1050px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:1000px) {
+  section {
+    padding: 0rem 5%;
+    line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  .parallax-content p {
+    font-size: 16px
+    }
+      .parallax-content h1 {
+        font-size: 30px;
+        }
+        .custom-button {
+          font-size: 20px;
+        }
+        .title {
+          font-size: 30px;
+        }
+        .container p {
+          font-size: 30px;
+        }
+  }
+  
+  @media (max-width:950px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:900px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 80%;
+  }
+  }
+  
+  @media (max-width:887px) {
+    section {
+      padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 70%;
+    }
+    }
+  
+  @media (max-width:850px) {
+  section {
+    padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 70%;
+  }
+  }
+  
+  @media (max-width:800px) {
+  section {
+  padding: 0rem 5%;
+  line-height: 35px;
+  }
+  html {
+  font-size: 60%;
+  }
+  }
+  
+  @media (max-width:700px) {
+    section {
+    padding: 0rem 5%;
+    line-height: 35px;
+    }
+    html {
+    font-size: 65%;
+    }
+    .container p {
+      font-size: 20px;
+    }
+  }
+@media (max-width: 500px) {
+  .navbar {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+      padding: 20px 0;
+  }
+
+  .navbar.active {
+      display: flex;
+  }
+
+  .burger {
+      display: flex;
+  }
+
+  .navbar a {
+      margin: 10px 0;
+      font-size: 20px;
+  }
+}
+
+  /*сверху всё что к менюшке*/
+
+
+
+  /*ниже все что к слайдеру*/
+
+  h5 {
+    position: relative;
+    margin-top: 100px; 
+    margin-bottom: -150px;
+    text-align: center;
+    background-color: #2259ff;
+    text-align: center;
+    font-size: 40px;
+    font-weight: 1000;
+    color: #ffffff;
+    padding: 10px 10px 20px 10px;
+  }
+
+
+  .container{
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    border: 10px solid var(--clr-dark);
+    margin-top: 5%;
+    background-color: #d2b41c00;
+    margin-bottom: 200px;
+    display: flex;
+  }  
+
+  .item {
+    width: 250px;
+    height: 300px;
+    background-color: rgb(255, 255, 255);
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 50%;
+    margin-left: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Плавность эффекта */
+  }
+
+  .item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+}
+
+
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 5em;
+    row-gap: 2rem;
+  }
+
+  .item h1 {
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+
+  .item .text {
+    color: rgb(0, 0, 0);
+    position: absolute;
+    margin-top: 130%;
+    max-width: 250px;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .item-1 {
+    background-image: url(./ISO\ 9001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+ 
+
+
+  .item-2 {
+    background-image: url(./СТО\ ГАЗПРОМ.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+
+  .item-3 {
+    background-image: url(./ISO\ 14001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+  
+
+  .item-4 {
+    background-image: url(./ГОСТ\ РВ\ 0015-002.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-5 {
+    background-image: url(IATF\ 16949.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-6 {
+    background-image: url(./ISO-IEC\ 17025.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-7 {
+    background-image: url(./ISO\ 22000.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-8 {
+    background-image: url(./ISO-IEC\ 27001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-9 {
+    background-image: url(./ISO-TS\ 29001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+
+  .item-10 {
+    background-image: url(./ISO\ 31000.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+
+  .item-11 {
+    background-image: url(./ISO\ 39001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-12 {
+    background-image: url(./ISO\ 45001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-13 {
+    background-image: url(./ISO\ 50001.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+  .item-14 {
+    background-image: url(./API.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-15 {
+    background-image: url(./AS\ 9100.jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000; 
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+  .item-16 {
+    background-image: url(./ISO-TS\ 22163\(IRIS\).jpg);
+    width: 250px;
+    height: 300px;
+    position: relative;
+    box-shadow: 0 5px 15px #000000;   
+    background-size: cover;
+    display: inline-block;
+    border-radius: 20px;
+  }
+
+
+
+
+
+
+    
+  
+
+
+
+   
+  
+    /*выше все что к слайдеру*/
+
+    /*подвал снизу*/
+  
+   
+    footer{
+      width: 100%;
+      height: auto;
+      background: rgb(0, 0, 0);
+      box-shadow: 0 -10px 10px #ffffff;
+      margin: 0 auto;
+      text-align: center;
+      padding-top: 30px;
+      position: absolute;
+      padding-bottom: 50px;
+    }
+  
+  footer a{
+    color:white;
+    font-size: 20px;
+    margin-left: 20px;
+  }
+  
+  footer nav a:hover{
+    border-bottom: 1px solid white;
+  }
+  
+  .graficlogo{
+      margin-top: 30px;
+      margin-bottom: 0px;
+      width:200px;
+      height:200px;
+      float:center;
+      
+  }
+  .social img{
+    margin-bottom: 20px;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+  }
+  
+  .social img:hover{
+    border: 2px solid #ffffffe4;
+  }

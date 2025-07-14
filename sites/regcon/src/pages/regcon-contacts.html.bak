@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contacts.css">
+    <link rel="shortcut icon" href="./logo.png" type="image/png">
+    <tittle Parallax></tittle>
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/e5af2b91b2.js" crossorigin="anonymous"></script>
+</head>    
+<body>
+  <header class="header">
+    <a href="#" class="logo">
+        <img src="./logo.png" alt="logo">
+    </a>
+
+    <nav class="navbar" id="navbar">
+        <a href="index.html">Главная</a>
+        <a href="standarts.html">Стандарты</a>
+        <a href="news.html">Новости</a>
+        <a href="Audit.html">Аудит</a>
+        <a href="study.html">Обучение</a>
+        <a href="consalting.html">Консалтинг</a>
+        <a href="regcon-contacts.html">Контакты</a>
+        <a href="сведения.html">Сведения</a>
+    </nav>
+
+    <div class="burger" id="burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</header>
+
+<script>
+        // Открытие и закрытие меню при нажатии на иконку бургер
+        const burger = document.getElementById('burger');
+        const navbar = document.getElementById('navbar');
+
+        burger.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+        });
+
+</script>
+    <div class="page-content">
+        
+    <div class="parallax">
+      <div class="container">
+  
+
+      </div>
+      
+      <div class="parallax-content">
+        <h1>Контакты</h1>
+    
+        <section class="contacts">
+            <div class="contacts-container">
+              
+              <!-- Первая секция контактов -->
+              <div class="contacts-content">
+                <div class="contact-info">
+                  <h2>Регистр-Консалтинг</h2>
+                  <p>191187 г. Санкт-Петербург, <br>наб.Кутузова, д.30</p>
+                  <p>e-mail: <a href="mailto:mail@regcon.ru">mail@regcon.ru</a></p>
+                  <p>e-mail: <a href="mailto:emc@regcon.ru">emc@regcon.ru</a></p>
+                  <p>Телефон: <br>(812) 275-05-12 <br>(812) 275-05-13 <br>(812) 241-00-79</p>
+                </div>
+                <div class="contact-map">
+                  <!-- Первая карта -->
+                  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Abd715aa89d65d445db0444e3ca6315233f12b24fd70b3a8f198b04bd74f8478b&amp;source=constructor" width="600" height="300" frameborder="0"></iframe>
+                </div>
+              </div>
+              
+              <!-- Разделительная линия -->
+              <hr>
+              
+              <!-- Вторая секция контактов -->
+              <div class="contacts-content">
+                <div class="contact-info">
+                    <p>199106 г.Санкт-Петербург, <br>
+                        22-я линия В.О., д.3, корп.1<br>
+                        БЦ "Механобр"</p>
+                    <p>e-mail: <a href="mailto:mail@regcon.ru">mail@regcon.ru</a></p>
+                    <p>e-mail: <a href="mailto:emc@regcon.ru">emc@regcon.ru</a></p>
+                    <p>Телефон: <br>(812) 241-00-79 <br>(812) 275-05-12 <br>(812) 275-05-13</p>
+                  </div>
+                <div class="contact-map">
+                  <!-- Вторая карта -->
+                  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A630728ec33f9990f821edb939c0ab48ae90e6f0b52a9a28d5c4f3efaae87940a&amp;source=constructor" width="600" height="300" frameborder="0"></iframe>
+                </div>
+              </div>
+              <hr>
+    
+              <!-- Третья секция контактов -->
+              <div class="contacts-content">
+                <div class="contact-info">
+                    <p>192102 г.Санкт-Петербург, <br>наб.реки Волковки, д.7<br>БЦ "Иволга"</p>
+                    <p>e-mail: <a href="mailto:mail@regcon.ru">mail@regcon.ru</a></p>
+                    <p>e-mail: <a href="mailto:emc@regcon.ru">emc@regcon.ru</a></p>
+                    <p>Телефон: <br>(812) 241-00-79 <br>(812) 275-05-12 <br>(812) 275-05-13</p>
+                  </div>
+                <div class="contact-map">
+                  <!-- Третья карта -->
+                  <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af57554309e5259ce5044f5d63c24bd78f65ecab455a4e94c2d8bd76f34ff5a22&amp;source=constructor" width="600" height="300" frameborder="0"></iframe>
+                </div>
+              </div>
+    
+              <!-- Разделительная линия -->
+                <hr>
+              <!-- Форма отправки сообщения -->
+              <div class="contact-form" id="contact-form">
+                <h2>Отправить сообщение</h2>
+                <form action="/submit_form" method="post">
+                    <label for="name">Имя</label>
+                    <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+            
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Ваш email" required>
+            
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+7 (999) 999-99-99" required>
+            
+                    <label for="message">Сообщение</label>
+                    <textarea id="message" name="message" placeholder="Введите сообщение" required></textarea>
+            
+                    <button type="submit">Отправить</button>
+            
+                    <p class="privacy-policy">Нажимая на кнопку, вы даете согласие на обработку персональной информации на условиях, определенных политикой конфиденциальности</p>
+                </form>
+
+                <script>
+                  window.addEventListener("load", function () {
+    const hash = window.location.hash;
+    if (hash === "#contact-form") {
+        const contactForm = document.querySelector(hash);
+        if (contactForm) {
+            // Добавляем небольшой отступ для учета высоты header
+            const headerHeight = document.querySelector(".header").offsetHeight || 0;
+            const offsetPosition = contactForm.getBoundingClientRect().top + window.scrollY - headerHeight - 10; // 10px для отступа
+
+            // Скроллим к нужной позиции
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth",
+            });
+
+            // Ставим фокус на первый ввод
+            const firstInput = contactForm.querySelector("input, textarea");
+            if (firstInput) firstInput.focus();
+        }
+    }
+});
+
+                </script>
+
+            </div>
+            
+
+        </section>
+    </div>
+    
+    <div class="page-content"></div>
+        
+        
+    </div>
+
+    
+</body>
+<footer>
+  <div class="footer">
+    <nav>
+        <a href ="#"> Политика обработки персональных данных</a> 
+
+    </nav>
+
+      <div class="logopng">
+        <a href="index.html"><img class="graficlogo"src="logo.png" alt=""></a>
+      </div>
+
+
+      <nav>
+        <a href ="#"> © 1999 - 2024 "Регистр-Консалтинг"</a> 
+    </nav>
+    
+
+  </div>
+</footer>
+</html>
+
