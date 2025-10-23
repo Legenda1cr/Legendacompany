@@ -1,4 +1,4 @@
-# Программист JavaScript Legenda1cr
+# Программист JavaScript Matveevsky Ilya
 - Занимаюсь разработкой систем для компаний такие как CRM, CMS
 - Разработку веду на JS библиотеке React
 - Работаю с БД на Postgre
@@ -13,5 +13,5 @@
 - Телеграмм-боты от низкой до высокой сложности разработки
 
 ## Связаться со мной
-- Telegram: https://t.me/Legenda_1Cr
+- Telegram: https://t.me/Legenda_CR
 - Email: fulladress98@gmail.com
