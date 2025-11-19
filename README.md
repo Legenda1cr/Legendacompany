@@ -24,7 +24,7 @@
 
 ## Контакты
 Разработчик: Илья Матвеевский  
-Telegram: [@Legenda_1Cr](https://t.me/Legenda_1Cr)  
+Telegram: [@Legenda_CR](https://t.me/Legenda_CR)  
 Email: fulladress98@gmail.com
 
 ---
