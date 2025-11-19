@@ -1,4 +1,4 @@
-# Legendacompany
+# Legenda company
 
 Репозиторий компании **Legenda** для хранения и версионирования:
 
